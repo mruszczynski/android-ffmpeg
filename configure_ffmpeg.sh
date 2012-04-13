@@ -9,14 +9,6 @@ fi
 
 pushd ffmpeg
 
-#--disable-decoders \
-#--disable-encoders \
-#--disable-muxers \
-#--disable-demuxers \
-#--disable-parsers \
-#--disable-filters \
-#--disable-protocols \
-
 ./configure \
 $DEBUG_FLAG \
 --enable-cross-compile \
@@ -35,29 +27,9 @@ $DEBUG_FLAG \
 --enable-gpl \
 --enable-memalign-hack \
 --disable-doc \
---enable-yasm \
 \
---enable-decoder=mjpeg \
---enable-decoder=rawvideo \
-\
---enable-encoder=libx264 \
-\
---enable-muxer=mp4 \
-\
---enable-demuxer=image2 \
---enable-demuxer=mjpeg \
---enable-demuxer=mp4 \
---enable-demuxer=mov \
-\
---enable-parser=mjpeg \
-\
---enable-filter=buffer \
---enable-filter=buffersink \
---enable-filter=drawbox \
---enable-filter=overlay \
---enable-filter=redact \
-\
---enable-protocol=file \
+--disable-asm \
+--disable-yasm \
 \
 --enable-hwaccels \
 \
@@ -65,8 +37,8 @@ $DEBUG_FLAG \
 --disable-ffplay \
 --disable-ffprobe \
 --disable-ffserver \
---disable-network \
 --enable-libx264 \
+--enable-libspeex \
 --enable-zlib \
 --extra-cflags="-I../x264" \
 --extra-ldflags="-L../x264" \
