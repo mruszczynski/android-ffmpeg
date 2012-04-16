@@ -37,11 +37,11 @@ $DEBUG_FLAG \
 --disable-ffplay \
 --disable-ffprobe \
 --disable-ffserver \
---enable-libx264 \
 --enable-libspeex \
+--enable-libx264 \
 --enable-zlib \
---extra-cflags="-I../x264" \
---extra-ldflags="-L../x264" \
+--extra-cflags="-I../x264 -I../speex/include/" \
+--extra-ldflags="-L../x264 -L../android-project/obj/local/armeabi/" \
 --disable-avdevice \
 --disable-devices
 

@@ -9,9 +9,6 @@ function die {
 pushd speex
 
 ./autogen.sh || die "Error running speex/autogen.sh"
-./configure \
---host=arm-linux \
---enable-pic \
---enable-static \
+./configure
 
 popd;popd

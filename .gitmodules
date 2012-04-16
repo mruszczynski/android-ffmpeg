@@ -4,3 +4,7 @@
 [submodule "x264"]
 	path = x264
 	url = git://git.videolan.org/x264.git
+[submodule "speex"]
+	path = speex
+	url = http://git.xiph.org/speex.git
+

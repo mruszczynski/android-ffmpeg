@@ -1,7 +1,7 @@
 #!/bin/bash
 pushd `dirname $0`
 . settings.sh
-pushd speex
-make clean
-make -j4
+pushd android-project/
+ndk-build
 popd;popd
+
