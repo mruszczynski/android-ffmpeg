@@ -7,4 +7,7 @@
 [submodule "speex"]
 	path = speex
 	url = http://git.xiph.org/speex.git
+[submodule "opencore"]
+	path = opencore
+	url = git://opencore-amr.git.sourceforge.net/gitroot/opencore-amr/opencore-amr
 
