@@ -27,6 +27,7 @@ uname -v = #67-Ubuntu SMP Mon Mar 5 19:39:49 UTC 2012
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
+PATH: /home/andrew/apache-maven-3.0.4/bin
 PATH: /home/shared/android-ndk/
 PATH: /home/shared/android-sdks/platform-tools/
 PATH: /usr/local/sbin
@@ -334,7 +335,7 @@ configure:11393: result: /usr/bin/wget -N
 configure:11407: checking for library containing sqrt
 configure:11438: gcc -o conftest -g -O2   conftest.c  >&5
 conftest.c:30: warning: conflicting types for built-in function 'sqrt'
-/tmp/cctms51d.o: In function `main':
+/tmp/ccqcqJJq.o: In function `main':
 /home/andrew/pluggedin/android-ffmpeg/libaacplus-2.0.2/conftest.c:34: undefined reference to `sqrt'
 collect2: ld returned 1 exit status
 configure:11438: $? = 1

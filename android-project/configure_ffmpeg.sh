@@ -16,7 +16,6 @@ $DEBUG_FLAG \
 --cpu=cortex-a8 \
 --target-os=linux \
 --enable-runtime-cpudetect \
---prefix=/data/data/org.witness.sscvideoproto \
 --enable-pic \
 --enable-static \
 --enable-small \
@@ -59,8 +58,6 @@ $DEBUG_FLAG \
 
 
 popd; 
-
-cp ../ffmpeg/ffmpeg ./
 
 popd
 
