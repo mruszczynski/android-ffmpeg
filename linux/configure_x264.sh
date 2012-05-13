@@ -6,7 +6,9 @@ pushd ../x264
 
 ./configure \
 --enable-pic \
---enable-static \
+--enable-shared \
 --disable-cli
+
+#--enable-static \
 
 popd;popd

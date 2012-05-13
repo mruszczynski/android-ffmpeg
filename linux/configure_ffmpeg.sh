@@ -13,10 +13,9 @@ pushd ../ffmpeg
 $DEBUG_FLAG \
 --enable-runtime-cpudetect \
 --enable-pic \
---enable-static \
+--enable-shared \
 --enable-small \
 --enable-version3 \
---enable-gpl \
 --enable-memalign-hack \
 --disable-doc \
 \
@@ -30,7 +29,6 @@ $DEBUG_FLAG \
 --disable-ffprobe \
 --disable-ffserver \
 --enable-libspeex \
---enable-libx264 \
 --enable-zlib \
 --extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
 --extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \
@@ -38,7 +36,9 @@ $DEBUG_FLAG \
 --disable-devices
 
 
-# --enable-shared \
+#--enable-static \
+#--enable-gpl \
+#--enable-libx264 \
 
 
 # Requires --enable-nonfree:

@@ -11,3 +11,6 @@ function die {
 ./configure_ffmpeg.sh || die "FFMPEG configure"
 ./make_ffmpeg.sh || die "FFMPEG make"
 
+ls -alh
+LD_LIBRARY_PATH=`pwd` ldd ffmpeg
+
