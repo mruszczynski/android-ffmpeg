@@ -60,7 +60,7 @@ public class AVHWAccel {
   }
 
   public void setPix_fmt(int value) {
-    ffmpegJNI.AVHWAccel_pix_fmt_set(swigCPtr, this, value.swigValue());
+    ffmpegJNI.AVHWAccel_pix_fmt_set(swigCPtr, this, value);
   }
 
   public int getPix_fmt() {

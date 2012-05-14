@@ -110,11 +110,11 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static int sws_isSupportedInput(int pix_fmt) {
-    return ffmpegJNI.sws_isSupportedInput(pix_fmt.swigValue());
+    return ffmpegJNI.sws_isSupportedInput(pix_fmt);
   }
 
   public static int sws_isSupportedOutput(int pix_fmt) {
-    return ffmpegJNI.sws_isSupportedOutput(pix_fmt.swigValue());
+    return ffmpegJNI.sws_isSupportedOutput(pix_fmt);
   }
 
   public static SWIGTYPE_p_SwsContext sws_alloc_context() {
@@ -131,7 +131,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static SWIGTYPE_p_SwsContext sws_getContext(int srcW, int srcH, int srcFormat, int dstW, int dstH, int dstFormat, int flags, SwsFilter srcFilter, SwsFilter dstFilter, SWIGTYPE_p_double param) {
-    long cPtr = ffmpegJNI.sws_getContext(srcW, srcH, srcFormat.swigValue(), dstW, dstH, dstFormat.swigValue(), flags, SwsFilter.getCPtr(srcFilter), srcFilter, SwsFilter.getCPtr(dstFilter), dstFilter, SWIGTYPE_p_double.getCPtr(param));
+    long cPtr = ffmpegJNI.sws_getContext(srcW, srcH, srcFormat, dstW, dstH, dstFormat, flags, SwsFilter.getCPtr(srcFilter), srcFilter, SwsFilter.getCPtr(dstFilter), dstFilter, SWIGTYPE_p_double.getCPtr(param));
     return (cPtr == 0) ? null : new SWIGTYPE_p_SwsContext(cPtr, false);
   }
 
@@ -214,7 +214,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static SWIGTYPE_p_SwsContext sws_getCachedContext(SWIGTYPE_p_SwsContext context, int srcW, int srcH, int srcFormat, int dstW, int dstH, int dstFormat, int flags, SwsFilter srcFilter, SwsFilter dstFilter, SWIGTYPE_p_double param) {
-    long cPtr = ffmpegJNI.sws_getCachedContext(SWIGTYPE_p_SwsContext.getCPtr(context), srcW, srcH, srcFormat.swigValue(), dstW, dstH, dstFormat.swigValue(), flags, SwsFilter.getCPtr(srcFilter), srcFilter, SwsFilter.getCPtr(dstFilter), dstFilter, SWIGTYPE_p_double.getCPtr(param));
+    long cPtr = ffmpegJNI.sws_getCachedContext(SWIGTYPE_p_SwsContext.getCPtr(context), srcW, srcH, srcFormat, dstW, dstH, dstFormat, flags, SwsFilter.getCPtr(srcFilter), srcFilter, SwsFilter.getCPtr(dstFilter), dstFilter, SWIGTYPE_p_double.getCPtr(param));
     return (cPtr == 0) ? null : new SWIGTYPE_p_SwsContext(cPtr, false);
   }
 
@@ -282,7 +282,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static SWIGTYPE_p_ReSampleContext av_audio_resample_init(int output_channels, int input_channels, int output_rate, int input_rate, int sample_fmt_out, int sample_fmt_in, int filter_length, int log2_phase_count, int linear, double cutoff) {
-    long cPtr = ffmpegJNI.av_audio_resample_init(output_channels, input_channels, output_rate, input_rate, sample_fmt_out.swigValue(), sample_fmt_in.swigValue(), filter_length, log2_phase_count, linear, cutoff);
+    long cPtr = ffmpegJNI.av_audio_resample_init(output_channels, input_channels, output_rate, input_rate, sample_fmt_out, sample_fmt_in, filter_length, log2_phase_count, linear, cutoff);
     return (cPtr == 0) ? null : new SWIGTYPE_p_ReSampleContext(cPtr, false);
   }
 
@@ -312,7 +312,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static int avpicture_alloc(AVPicture picture, int pix_fmt, int width, int height) {
-    return ffmpegJNI.avpicture_alloc(AVPicture.getCPtr(picture), picture, pix_fmt.swigValue(), width, height);
+    return ffmpegJNI.avpicture_alloc(AVPicture.getCPtr(picture), picture, pix_fmt, width, height);
   }
 
   public static void avpicture_free(AVPicture picture) {
@@ -320,19 +320,19 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static int avpicture_fill(AVPicture picture, SWIGTYPE_p_unsigned_char ptr, int pix_fmt, int width, int height) {
-    return ffmpegJNI.avpicture_fill(AVPicture.getCPtr(picture), picture, SWIGTYPE_p_unsigned_char.getCPtr(ptr), pix_fmt.swigValue(), width, height);
+    return ffmpegJNI.avpicture_fill(AVPicture.getCPtr(picture), picture, SWIGTYPE_p_unsigned_char.getCPtr(ptr), pix_fmt, width, height);
   }
 
   public static int avpicture_layout(AVPicture src, int pix_fmt, int width, int height, SWIGTYPE_p_unsigned_char dest, int dest_size) {
-    return ffmpegJNI.avpicture_layout(AVPicture.getCPtr(src), src, pix_fmt.swigValue(), width, height, SWIGTYPE_p_unsigned_char.getCPtr(dest), dest_size);
+    return ffmpegJNI.avpicture_layout(AVPicture.getCPtr(src), src, pix_fmt, width, height, SWIGTYPE_p_unsigned_char.getCPtr(dest), dest_size);
   }
 
   public static int avpicture_get_size(int pix_fmt, int width, int height) {
-    return ffmpegJNI.avpicture_get_size(pix_fmt.swigValue(), width, height);
+    return ffmpegJNI.avpicture_get_size(pix_fmt, width, height);
   }
 
   public static void avcodec_get_chroma_sub_sample(int pix_fmt, SWIGTYPE_p_int h_shift, SWIGTYPE_p_int v_shift) {
-    ffmpegJNI.avcodec_get_chroma_sub_sample(pix_fmt.swigValue(), SWIGTYPE_p_int.getCPtr(h_shift), SWIGTYPE_p_int.getCPtr(v_shift));
+    ffmpegJNI.avcodec_get_chroma_sub_sample(pix_fmt, SWIGTYPE_p_int.getCPtr(h_shift), SWIGTYPE_p_int.getCPtr(v_shift));
   }
 
   public static String avcodec_get_name(CodecID id) {
@@ -344,7 +344,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static long avcodec_pix_fmt_to_codec_tag(int pix_fmt) {
-    return ffmpegJNI.avcodec_pix_fmt_to_codec_tag(pix_fmt.swigValue());
+    return ffmpegJNI.avcodec_pix_fmt_to_codec_tag(pix_fmt);
   }
 
   public static long av_get_codec_tag_string(String buf, long buf_size, long codec_tag) {
@@ -352,19 +352,19 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static int avcodec_get_pix_fmt_loss(int dst_pix_fmt, int src_pix_fmt, int has_alpha) {
-    return ffmpegJNI.avcodec_get_pix_fmt_loss(dst_pix_fmt.swigValue(), src_pix_fmt.swigValue(), has_alpha);
+    return ffmpegJNI.avcodec_get_pix_fmt_loss(dst_pix_fmt, src_pix_fmt, has_alpha);
   }
 
   public static int avcodec_find_best_pix_fmt(long pix_fmt_mask, int src_pix_fmt, int has_alpha, SWIGTYPE_p_int loss_ptr) {
-    return (ffmpegJNI.avcodec_find_best_pix_fmt(pix_fmt_mask, src_pix_fmt.swigValue(), has_alpha, SWIGTYPE_p_int.getCPtr(loss_ptr)));
+    return (ffmpegJNI.avcodec_find_best_pix_fmt(pix_fmt_mask, src_pix_fmt, has_alpha, SWIGTYPE_p_int.getCPtr(loss_ptr)));
   }
 
   public static int avcodec_find_best_pix_fmt2(int dst_pix_fmt1, int dst_pix_fmt2, int src_pix_fmt, int has_alpha, SWIGTYPE_p_int loss_ptr) {
-    return (ffmpegJNI.avcodec_find_best_pix_fmt2(dst_pix_fmt1.swigValue(), dst_pix_fmt2.swigValue(), src_pix_fmt.swigValue(), has_alpha, SWIGTYPE_p_int.getCPtr(loss_ptr)));
+    return (ffmpegJNI.avcodec_find_best_pix_fmt2(dst_pix_fmt1, dst_pix_fmt2, src_pix_fmt, has_alpha, SWIGTYPE_p_int.getCPtr(loss_ptr)));
   }
 
   public static int avpicture_deinterlace(AVPicture dst, AVPicture src, int pix_fmt, int width, int height) {
-    return ffmpegJNI.avpicture_deinterlace(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, pix_fmt.swigValue(), width, height);
+    return ffmpegJNI.avpicture_deinterlace(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, pix_fmt, width, height);
   }
 
   public static AVCodec av_codec_next(AVCodec c) {
@@ -584,15 +584,15 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static void av_picture_copy(AVPicture dst, AVPicture src, int pix_fmt, int width, int height) {
-    ffmpegJNI.av_picture_copy(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, pix_fmt.swigValue(), width, height);
+    ffmpegJNI.av_picture_copy(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, pix_fmt, width, height);
   }
 
   public static int av_picture_crop(AVPicture dst, AVPicture src, int pix_fmt, int top_band, int left_band) {
-    return ffmpegJNI.av_picture_crop(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, pix_fmt.swigValue(), top_band, left_band);
+    return ffmpegJNI.av_picture_crop(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, pix_fmt, top_band, left_band);
   }
 
   public static int av_picture_pad(AVPicture dst, AVPicture src, int height, int width, int pix_fmt, int padtop, int padbottom, int padleft, int padright, SWIGTYPE_p_int color) {
-    return ffmpegJNI.av_picture_pad(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, height, width, pix_fmt.swigValue(), padtop, padbottom, padleft, padright, SWIGTYPE_p_int.getCPtr(color));
+    return ffmpegJNI.av_picture_pad(AVPicture.getCPtr(dst), dst, AVPicture.getCPtr(src), src, height, width, pix_fmt, padtop, padbottom, padleft, padright, SWIGTYPE_p_int.getCPtr(color));
   }
 
   public static long av_xiphlacing(SWIGTYPE_p_unsigned_char s, long v) {
@@ -805,7 +805,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static AVFilterBufferRef avfilter_get_video_buffer_ref_from_arrays(SWIGTYPE_p_p_unsigned_char data, SWIGTYPE_p_int linesize, int perms, int w, int h, int format) {
-    long cPtr = ffmpegJNI.avfilter_get_video_buffer_ref_from_arrays(SWIGTYPE_p_p_unsigned_char.getCPtr(data), SWIGTYPE_p_int.getCPtr(linesize), perms, w, h, format.swigValue());
+    long cPtr = ffmpegJNI.avfilter_get_video_buffer_ref_from_arrays(SWIGTYPE_p_p_unsigned_char.getCPtr(data), SWIGTYPE_p_int.getCPtr(linesize), perms, w, h, format);
     return (cPtr == 0) ? null : new AVFilterBufferRef(cPtr, false);
   }
 
@@ -815,7 +815,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static AVFilterBufferRef avfilter_get_audio_buffer_ref_from_arrays(SWIGTYPE_p_p_unsigned_char data, SWIGTYPE_p_int linesize, int perms, int nb_samples, int sample_fmt, java.math.BigInteger channel_layout, int planar) {
-    long cPtr = ffmpegJNI.avfilter_get_audio_buffer_ref_from_arrays(SWIGTYPE_p_p_unsigned_char.getCPtr(data), SWIGTYPE_p_int.getCPtr(linesize), perms, nb_samples, sample_fmt.swigValue(), channel_layout, planar);
+    long cPtr = ffmpegJNI.avfilter_get_audio_buffer_ref_from_arrays(SWIGTYPE_p_p_unsigned_char.getCPtr(data), SWIGTYPE_p_int.getCPtr(linesize), perms, nb_samples, sample_fmt, channel_layout, planar);
     return (cPtr == 0) ? null : new AVFilterBufferRef(cPtr, false);
   }
 
@@ -1163,7 +1163,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static SWIGTYPE_p_SwrContext swr_alloc_set_opts(SWIGTYPE_p_SwrContext s, long out_ch_layout, int out_sample_fmt, int out_sample_rate, long in_ch_layout, int in_sample_fmt, int in_sample_rate, int log_offset, SWIGTYPE_p_void log_ctx) {
-    long cPtr = ffmpegJNI.swr_alloc_set_opts(SWIGTYPE_p_SwrContext.getCPtr(s), out_ch_layout, out_sample_fmt.swigValue(), out_sample_rate, in_ch_layout, in_sample_fmt.swigValue(), in_sample_rate, log_offset, SWIGTYPE_p_void.getCPtr(log_ctx));
+    long cPtr = ffmpegJNI.swr_alloc_set_opts(SWIGTYPE_p_SwrContext.getCPtr(s), out_ch_layout, out_sample_fmt, out_sample_rate, in_ch_layout, in_sample_fmt, in_sample_rate, log_offset, SWIGTYPE_p_void.getCPtr(log_ctx));
     return (cPtr == 0) ? null : new SWIGTYPE_p_SwrContext(cPtr, false);
   }
 

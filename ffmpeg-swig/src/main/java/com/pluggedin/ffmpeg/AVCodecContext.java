@@ -134,7 +134,7 @@ public class AVCodecContext {
   }
 
   public void setPix_fmt(int value) {
-    ffmpegJNI.AVCodecContext_pix_fmt_set(swigCPtr, this, value.swigValue());
+    ffmpegJNI.AVCodecContext_pix_fmt_set(swigCPtr, this, value);
   }
 
   public int getPix_fmt() {
@@ -167,7 +167,7 @@ public class AVCodecContext {
   }
 
   public void setSample_fmt(int value) {
-    ffmpegJNI.AVCodecContext_sample_fmt_set(swigCPtr, this, value.swigValue());
+    ffmpegJNI.AVCodecContext_sample_fmt_set(swigCPtr, this, value);
   }
 
   public int getSample_fmt() {
@@ -1572,7 +1572,7 @@ public class AVCodecContext {
   }
 
   public void setRequest_sample_fmt(int value) {
-    ffmpegJNI.AVCodecContext_request_sample_fmt_set(swigCPtr, this, value.swigValue());
+    ffmpegJNI.AVCodecContext_request_sample_fmt_set(swigCPtr, this, value);
   }
 
   public int getRequest_sample_fmt() {
