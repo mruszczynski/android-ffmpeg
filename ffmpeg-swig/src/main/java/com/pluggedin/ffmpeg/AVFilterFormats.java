@@ -43,13 +43,13 @@ public class AVFilterFormats {
     return ffmpegJNI.AVFilterFormats_format_count_get(swigCPtr, this);
   }
 
-  public void setFormats(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFilterFormats_formats_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setFormats(SWIGTYPE_p_long_long value) {
+    ffmpegJNI.AVFilterFormats_formats_set(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(value));
   }
 
-  public SWIGTYPE_p_int64_t getFormats() {
+  public SWIGTYPE_p_long_long getFormats() {
     long cPtr = ffmpegJNI.AVFilterFormats_formats_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_int64_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
   }
 
   public void setRefcount(long value) {

@@ -35,19 +35,19 @@ public class AVOption {
     }
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVOption_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVOption_name_get(swigCPtr, this);
   }
 
-  public void setHelp(byte[] value) {
+  public void setHelp(String value) {
     ffmpegJNI.AVOption_help_set(swigCPtr, this, value);
   }
 
-  public byte[] getHelp() {
+  public String getHelp() {
     return ffmpegJNI.AVOption_help_get(swigCPtr, this);
   }
 
@@ -91,11 +91,11 @@ public class AVOption {
     return ffmpegJNI.AVOption_flags_get(swigCPtr, this);
   }
 
-  public void setUnit(byte[] value) {
+  public void setUnit(String value) {
     ffmpegJNI.AVOption_unit_set(swigCPtr, this, value);
   }
 
-  public byte[] getUnit() {
+  public String getUnit() {
     return ffmpegJNI.AVOption_unit_get(swigCPtr, this);
   }
 

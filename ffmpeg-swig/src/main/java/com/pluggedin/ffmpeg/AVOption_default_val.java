@@ -43,28 +43,29 @@ public class AVOption_default_val {
     return ffmpegJNI.AVOption_default_val_dbl_get(swigCPtr, this);
   }
 
-  public void setStr(byte[] value) {
+  public void setStr(String value) {
     ffmpegJNI.AVOption_default_val_str_set(swigCPtr, this, value);
   }
 
-  public byte[] getStr() {
+  public String getStr() {
     return ffmpegJNI.AVOption_default_val_str_get(swigCPtr, this);
   }
 
-  public void setI64(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVOption_default_val_i64_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setI64(long value) {
+    ffmpegJNI.AVOption_default_val_i64_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getI64() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVOption_default_val_i64_get(swigCPtr, this), true);
+  public long getI64() {
+    return ffmpegJNI.AVOption_default_val_i64_get(swigCPtr, this);
   }
 
-  public void setQ(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVOption_default_val_q_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setQ(AVRational value) {
+    ffmpegJNI.AVOption_default_val_q_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getQ() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVOption_default_val_q_get(swigCPtr, this), true);
+  public AVRational getQ() {
+    long cPtr = ffmpegJNI.AVOption_default_val_q_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public AVOption_default_val() {

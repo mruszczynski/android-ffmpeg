@@ -60,12 +60,13 @@ public class AVStream {
     return (cPtr == 0) ? null : new AVCodecContext(cPtr, false);
   }
 
-  public void setR_frame_rate(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVStream_r_frame_rate_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setR_frame_rate(AVRational value) {
+    ffmpegJNI.AVStream_r_frame_rate_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getR_frame_rate() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVStream_r_frame_rate_get(swigCPtr, this), true);
+  public AVRational getR_frame_rate() {
+    long cPtr = ffmpegJNI.AVStream_r_frame_rate_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setPriv_data(long value) {
@@ -85,12 +86,13 @@ public class AVStream {
     return (cPtr == 0) ? null : new AVFrac(cPtr, false);
   }
 
-  public void setTime_base(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVStream_time_base_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setTime_base(AVRational value) {
+    ffmpegJNI.AVStream_time_base_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getTime_base() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVStream_time_base_get(swigCPtr, this), true);
+  public AVRational getTime_base() {
+    long cPtr = ffmpegJNI.AVStream_time_base_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setDiscard(AVDiscard value) {
@@ -101,28 +103,28 @@ public class AVStream {
     return AVDiscard.swigToEnum(ffmpegJNI.AVStream_discard_get(swigCPtr, this));
   }
 
-  public void setStart_time(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_start_time_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setStart_time(long value) {
+    ffmpegJNI.AVStream_start_time_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getStart_time() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_start_time_get(swigCPtr, this), true);
+  public long getStart_time() {
+    return ffmpegJNI.AVStream_start_time_get(swigCPtr, this);
   }
 
-  public void setDuration(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_duration_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setDuration(long value) {
+    ffmpegJNI.AVStream_duration_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getDuration() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_duration_get(swigCPtr, this), true);
+  public long getDuration() {
+    return ffmpegJNI.AVStream_duration_get(swigCPtr, this);
   }
 
-  public void setNb_frames(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_nb_frames_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setNb_frames(long value) {
+    ffmpegJNI.AVStream_nb_frames_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getNb_frames() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_nb_frames_get(swigCPtr, this), true);
+  public long getNb_frames() {
+    return ffmpegJNI.AVStream_nb_frames_get(swigCPtr, this);
   }
 
   public void setDisposition(int value) {
@@ -133,29 +135,31 @@ public class AVStream {
     return ffmpegJNI.AVStream_disposition_get(swigCPtr, this);
   }
 
-  public void setSample_aspect_ratio(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVStream_sample_aspect_ratio_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setSample_aspect_ratio(AVRational value) {
+    ffmpegJNI.AVStream_sample_aspect_ratio_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getSample_aspect_ratio() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVStream_sample_aspect_ratio_get(swigCPtr, this), true);
+  public AVRational getSample_aspect_ratio() {
+    long cPtr = ffmpegJNI.AVStream_sample_aspect_ratio_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
-  public void setMetadata(SWIGTYPE_p_AVDictionary value) {
-    ffmpegJNI.AVStream_metadata_set(swigCPtr, this, SWIGTYPE_p_AVDictionary.getCPtr(value));
+  public void setMetadata(AVDictionary value) {
+    ffmpegJNI.AVStream_metadata_set(swigCPtr, this, AVDictionary.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVDictionary getMetadata() {
+  public AVDictionary getMetadata() {
     long cPtr = ffmpegJNI.AVStream_metadata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVDictionary(cPtr, false);
+    return (cPtr == 0) ? null : new AVDictionary(cPtr, false);
   }
 
-  public void setAvg_frame_rate(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVStream_avg_frame_rate_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setAvg_frame_rate(AVRational value) {
+    ffmpegJNI.AVStream_avg_frame_rate_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getAvg_frame_rate() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVStream_avg_frame_rate_get(swigCPtr, this), true);
+  public AVRational getAvg_frame_rate() {
+    long cPtr = ffmpegJNI.AVStream_avg_frame_rate_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setCodec_info_nb_frames(int value) {
@@ -174,20 +178,20 @@ public class AVStream {
     return ffmpegJNI.AVStream_stream_identifier_get(swigCPtr, this);
   }
 
-  public void setInterleaver_chunk_size(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_interleaver_chunk_size_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setInterleaver_chunk_size(long value) {
+    ffmpegJNI.AVStream_interleaver_chunk_size_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getInterleaver_chunk_size() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_interleaver_chunk_size_get(swigCPtr, this), true);
+  public long getInterleaver_chunk_size() {
+    return ffmpegJNI.AVStream_interleaver_chunk_size_get(swigCPtr, this);
   }
 
-  public void setInterleaver_chunk_duration(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_interleaver_chunk_duration_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setInterleaver_chunk_duration(long value) {
+    ffmpegJNI.AVStream_interleaver_chunk_duration_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getInterleaver_chunk_duration() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_interleaver_chunk_duration_get(swigCPtr, this), true);
+  public long getInterleaver_chunk_duration() {
+    return ffmpegJNI.AVStream_interleaver_chunk_duration_get(swigCPtr, this);
   }
 
   public void setRequest_probe(int value) {
@@ -198,13 +202,13 @@ public class AVStream {
     return ffmpegJNI.AVStream_request_probe_get(swigCPtr, this);
   }
 
-  public void setCur_ptr(SWIGTYPE_p_uint8_t value) {
-    ffmpegJNI.AVStream_cur_ptr_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
+  public void setCur_ptr(SWIGTYPE_p_unsigned_char value) {
+    ffmpegJNI.AVStream_cur_ptr_set(swigCPtr, this, SWIGTYPE_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint8_t getCur_ptr() {
+  public SWIGTYPE_p_unsigned_char getCur_ptr() {
     long cPtr = ffmpegJNI.AVStream_cur_ptr_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
   }
 
   public void setCur_len(int value) {
@@ -224,28 +228,28 @@ public class AVStream {
     return (cPtr == 0) ? null : new AVPacket(cPtr, false);
   }
 
-  public void setReference_dts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_reference_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setReference_dts(long value) {
+    ffmpegJNI.AVStream_reference_dts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getReference_dts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_reference_dts_get(swigCPtr, this), true);
+  public long getReference_dts() {
+    return ffmpegJNI.AVStream_reference_dts_get(swigCPtr, this);
   }
 
-  public void setFirst_dts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_first_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setFirst_dts(long value) {
+    ffmpegJNI.AVStream_first_dts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getFirst_dts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_first_dts_get(swigCPtr, this), true);
+  public long getFirst_dts() {
+    return ffmpegJNI.AVStream_first_dts_get(swigCPtr, this);
   }
 
-  public void setCur_dts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_cur_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setCur_dts(long value) {
+    ffmpegJNI.AVStream_cur_dts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getCur_dts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_cur_dts_get(swigCPtr, this), true);
+  public long getCur_dts() {
+    return ffmpegJNI.AVStream_cur_dts_get(swigCPtr, this);
   }
 
   public void setLast_IP_duration(int value) {
@@ -256,12 +260,12 @@ public class AVStream {
     return ffmpegJNI.AVStream_last_IP_duration_get(swigCPtr, this);
   }
 
-  public void setLast_IP_pts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_last_IP_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setLast_IP_pts(long value) {
+    ffmpegJNI.AVStream_last_IP_pts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getLast_IP_pts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_last_IP_pts_get(swigCPtr, this), true);
+  public long getLast_IP_pts() {
+    return ffmpegJNI.AVStream_last_IP_pts_get(swigCPtr, this);
   }
 
   public void setProbe_packets(int value) {
@@ -290,13 +294,13 @@ public class AVStream {
     return (cPtr == 0) ? null : new AVProbeData(cPtr, false);
   }
 
-  public void setPts_buffer(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVStream_pts_buffer_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPts_buffer(SWIGTYPE_p_long_long value) {
+    ffmpegJNI.AVStream_pts_buffer_set(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(value));
   }
 
-  public SWIGTYPE_p_int64_t getPts_buffer() {
+  public SWIGTYPE_p_long_long getPts_buffer() {
     long cPtr = ffmpegJNI.AVStream_pts_buffer_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_int64_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
   }
 
   public void setNeed_parsing(AVStreamParseType value) {

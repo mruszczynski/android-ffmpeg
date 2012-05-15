@@ -8,18 +8,18 @@
 
 package com.pluggedin.ffmpeg;
 
-public class SWIGTYPE_p_a_2__int16_t {
+public class SWIGTYPE_p_unsigned_short {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_a_2__int16_t(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_unsigned_short(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_a_2__int16_t() {
+  protected SWIGTYPE_p_unsigned_short() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_a_2__int16_t obj) {
+  protected static long getCPtr(SWIGTYPE_p_unsigned_short obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

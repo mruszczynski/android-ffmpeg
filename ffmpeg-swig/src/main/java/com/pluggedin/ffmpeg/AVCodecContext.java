@@ -84,13 +84,13 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_me_method_get(swigCPtr, this);
   }
 
-  public void setExtradata(SWIGTYPE_p_uint8_t value) {
-    ffmpegJNI.AVCodecContext_extradata_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
+  public void setExtradata(SWIGTYPE_p_unsigned_char value) {
+    ffmpegJNI.AVCodecContext_extradata_set(swigCPtr, this, SWIGTYPE_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint8_t getExtradata() {
+  public SWIGTYPE_p_unsigned_char getExtradata() {
     long cPtr = ffmpegJNI.AVCodecContext_extradata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
   }
 
   public void setExtradata_size(int value) {
@@ -101,12 +101,13 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_extradata_size_get(swigCPtr, this);
   }
 
-  public void setTime_base(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVCodecContext_time_base_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setTime_base(AVRational value) {
+    ffmpegJNI.AVCodecContext_time_base_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getTime_base() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVCodecContext_time_base_get(swigCPtr, this), true);
+  public AVRational getTime_base() {
+    long cPtr = ffmpegJNI.AVCodecContext_time_base_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setWidth(int value) {
@@ -384,11 +385,11 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_opaque_get(swigCPtr, this);
   }
 
-  public void setCodec_name(byte[] value) {
+  public void setCodec_name(String value) {
     ffmpegJNI.AVCodecContext_codec_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getCodec_name() {
+  public String getCodec_name() {
     return ffmpegJNI.AVCodecContext_codec_name_get(swigCPtr, this);
   }
 
@@ -498,19 +499,19 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_mpeg_quant_get(swigCPtr, this);
   }
 
-  public void setStats_out(byte[] value) {
+  public void setStats_out(String value) {
     ffmpegJNI.AVCodecContext_stats_out_set(swigCPtr, this, value);
   }
 
-  public byte[] getStats_out() {
+  public String getStats_out() {
     return ffmpegJNI.AVCodecContext_stats_out_get(swigCPtr, this);
   }
 
-  public void setStats_in(byte[] value) {
+  public void setStats_in(String value) {
     ffmpegJNI.AVCodecContext_stats_in_set(swigCPtr, this, value);
   }
 
-  public byte[] getStats_in() {
+  public String getStats_in() {
     return ffmpegJNI.AVCodecContext_stats_in_get(swigCPtr, this);
   }
 
@@ -555,11 +556,11 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_rc_override_count_get(swigCPtr, this);
   }
 
-  public void setRc_eq(byte[] value) {
+  public void setRc_eq(String value) {
     ffmpegJNI.AVCodecContext_rc_eq_set(swigCPtr, this, value);
   }
 
-  public byte[] getRc_eq() {
+  public String getRc_eq() {
     return ffmpegJNI.AVCodecContext_rc_eq_get(swigCPtr, this);
   }
 
@@ -724,12 +725,13 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_prediction_method_get(swigCPtr, this);
   }
 
-  public void setSample_aspect_ratio(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVCodecContext_sample_aspect_ratio_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setSample_aspect_ratio(AVRational value) {
+    ffmpegJNI.AVCodecContext_sample_aspect_ratio_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getSample_aspect_ratio() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVCodecContext_sample_aspect_ratio_get(swigCPtr, this), true);
+  public AVRational getSample_aspect_ratio() {
+    long cPtr = ffmpegJNI.AVCodecContext_sample_aspect_ratio_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setCoded_frame(AVFrame value) {
@@ -757,13 +759,13 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_debug_mv_get(swigCPtr, this);
   }
 
-  public void setError(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVCodecContext_error_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setError(SWIGTYPE_p_unsigned_long_long value) {
+    ffmpegJNI.AVCodecContext_error_set(swigCPtr, this, SWIGTYPE_p_unsigned_long_long.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint64_t getError() {
+  public SWIGTYPE_p_unsigned_long_long getError() {
     long cPtr = ffmpegJNI.AVCodecContext_error_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint64_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_long_long(cPtr, false);
   }
 
   public void setMe_cmp(int value) {
@@ -943,22 +945,22 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_mb_decision_get(swigCPtr, this);
   }
 
-  public void setIntra_matrix(SWIGTYPE_p_uint16_t value) {
-    ffmpegJNI.AVCodecContext_intra_matrix_set(swigCPtr, this, SWIGTYPE_p_uint16_t.getCPtr(value));
+  public void setIntra_matrix(SWIGTYPE_p_unsigned_short value) {
+    ffmpegJNI.AVCodecContext_intra_matrix_set(swigCPtr, this, SWIGTYPE_p_unsigned_short.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint16_t getIntra_matrix() {
+  public SWIGTYPE_p_unsigned_short getIntra_matrix() {
     long cPtr = ffmpegJNI.AVCodecContext_intra_matrix_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint16_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_short(cPtr, false);
   }
 
-  public void setInter_matrix(SWIGTYPE_p_uint16_t value) {
-    ffmpegJNI.AVCodecContext_inter_matrix_set(swigCPtr, this, SWIGTYPE_p_uint16_t.getCPtr(value));
+  public void setInter_matrix(SWIGTYPE_p_unsigned_short value) {
+    ffmpegJNI.AVCodecContext_inter_matrix_set(swigCPtr, this, SWIGTYPE_p_unsigned_short.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint16_t getInter_matrix() {
+  public SWIGTYPE_p_unsigned_short getInter_matrix() {
     long cPtr = ffmpegJNI.AVCodecContext_inter_matrix_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint16_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_short(cPtr, false);
   }
 
   public void setStream_codec_tag(long value) {
@@ -1355,20 +1357,20 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_max_prediction_order_get(swigCPtr, this);
   }
 
-  public void setTimecode_frame_start(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVCodecContext_timecode_frame_start_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setTimecode_frame_start(long value) {
+    ffmpegJNI.AVCodecContext_timecode_frame_start_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getTimecode_frame_start() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVCodecContext_timecode_frame_start_get(swigCPtr, this), true);
+  public long getTimecode_frame_start() {
+    return ffmpegJNI.AVCodecContext_timecode_frame_start_get(swigCPtr, this);
   }
 
-  public void setReordered_opaque(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVCodecContext_reordered_opaque_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setReordered_opaque(long value) {
+    ffmpegJNI.AVCodecContext_reordered_opaque_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getReordered_opaque() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVCodecContext_reordered_opaque_get(swigCPtr, this), true);
+  public long getReordered_opaque() {
+    return ffmpegJNI.AVCodecContext_reordered_opaque_get(swigCPtr, this);
   }
 
   public void setBits_per_raw_sample(int value) {
@@ -1379,20 +1381,20 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_bits_per_raw_sample_get(swigCPtr, this);
   }
 
-  public void setChannel_layout(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVCodecContext_channel_layout_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setChannel_layout(java.math.BigInteger value) {
+    ffmpegJNI.AVCodecContext_channel_layout_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint64_t getChannel_layout() {
-    return new SWIGTYPE_p_uint64_t(ffmpegJNI.AVCodecContext_channel_layout_get(swigCPtr, this), true);
+  public java.math.BigInteger getChannel_layout() {
+    return ffmpegJNI.AVCodecContext_channel_layout_get(swigCPtr, this);
   }
 
-  public void setRequest_channel_layout(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVCodecContext_request_channel_layout_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setRequest_channel_layout(java.math.BigInteger value) {
+    ffmpegJNI.AVCodecContext_request_channel_layout_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint64_t getRequest_channel_layout() {
-    return new SWIGTYPE_p_uint64_t(ffmpegJNI.AVCodecContext_request_channel_layout_get(swigCPtr, this), true);
+  public java.math.BigInteger getRequest_channel_layout() {
+    return ffmpegJNI.AVCodecContext_request_channel_layout_get(swigCPtr, this);
   }
 
   public void setRc_max_available_vbv_use(float value) {
@@ -1501,13 +1503,13 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_slices_get(swigCPtr, this);
   }
 
-  public void setSubtitle_header(SWIGTYPE_p_uint8_t value) {
-    ffmpegJNI.AVCodecContext_subtitle_header_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
+  public void setSubtitle_header(SWIGTYPE_p_unsigned_char value) {
+    ffmpegJNI.AVCodecContext_subtitle_header_set(swigCPtr, this, SWIGTYPE_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint8_t getSubtitle_header() {
+  public SWIGTYPE_p_unsigned_char getSubtitle_header() {
     long cPtr = ffmpegJNI.AVCodecContext_subtitle_header_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
   }
 
   public void setSubtitle_header_size(int value) {
@@ -1551,12 +1553,12 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_thread_safe_callbacks_get(swigCPtr, this);
   }
 
-  public void setVbv_delay(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVCodecContext_vbv_delay_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setVbv_delay(java.math.BigInteger value) {
+    ffmpegJNI.AVCodecContext_vbv_delay_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint64_t getVbv_delay() {
-    return new SWIGTYPE_p_uint64_t(ffmpegJNI.AVCodecContext_vbv_delay_get(swigCPtr, this), true);
+  public java.math.BigInteger getVbv_delay() {
+    return ffmpegJNI.AVCodecContext_vbv_delay_get(swigCPtr, this);
   }
 
   public void setAudio_service_type(AVAudioServiceType value) {
@@ -1592,36 +1594,36 @@ public class AVCodecContext {
     return (cPtr == 0) ? null : new SWIGTYPE_p_AVCodecInternal(cPtr, false);
   }
 
-  public void setPts_correction_num_faulty_pts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVCodecContext_pts_correction_num_faulty_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPts_correction_num_faulty_pts(long value) {
+    ffmpegJNI.AVCodecContext_pts_correction_num_faulty_pts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPts_correction_num_faulty_pts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVCodecContext_pts_correction_num_faulty_pts_get(swigCPtr, this), true);
+  public long getPts_correction_num_faulty_pts() {
+    return ffmpegJNI.AVCodecContext_pts_correction_num_faulty_pts_get(swigCPtr, this);
   }
 
-  public void setPts_correction_num_faulty_dts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVCodecContext_pts_correction_num_faulty_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPts_correction_num_faulty_dts(long value) {
+    ffmpegJNI.AVCodecContext_pts_correction_num_faulty_dts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPts_correction_num_faulty_dts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVCodecContext_pts_correction_num_faulty_dts_get(swigCPtr, this), true);
+  public long getPts_correction_num_faulty_dts() {
+    return ffmpegJNI.AVCodecContext_pts_correction_num_faulty_dts_get(swigCPtr, this);
   }
 
-  public void setPts_correction_last_pts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVCodecContext_pts_correction_last_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPts_correction_last_pts(long value) {
+    ffmpegJNI.AVCodecContext_pts_correction_last_pts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPts_correction_last_pts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVCodecContext_pts_correction_last_pts_get(swigCPtr, this), true);
+  public long getPts_correction_last_pts() {
+    return ffmpegJNI.AVCodecContext_pts_correction_last_pts_get(swigCPtr, this);
   }
 
-  public void setPts_correction_last_dts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVCodecContext_pts_correction_last_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPts_correction_last_dts(long value) {
+    ffmpegJNI.AVCodecContext_pts_correction_last_dts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPts_correction_last_dts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVCodecContext_pts_correction_last_dts_get(swigCPtr, this), true);
+  public long getPts_correction_last_dts() {
+    return ffmpegJNI.AVCodecContext_pts_correction_last_dts_get(swigCPtr, this);
   }
 
   public AVCodecContext() {

@@ -51,12 +51,13 @@ public class AVFilterBufferRefVideoProps {
     return ffmpegJNI.AVFilterBufferRefVideoProps_h_get(swigCPtr, this);
   }
 
-  public void setSample_aspect_ratio(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVFilterBufferRefVideoProps_sample_aspect_ratio_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setSample_aspect_ratio(AVRational value) {
+    ffmpegJNI.AVFilterBufferRefVideoProps_sample_aspect_ratio_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getSample_aspect_ratio() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVFilterBufferRefVideoProps_sample_aspect_ratio_get(swigCPtr, this), true);
+  public AVRational getSample_aspect_ratio() {
+    long cPtr = ffmpegJNI.AVFilterBufferRefVideoProps_sample_aspect_ratio_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setInterlaced(int value) {

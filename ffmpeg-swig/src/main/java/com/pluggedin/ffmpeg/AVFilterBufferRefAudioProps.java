@@ -35,12 +35,12 @@ public class AVFilterBufferRefAudioProps {
     }
   }
 
-  public void setChannel_layout(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVFilterBufferRefAudioProps_channel_layout_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setChannel_layout(java.math.BigInteger value) {
+    ffmpegJNI.AVFilterBufferRefAudioProps_channel_layout_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint64_t getChannel_layout() {
-    return new SWIGTYPE_p_uint64_t(ffmpegJNI.AVFilterBufferRefAudioProps_channel_layout_get(swigCPtr, this), true);
+  public java.math.BigInteger getChannel_layout() {
+    return ffmpegJNI.AVFilterBufferRefAudioProps_channel_layout_get(swigCPtr, this);
   }
 
   public void setNb_samples(int value) {

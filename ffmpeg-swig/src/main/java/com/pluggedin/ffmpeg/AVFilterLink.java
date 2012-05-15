@@ -103,28 +103,29 @@ public class AVFilterLink {
     return ffmpegJNI.AVFilterLink_h_get(swigCPtr);
   }
 
-  public void setSample_aspect_ratio(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVFilterLink_sample_aspect_ratio_set(swigCPtr, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setSample_aspect_ratio(AVRational value) {
+    ffmpegJNI.AVFilterLink_sample_aspect_ratio_set(swigCPtr, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getSample_aspect_ratio() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVFilterLink_sample_aspect_ratio_get(swigCPtr), true);
+  public AVRational getSample_aspect_ratio() {
+    long cPtr = ffmpegJNI.AVFilterLink_sample_aspect_ratio_get(swigCPtr);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
-  public void setChannel_layout(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVFilterLink_channel_layout_set(swigCPtr, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setChannel_layout(java.math.BigInteger value) {
+    ffmpegJNI.AVFilterLink_channel_layout_set(swigCPtr, value);
   }
 
-  public SWIGTYPE_p_uint64_t getChannel_layout() {
-    return new SWIGTYPE_p_uint64_t(ffmpegJNI.AVFilterLink_channel_layout_get(swigCPtr), true);
+  public java.math.BigInteger getChannel_layout() {
+    return ffmpegJNI.AVFilterLink_channel_layout_get(swigCPtr);
   }
 
-  public void setSample_rate(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFilterLink_sample_rate_set(swigCPtr, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setSample_rate(long value) {
+    ffmpegJNI.AVFilterLink_sample_rate_set(swigCPtr, value);
   }
 
-  public SWIGTYPE_p_int64_t getSample_rate() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFilterLink_sample_rate_get(swigCPtr), true);
+  public long getSample_rate() {
+    return ffmpegJNI.AVFilterLink_sample_rate_get(swigCPtr);
   }
 
   public void setPlanar(int value) {
@@ -224,12 +225,13 @@ public class AVFilterLink {
     return (cPtr == 0) ? null : new AVFilterBufferRef(cPtr, false);
   }
 
-  public void setTime_base(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVFilterLink_time_base_set(swigCPtr, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setTime_base(AVRational value) {
+    ffmpegJNI.AVFilterLink_time_base_set(swigCPtr, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getTime_base() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVFilterLink_time_base_get(swigCPtr), true);
+  public AVRational getTime_base() {
+    long cPtr = ffmpegJNI.AVFilterLink_time_base_get(swigCPtr);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setPool(SWIGTYPE_p_AVFilterPool value) {

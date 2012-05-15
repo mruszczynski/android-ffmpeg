@@ -8,18 +8,18 @@
 
 package com.pluggedin.ffmpeg;
 
-public class SWIGTYPE_p_AVRational {
+public class SWIGTYPE_p_p_byte {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_AVRational(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_p_byte(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_AVRational() {
+  protected SWIGTYPE_p_p_byte() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_AVRational obj) {
+  protected static long getCPtr(SWIGTYPE_p_p_byte obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

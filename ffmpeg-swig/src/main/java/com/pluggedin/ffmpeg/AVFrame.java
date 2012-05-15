@@ -35,13 +35,13 @@ public class AVFrame {
     }
   }
 
-  public void setData(SWIGTYPE_p_p_uint8_t value) {
-    ffmpegJNI.AVFrame_data_set(swigCPtr, this, SWIGTYPE_p_p_uint8_t.getCPtr(value));
+  public void setData(SWIGTYPE_p_p_unsigned_char value) {
+    ffmpegJNI.AVFrame_data_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_p_uint8_t getData() {
+  public SWIGTYPE_p_p_unsigned_char getData() {
     long cPtr = ffmpegJNI.AVFrame_data_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
   }
 
   public void setLinesize(SWIGTYPE_p_int value) {
@@ -53,13 +53,13 @@ public class AVFrame {
     return (cPtr == 0) ? null : new SWIGTYPE_p_int(cPtr, false);
   }
 
-  public void setBase(SWIGTYPE_p_p_uint8_t value) {
-    ffmpegJNI.AVFrame_base_set(swigCPtr, this, SWIGTYPE_p_p_uint8_t.getCPtr(value));
+  public void setBase(SWIGTYPE_p_p_unsigned_char value) {
+    ffmpegJNI.AVFrame_base_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_p_uint8_t getBase() {
+  public SWIGTYPE_p_p_unsigned_char getBase() {
     long cPtr = ffmpegJNI.AVFrame_base_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
   }
 
   public void setKey_frame(int value) {
@@ -78,12 +78,12 @@ public class AVFrame {
     return AVPictureType.swigToEnum(ffmpegJNI.AVFrame_pict_type_get(swigCPtr, this));
   }
 
-  public void setPts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrame_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPts(long value) {
+    ffmpegJNI.AVFrame_pts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrame_pts_get(swigCPtr, this), true);
+  public long getPts() {
+    return ffmpegJNI.AVFrame_pts_get(swigCPtr, this);
   }
 
   public void setCoded_picture_number(int value) {
@@ -126,13 +126,13 @@ public class AVFrame {
     return ffmpegJNI.AVFrame_reference_get(swigCPtr, this);
   }
 
-  public void setQscale_table(SWIGTYPE_p_int8_t value) {
-    ffmpegJNI.AVFrame_qscale_table_set(swigCPtr, this, SWIGTYPE_p_int8_t.getCPtr(value));
+  public void setQscale_table(SWIGTYPE_p_signed_char value) {
+    ffmpegJNI.AVFrame_qscale_table_set(swigCPtr, this, SWIGTYPE_p_signed_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_int8_t getQscale_table() {
+  public SWIGTYPE_p_signed_char getQscale_table() {
     long cPtr = ffmpegJNI.AVFrame_qscale_table_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_int8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_signed_char(cPtr, false);
   }
 
   public void setQstride(int value) {
@@ -143,30 +143,30 @@ public class AVFrame {
     return ffmpegJNI.AVFrame_qstride_get(swigCPtr, this);
   }
 
-  public void setMbskip_table(SWIGTYPE_p_uint8_t value) {
-    ffmpegJNI.AVFrame_mbskip_table_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
+  public void setMbskip_table(SWIGTYPE_p_unsigned_char value) {
+    ffmpegJNI.AVFrame_mbskip_table_set(swigCPtr, this, SWIGTYPE_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint8_t getMbskip_table() {
+  public SWIGTYPE_p_unsigned_char getMbskip_table() {
     long cPtr = ffmpegJNI.AVFrame_mbskip_table_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
   }
 
-  public void setMb_type(SWIGTYPE_p_uint32_t value) {
-    ffmpegJNI.AVFrame_mb_type_set(swigCPtr, this, SWIGTYPE_p_uint32_t.getCPtr(value));
+  public void setMb_type(SWIGTYPE_p_unsigned_int value) {
+    ffmpegJNI.AVFrame_mb_type_set(swigCPtr, this, SWIGTYPE_p_unsigned_int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint32_t getMb_type() {
+  public SWIGTYPE_p_unsigned_int getMb_type() {
     long cPtr = ffmpegJNI.AVFrame_mb_type_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint32_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_int(cPtr, false);
   }
 
-  public void setMotion_subsample_log2(SWIGTYPE_p_uint8_t value) {
-    ffmpegJNI.AVFrame_motion_subsample_log2_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
+  public void setMotion_subsample_log2(byte value) {
+    ffmpegJNI.AVFrame_motion_subsample_log2_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint8_t getMotion_subsample_log2() {
-    return new SWIGTYPE_p_uint8_t(ffmpegJNI.AVFrame_motion_subsample_log2_get(swigCPtr, this), true);
+  public byte getMotion_subsample_log2() {
+    return ffmpegJNI.AVFrame_motion_subsample_log2_get(swigCPtr, this);
   }
 
   public void setOpaque(long value) {
@@ -177,13 +177,13 @@ public class AVFrame {
     return ffmpegJNI.AVFrame_opaque_get(swigCPtr, this);
   }
 
-  public void setError(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVFrame_error_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setError(SWIGTYPE_p_unsigned_long_long value) {
+    ffmpegJNI.AVFrame_error_set(swigCPtr, this, SWIGTYPE_p_unsigned_long_long.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint64_t getError() {
+  public SWIGTYPE_p_unsigned_long_long getError() {
     long cPtr = ffmpegJNI.AVFrame_error_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint64_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_long_long(cPtr, false);
   }
 
   public void setType(int value) {
@@ -260,21 +260,21 @@ public class AVFrame {
     return (cPtr == 0) ? null : new SWIGTYPE_p_short(cPtr, false);
   }
 
-  public void setRef_index(SWIGTYPE_p_p_int8_t value) {
-    ffmpegJNI.AVFrame_ref_index_set(swigCPtr, this, SWIGTYPE_p_p_int8_t.getCPtr(value));
+  public void setRef_index(SWIGTYPE_p_p_signed_char value) {
+    ffmpegJNI.AVFrame_ref_index_set(swigCPtr, this, SWIGTYPE_p_p_signed_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_p_int8_t getRef_index() {
+  public SWIGTYPE_p_p_signed_char getRef_index() {
     long cPtr = ffmpegJNI.AVFrame_ref_index_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_int8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_signed_char(cPtr, false);
   }
 
-  public void setReordered_opaque(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrame_reordered_opaque_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setReordered_opaque(long value) {
+    ffmpegJNI.AVFrame_reordered_opaque_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getReordered_opaque() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrame_reordered_opaque_get(swigCPtr, this), true);
+  public long getReordered_opaque() {
+    return ffmpegJNI.AVFrame_reordered_opaque_get(swigCPtr, this);
   }
 
   public void setHwaccel_picture_private(long value) {
@@ -285,20 +285,20 @@ public class AVFrame {
     return ffmpegJNI.AVFrame_hwaccel_picture_private_get(swigCPtr, this);
   }
 
-  public void setPkt_pts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrame_pkt_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPkt_pts(long value) {
+    ffmpegJNI.AVFrame_pkt_pts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPkt_pts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrame_pkt_pts_get(swigCPtr, this), true);
+  public long getPkt_pts() {
+    return ffmpegJNI.AVFrame_pkt_pts_get(swigCPtr, this);
   }
 
-  public void setPkt_dts(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrame_pkt_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPkt_dts(long value) {
+    ffmpegJNI.AVFrame_pkt_dts_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPkt_dts() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrame_pkt_dts_get(swigCPtr, this), true);
+  public long getPkt_dts() {
+    return ffmpegJNI.AVFrame_pkt_dts_get(swigCPtr, this);
   }
 
   public void setOwner(AVCodecContext value) {
@@ -326,37 +326,38 @@ public class AVFrame {
     return ffmpegJNI.AVFrame_nb_samples_get(swigCPtr, this);
   }
 
-  public void setExtended_data(SWIGTYPE_p_p_uint8_t value) {
-    ffmpegJNI.AVFrame_extended_data_set(swigCPtr, this, SWIGTYPE_p_p_uint8_t.getCPtr(value));
+  public void setExtended_data(SWIGTYPE_p_p_unsigned_char value) {
+    ffmpegJNI.AVFrame_extended_data_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_p_uint8_t getExtended_data() {
+  public SWIGTYPE_p_p_unsigned_char getExtended_data() {
     long cPtr = ffmpegJNI.AVFrame_extended_data_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
   }
 
-  public void setBest_effort_timestamp(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrame_best_effort_timestamp_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setBest_effort_timestamp(long value) {
+    ffmpegJNI.AVFrame_best_effort_timestamp_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getBest_effort_timestamp() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrame_best_effort_timestamp_get(swigCPtr, this), true);
+  public long getBest_effort_timestamp() {
+    return ffmpegJNI.AVFrame_best_effort_timestamp_get(swigCPtr, this);
   }
 
-  public void setPkt_pos(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrame_pkt_pos_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setPkt_pos(long value) {
+    ffmpegJNI.AVFrame_pkt_pos_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getPkt_pos() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrame_pkt_pos_get(swigCPtr, this), true);
+  public long getPkt_pos() {
+    return ffmpegJNI.AVFrame_pkt_pos_get(swigCPtr, this);
   }
 
-  public void setSample_aspect_ratio(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVFrame_sample_aspect_ratio_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setSample_aspect_ratio(AVRational value) {
+    ffmpegJNI.AVFrame_sample_aspect_ratio_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getSample_aspect_ratio() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVFrame_sample_aspect_ratio_get(swigCPtr, this), true);
+  public AVRational getSample_aspect_ratio() {
+    long cPtr = ffmpegJNI.AVFrame_sample_aspect_ratio_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setWidth(int value) {

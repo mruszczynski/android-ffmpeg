@@ -43,37 +43,38 @@ public class AVChapter {
     return ffmpegJNI.AVChapter_id_get(swigCPtr, this);
   }
 
-  public void setTime_base(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVChapter_time_base_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setTime_base(AVRational value) {
+    ffmpegJNI.AVChapter_time_base_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getTime_base() {
-    return new SWIGTYPE_p_AVRational(ffmpegJNI.AVChapter_time_base_get(swigCPtr, this), true);
+  public AVRational getTime_base() {
+    long cPtr = ffmpegJNI.AVChapter_time_base_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
-  public void setStart(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVChapter_start_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setStart(long value) {
+    ffmpegJNI.AVChapter_start_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getStart() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVChapter_start_get(swigCPtr, this), true);
+  public long getStart() {
+    return ffmpegJNI.AVChapter_start_get(swigCPtr, this);
   }
 
-  public void setEnd(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVChapter_end_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setEnd(long value) {
+    ffmpegJNI.AVChapter_end_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getEnd() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVChapter_end_get(swigCPtr, this), true);
+  public long getEnd() {
+    return ffmpegJNI.AVChapter_end_get(swigCPtr, this);
   }
 
-  public void setMetadata(SWIGTYPE_p_AVDictionary value) {
-    ffmpegJNI.AVChapter_metadata_set(swigCPtr, this, SWIGTYPE_p_AVDictionary.getCPtr(value));
+  public void setMetadata(AVDictionary value) {
+    ffmpegJNI.AVChapter_metadata_set(swigCPtr, this, AVDictionary.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVDictionary getMetadata() {
+  public AVDictionary getMetadata() {
     long cPtr = ffmpegJNI.AVChapter_metadata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVDictionary(cPtr, false);
+    return (cPtr == 0) ? null : new AVDictionary(cPtr, false);
   }
 
   public AVChapter() {

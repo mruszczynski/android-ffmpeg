@@ -35,11 +35,11 @@ public class AVCodec {
     }
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVCodec_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVCodec_name_get(swigCPtr, this);
   }
 
@@ -76,13 +76,13 @@ public class AVCodec {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__int(cPtr, false);
   }
 
-  public void setEncode(SWIGTYPE_p_f_p_struct_AVCodecContext_p_uint8_t_int_p_void__int value) {
-    ffmpegJNI.AVCodec_encode_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_uint8_t_int_p_void__int.getCPtr(value));
+  public void setEncode(SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int value) {
+    ffmpegJNI.AVCodec_encode_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_uint8_t_int_p_void__int getEncode() {
+  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int getEncode() {
     long cPtr = ffmpegJNI.AVCodec_encode_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_uint8_t_int_p_void__int(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int(cPtr, false);
   }
 
   public void setClose(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {
@@ -129,13 +129,13 @@ public class AVCodec {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__void(cPtr, false);
   }
 
-  public void setSupported_framerates(SWIGTYPE_p_AVRational value) {
-    ffmpegJNI.AVCodec_supported_framerates_set(swigCPtr, this, SWIGTYPE_p_AVRational.getCPtr(value));
+  public void setSupported_framerates(AVRational value) {
+    ffmpegJNI.AVCodec_supported_framerates_set(swigCPtr, this, AVRational.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVRational getSupported_framerates() {
+  public AVRational getSupported_framerates() {
     long cPtr = ffmpegJNI.AVCodec_supported_framerates_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVRational(cPtr, false);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
   public void setPix_fmts(SWIGTYPE_p_PixelFormat value) {
@@ -147,11 +147,11 @@ public class AVCodec {
     return (cPtr == 0) ? null : new SWIGTYPE_p_PixelFormat(cPtr, false);
   }
 
-  public void setLong_name(byte[] value) {
+  public void setLong_name(String value) {
     ffmpegJNI.AVCodec_long_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getLong_name() {
+  public String getLong_name() {
     return ffmpegJNI.AVCodec_long_name_get(swigCPtr, this);
   }
 
@@ -173,21 +173,21 @@ public class AVCodec {
     return (cPtr == 0) ? null : new SWIGTYPE_p_AVSampleFormat(cPtr, false);
   }
 
-  public void setChannel_layouts(SWIGTYPE_p_uint64_t value) {
-    ffmpegJNI.AVCodec_channel_layouts_set(swigCPtr, this, SWIGTYPE_p_uint64_t.getCPtr(value));
+  public void setChannel_layouts(SWIGTYPE_p_unsigned_long_long value) {
+    ffmpegJNI.AVCodec_channel_layouts_set(swigCPtr, this, SWIGTYPE_p_unsigned_long_long.getCPtr(value));
   }
 
-  public SWIGTYPE_p_uint64_t getChannel_layouts() {
+  public SWIGTYPE_p_unsigned_long_long getChannel_layouts() {
     long cPtr = ffmpegJNI.AVCodec_channel_layouts_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_uint64_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_long_long(cPtr, false);
   }
 
-  public void setMax_lowres(SWIGTYPE_p_uint8_t value) {
-    ffmpegJNI.AVCodec_max_lowres_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
+  public void setMax_lowres(byte value) {
+    ffmpegJNI.AVCodec_max_lowres_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint8_t getMax_lowres() {
-    return new SWIGTYPE_p_uint8_t(ffmpegJNI.AVCodec_max_lowres_get(swigCPtr, this), true);
+  public byte getMax_lowres() {
+    return ffmpegJNI.AVCodec_max_lowres_get(swigCPtr, this);
   }
 
   public void setPriv_class(SWIGTYPE_p_AVClass value) {

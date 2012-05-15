@@ -35,11 +35,11 @@ public class AVFilterPad {
     }
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVFilterPad_name_set(swigCPtr, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVFilterPad_name_get(swigCPtr);
   }
 

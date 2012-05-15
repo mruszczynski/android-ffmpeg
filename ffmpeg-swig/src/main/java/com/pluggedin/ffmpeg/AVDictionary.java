@@ -8,16 +8,16 @@
 
 package com.pluggedin.ffmpeg;
 
-public class AVProfile {
+public class AVDictionary {
   private long swigCPtr;
   protected boolean swigCMemOwn;
 
-  protected AVProfile(long cPtr, boolean cMemoryOwn) {
+  protected AVDictionary(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(AVProfile obj) {
+  protected static long getCPtr(AVDictionary obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -29,30 +29,31 @@ public class AVProfile {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        ffmpegJNI.delete_AVProfile(swigCPtr);
+        ffmpegJNI.delete_AVDictionary(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public void setProfile(int value) {
-    ffmpegJNI.AVProfile_profile_set(swigCPtr, this, value);
+  public void setCount(int value) {
+    ffmpegJNI.AVDictionary_count_set(swigCPtr, this, value);
   }
 
-  public int getProfile() {
-    return ffmpegJNI.AVProfile_profile_get(swigCPtr, this);
+  public int getCount() {
+    return ffmpegJNI.AVDictionary_count_get(swigCPtr, this);
   }
 
-  public void setName(String value) {
-    ffmpegJNI.AVProfile_name_set(swigCPtr, this, value);
+  public void setElems(SWIGTYPE_p_AVDictionaryEntry value) {
+    ffmpegJNI.AVDictionary_elems_set(swigCPtr, this, SWIGTYPE_p_AVDictionaryEntry.getCPtr(value));
   }
 
-  public String getName() {
-    return ffmpegJNI.AVProfile_name_get(swigCPtr, this);
+  public SWIGTYPE_p_AVDictionaryEntry getElems() {
+    long cPtr = ffmpegJNI.AVDictionary_elems_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVDictionaryEntry(cPtr, false);
   }
 
-  public AVProfile() {
-    this(ffmpegJNI.new_AVProfile(), true);
+  public AVDictionary() {
+    this(ffmpegJNI.new_AVDictionary(), true);
   }
 
 }

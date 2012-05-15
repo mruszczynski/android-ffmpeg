@@ -35,28 +35,28 @@ public class AVFrac {
     }
   }
 
-  public void setVal(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrac_val_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setVal(long value) {
+    ffmpegJNI.AVFrac_val_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getVal() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrac_val_get(swigCPtr, this), true);
+  public long getVal() {
+    return ffmpegJNI.AVFrac_val_get(swigCPtr, this);
   }
 
-  public void setNum(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrac_num_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setNum(long value) {
+    ffmpegJNI.AVFrac_num_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getNum() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrac_num_get(swigCPtr, this), true);
+  public long getNum() {
+    return ffmpegJNI.AVFrac_num_get(swigCPtr, this);
   }
 
-  public void setDen(SWIGTYPE_p_int64_t value) {
-    ffmpegJNI.AVFrac_den_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
+  public void setDen(long value) {
+    ffmpegJNI.AVFrac_den_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_int64_t getDen() {
-    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFrac_den_get(swigCPtr, this), true);
+  public long getDen() {
+    return ffmpegJNI.AVFrac_den_get(swigCPtr, this);
   }
 
   public AVFrac() {

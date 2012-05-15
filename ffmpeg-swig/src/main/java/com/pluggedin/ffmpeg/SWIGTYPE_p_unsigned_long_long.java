@@ -8,18 +8,18 @@
 
 package com.pluggedin.ffmpeg;
 
-public class SWIGTYPE_p_AVDictionary {
+public class SWIGTYPE_p_unsigned_long_long {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_AVDictionary(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_unsigned_long_long(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_AVDictionary() {
+  protected SWIGTYPE_p_unsigned_long_long() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_AVDictionary obj) {
+  protected static long getCPtr(SWIGTYPE_p_unsigned_long_long obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

@@ -53,11 +53,11 @@ public class AVFilterContext {
     return (cPtr == 0) ? null : new AVFilter(cPtr, false);
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVFilterContext_name_set(swigCPtr, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVFilterContext_name_get(swigCPtr);
   }
 

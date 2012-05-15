@@ -35,11 +35,11 @@ public class AVHWAccel {
     }
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVHWAccel_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVHWAccel_name_get(swigCPtr, this);
   }
 
@@ -84,22 +84,22 @@ public class AVHWAccel {
     return (cPtr == 0) ? null : new AVHWAccel(cPtr, false);
   }
 
-  public void setStart_frame(SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int value) {
-    ffmpegJNI.AVHWAccel_start_frame_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int.getCPtr(value));
+  public void setStart_frame(SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int value) {
+    ffmpegJNI.AVHWAccel_start_frame_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int getStart_frame() {
+  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int getStart_frame() {
     long cPtr = ffmpegJNI.AVHWAccel_start_frame_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int(cPtr, false);
   }
 
-  public void setDecode_slice(SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int value) {
-    ffmpegJNI.AVHWAccel_decode_slice_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int.getCPtr(value));
+  public void setDecode_slice(SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int value) {
+    ffmpegJNI.AVHWAccel_decode_slice_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int getDecode_slice() {
+  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int getDecode_slice() {
     long cPtr = ffmpegJNI.AVHWAccel_decode_slice_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__uint8_t_uint32_t__int(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int(cPtr, false);
   }
 
   public void setEnd_frame(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {

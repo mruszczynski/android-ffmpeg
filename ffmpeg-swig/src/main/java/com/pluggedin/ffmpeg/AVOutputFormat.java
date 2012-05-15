@@ -35,35 +35,35 @@ public class AVOutputFormat {
     }
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVOutputFormat_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVOutputFormat_name_get(swigCPtr, this);
   }
 
-  public void setLong_name(byte[] value) {
+  public void setLong_name(String value) {
     ffmpegJNI.AVOutputFormat_long_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getLong_name() {
+  public String getLong_name() {
     return ffmpegJNI.AVOutputFormat_long_name_get(swigCPtr, this);
   }
 
-  public void setMime_type(byte[] value) {
+  public void setMime_type(String value) {
     ffmpegJNI.AVOutputFormat_mime_type_set(swigCPtr, this, value);
   }
 
-  public byte[] getMime_type() {
+  public String getMime_type() {
     return ffmpegJNI.AVOutputFormat_mime_type_get(swigCPtr, this);
   }
 
-  public void setExtensions(byte[] value) {
+  public void setExtensions(String value) {
     ffmpegJNI.AVOutputFormat_extensions_set(swigCPtr, this, value);
   }
 
-  public byte[] getExtensions() {
+  public String getExtensions() {
     return ffmpegJNI.AVOutputFormat_extensions_get(swigCPtr, this);
   }
 
@@ -178,13 +178,13 @@ public class AVOutputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_enum_CodecID_int__int(cPtr, false);
   }
 
-  public void setGet_output_timestamp(SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_p_int64_t__void value) {
-    ffmpegJNI.AVOutputFormat_get_output_timestamp_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_p_int64_t__void.getCPtr(value));
+  public void setGet_output_timestamp(SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_p_long_long__void value) {
+    ffmpegJNI.AVOutputFormat_get_output_timestamp_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_p_long_long__void.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_p_int64_t__void getGet_output_timestamp() {
+  public SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_p_long_long__void getGet_output_timestamp() {
     long cPtr = ffmpegJNI.AVOutputFormat_get_output_timestamp_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_p_int64_t__void(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_p_long_long__void(cPtr, false);
   }
 
   public void setNext(AVOutputFormat value) {

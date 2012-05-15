@@ -17,6 +17,12 @@ public interface ffmpegConstants {
   public final static int AV_OPT_FLAG_SUBTITLE_PARAM = 32;
   public final static int AV_OPT_SEARCH_CHILDREN = 0x0001;
   public final static int AV_OPT_SEARCH_FAKE_OBJ = 0x0002;
+  public final static int INT16_MIN = (-0x7fff-1);
+  public final static int INT16_MAX = 0x7fff;
+  public final static int INT32_MIN = (-0x7fffffff-1);
+  public final static int INT32_MAX = 0x7fffffff;
+  public final static int UINT32_MAX = 0xffffffff;
+  public final static long INT64_MIN = (-0x7fffffffffffffffL-1);
   public final static int LIBAVUTIL_VERSION_MAJOR = 51;
   public final static int LIBAVUTIL_VERSION_MINOR = 32;
   public final static int LIBAVUTIL_VERSION_MICRO = 0;

@@ -35,11 +35,11 @@ public class AVFilter {
     }
   }
 
-  public void setName(byte[] value) {
+  public void setName(String value) {
     ffmpegJNI.AVFilter_name_set(swigCPtr, this, value);
   }
 
-  public byte[] getName() {
+  public String getName() {
     return ffmpegJNI.AVFilter_name_get(swigCPtr, this);
   }
 
@@ -96,11 +96,11 @@ public class AVFilter {
     return (cPtr == 0) ? null : new SWIGTYPE_p_AVFilterPad(cPtr, false);
   }
 
-  public void setDescription(byte[] value) {
+  public void setDescription(String value) {
     ffmpegJNI.AVFilter_description_set(swigCPtr, this, value);
   }
 
-  public byte[] getDescription() {
+  public String getDescription() {
     return ffmpegJNI.AVFilter_description_get(swigCPtr, this);
   }
 

@@ -35,13 +35,13 @@ public class AVFilterBuffer {
     }
   }
 
-  public void setData(SWIGTYPE_p_p_uint8_t value) {
-    ffmpegJNI.AVFilterBuffer_data_set(swigCPtr, this, SWIGTYPE_p_p_uint8_t.getCPtr(value));
+  public void setData(SWIGTYPE_p_p_unsigned_char value) {
+    ffmpegJNI.AVFilterBuffer_data_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
   }
 
-  public SWIGTYPE_p_p_uint8_t getData() {
+  public SWIGTYPE_p_p_unsigned_char getData() {
     long cPtr = ffmpegJNI.AVFilterBuffer_data_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_uint8_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
   }
 
   public void setLinesize(SWIGTYPE_p_int value) {
@@ -67,15 +67,6 @@ public class AVFilterBuffer {
 
   public long getPriv() {
     return ffmpegJNI.AVFilterBuffer_priv_get(swigCPtr, this);
-  }
-
-  public void setFree(SWIGTYPE_p_f_p_struct_AVFilterBuffer__void value) {
-    ffmpegJNI.AVFilterBuffer_free_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFilterBuffer__void.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_struct_AVFilterBuffer__void getFree() {
-    long cPtr = ffmpegJNI.AVFilterBuffer_free_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFilterBuffer__void(cPtr, false);
   }
 
   public void setFormat(int value) {
