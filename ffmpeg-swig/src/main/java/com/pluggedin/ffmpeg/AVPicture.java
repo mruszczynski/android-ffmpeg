@@ -35,13 +35,13 @@ public class AVPicture {
     }
   }
 
-  public void setData(SWIGTYPE_p_p_unsigned_char value) {
-    ffmpegJNI.AVPicture_data_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
+  public void setData(SWIGTYPE_p_p_uint8_t value) {
+    ffmpegJNI.AVPicture_data_set(swigCPtr, this, SWIGTYPE_p_p_uint8_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_p_unsigned_char getData() {
+  public SWIGTYPE_p_p_uint8_t getData() {
     long cPtr = ffmpegJNI.AVPicture_data_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_uint8_t(cPtr, false);
   }
 
   public void setLinesize(SWIGTYPE_p_int value) {

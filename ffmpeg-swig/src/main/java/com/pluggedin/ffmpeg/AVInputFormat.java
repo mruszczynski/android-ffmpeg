@@ -35,19 +35,19 @@ public class AVInputFormat {
     }
   }
 
-  public void setName(String value) {
+  public void setName(byte[] value) {
     ffmpegJNI.AVInputFormat_name_set(swigCPtr, this, value);
   }
 
-  public String getName() {
+  public byte[] getName() {
     return ffmpegJNI.AVInputFormat_name_get(swigCPtr, this);
   }
 
-  public void setLong_name(String value) {
+  public void setLong_name(byte[] value) {
     ffmpegJNI.AVInputFormat_long_name_set(swigCPtr, this, value);
   }
 
-  public String getLong_name() {
+  public byte[] getLong_name() {
     return ffmpegJNI.AVInputFormat_long_name_get(swigCPtr, this);
   }
 
@@ -95,13 +95,13 @@ public class AVInputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext__int(cPtr, false);
   }
 
-  public void setRead_timestamp(SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_long_long__long_long value) {
-    ffmpegJNI.AVInputFormat_read_timestamp_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_long_long__long_long.getCPtr(value));
+  public void setRead_timestamp(SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_int64_t__int64_t value) {
+    ffmpegJNI.AVInputFormat_read_timestamp_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_int64_t__int64_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_long_long__long_long getRead_timestamp() {
+  public SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_int64_t__int64_t getRead_timestamp() {
     long cPtr = ffmpegJNI.AVInputFormat_read_timestamp_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_long_long__long_long(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_int64_t_int64_t__int64_t(cPtr, false);
   }
 
   public void setFlags(int value) {
@@ -112,11 +112,11 @@ public class AVInputFormat {
     return ffmpegJNI.AVInputFormat_flags_get(swigCPtr, this);
   }
 
-  public void setExtensions(String value) {
+  public void setExtensions(byte[] value) {
     ffmpegJNI.AVInputFormat_extensions_set(swigCPtr, this, value);
   }
 
-  public String getExtensions() {
+  public byte[] getExtensions() {
     return ffmpegJNI.AVInputFormat_extensions_get(swigCPtr, this);
   }
 
@@ -155,13 +155,13 @@ public class AVInputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVCodecTag(cPtr, false);
   }
 
-  public void setRead_seek2(SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int value) {
-    ffmpegJNI.AVInputFormat_read_seek2_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int.getCPtr(value));
+  public void setRead_seek2(SWIGTYPE_p_f_p_struct_AVFormatContext_int_int64_t_int64_t_int64_t_int__int value) {
+    ffmpegJNI.AVInputFormat_read_seek2_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_int64_t_int64_t_int64_t_int__int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int getRead_seek2() {
+  public SWIGTYPE_p_f_p_struct_AVFormatContext_int_int64_t_int64_t_int64_t_int__int getRead_seek2() {
     long cPtr = ffmpegJNI.AVInputFormat_read_seek2_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_int64_t_int64_t_int64_t_int__int(cPtr, false);
   }
 
   public void setPriv_class(SWIGTYPE_p_AVClass value) {

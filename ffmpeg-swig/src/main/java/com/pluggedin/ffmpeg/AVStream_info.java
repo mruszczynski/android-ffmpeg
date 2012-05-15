@@ -35,20 +35,20 @@ public class AVStream_info {
     }
   }
 
-  public void setLast_dts(long value) {
-    ffmpegJNI.AVStream_info_last_dts_set(swigCPtr, this, value);
+  public void setLast_dts(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVStream_info_last_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getLast_dts() {
-    return ffmpegJNI.AVStream_info_last_dts_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getLast_dts() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_info_last_dts_get(swigCPtr, this), true);
   }
 
-  public void setDuration_gcd(long value) {
-    ffmpegJNI.AVStream_info_duration_gcd_set(swigCPtr, this, value);
+  public void setDuration_gcd(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVStream_info_duration_gcd_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getDuration_gcd() {
-    return ffmpegJNI.AVStream_info_duration_gcd_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getDuration_gcd() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_info_duration_gcd_get(swigCPtr, this), true);
   }
 
   public void setDuration_count(int value) {
@@ -68,12 +68,12 @@ public class AVStream_info {
     return (cPtr == 0) ? null : new SWIGTYPE_p_a_2__a__60_12_5___double(cPtr, false);
   }
 
-  public void setCodec_info_duration(long value) {
-    ffmpegJNI.AVStream_info_codec_info_duration_set(swigCPtr, this, value);
+  public void setCodec_info_duration(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVStream_info_codec_info_duration_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getCodec_info_duration() {
-    return ffmpegJNI.AVStream_info_codec_info_duration_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getCodec_info_duration() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVStream_info_codec_info_duration_get(swigCPtr, this), true);
   }
 
   public void setNb_decoded_frames(int value) {

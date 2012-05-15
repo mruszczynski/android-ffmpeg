@@ -111,20 +111,20 @@ public class AVFilterLink {
     return new SWIGTYPE_p_AVRational(ffmpegJNI.AVFilterLink_sample_aspect_ratio_get(swigCPtr), true);
   }
 
-  public void setChannel_layout(java.math.BigInteger value) {
-    ffmpegJNI.AVFilterLink_channel_layout_set(swigCPtr, value);
+  public void setChannel_layout(SWIGTYPE_p_uint64_t value) {
+    ffmpegJNI.AVFilterLink_channel_layout_set(swigCPtr, SWIGTYPE_p_uint64_t.getCPtr(value));
   }
 
-  public java.math.BigInteger getChannel_layout() {
-    return ffmpegJNI.AVFilterLink_channel_layout_get(swigCPtr);
+  public SWIGTYPE_p_uint64_t getChannel_layout() {
+    return new SWIGTYPE_p_uint64_t(ffmpegJNI.AVFilterLink_channel_layout_get(swigCPtr), true);
   }
 
-  public void setSample_rate(long value) {
-    ffmpegJNI.AVFilterLink_sample_rate_set(swigCPtr, value);
+  public void setSample_rate(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVFilterLink_sample_rate_set(swigCPtr, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getSample_rate() {
-    return ffmpegJNI.AVFilterLink_sample_rate_get(swigCPtr);
+  public SWIGTYPE_p_int64_t getSample_rate() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVFilterLink_sample_rate_get(swigCPtr), true);
   }
 
   public void setPlanar(int value) {

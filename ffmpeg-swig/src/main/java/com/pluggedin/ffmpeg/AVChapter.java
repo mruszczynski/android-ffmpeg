@@ -51,20 +51,20 @@ public class AVChapter {
     return new SWIGTYPE_p_AVRational(ffmpegJNI.AVChapter_time_base_get(swigCPtr, this), true);
   }
 
-  public void setStart(long value) {
-    ffmpegJNI.AVChapter_start_set(swigCPtr, this, value);
+  public void setStart(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVChapter_start_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getStart() {
-    return ffmpegJNI.AVChapter_start_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getStart() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVChapter_start_get(swigCPtr, this), true);
   }
 
-  public void setEnd(long value) {
-    ffmpegJNI.AVChapter_end_set(swigCPtr, this, value);
+  public void setEnd(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVChapter_end_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getEnd() {
-    return ffmpegJNI.AVChapter_end_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getEnd() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVChapter_end_get(swigCPtr, this), true);
   }
 
   public void setMetadata(SWIGTYPE_p_AVDictionary value) {

@@ -35,13 +35,12 @@ public class AVBitStreamFilterContext {
     }
   }
 
-  public void setPriv_data(SWIGTYPE_p_void value) {
-    ffmpegJNI.AVBitStreamFilterContext_priv_data_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+  public void setPriv_data(long value) {
+    ffmpegJNI.AVBitStreamFilterContext_priv_data_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_void getPriv_data() {
-    long cPtr = ffmpegJNI.AVBitStreamFilterContext_priv_data_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+  public long getPriv_data() {
+    return ffmpegJNI.AVBitStreamFilterContext_priv_data_get(swigCPtr, this);
   }
 
   public void setFilter(AVBitStreamFilter value) {

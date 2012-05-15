@@ -43,11 +43,11 @@ public class AVProfile {
     return ffmpegJNI.AVProfile_profile_get(swigCPtr, this);
   }
 
-  public void setName(String value) {
+  public void setName(byte[] value) {
     ffmpegJNI.AVProfile_name_set(swigCPtr, this, value);
   }
 
-  public String getName() {
+  public byte[] getName() {
     return ffmpegJNI.AVProfile_name_get(swigCPtr, this);
   }
 

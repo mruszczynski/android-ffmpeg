@@ -53,11 +53,11 @@ public class AVFilterContext {
     return (cPtr == 0) ? null : new AVFilter(cPtr, false);
   }
 
-  public void setName(String value) {
+  public void setName(byte[] value) {
     ffmpegJNI.AVFilterContext_name_set(swigCPtr, value);
   }
 
-  public String getName() {
+  public byte[] getName() {
     return ffmpegJNI.AVFilterContext_name_get(swigCPtr);
   }
 
@@ -113,13 +113,12 @@ public class AVFilterContext {
     return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVFilterLink(cPtr, false);
   }
 
-  public void setPriv(SWIGTYPE_p_void value) {
-    ffmpegJNI.AVFilterContext_priv_set(swigCPtr, SWIGTYPE_p_void.getCPtr(value));
+  public void setPriv(long value) {
+    ffmpegJNI.AVFilterContext_priv_set(swigCPtr, value);
   }
 
-  public SWIGTYPE_p_void getPriv() {
-    long cPtr = ffmpegJNI.AVFilterContext_priv_get(swigCPtr);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+  public long getPriv() {
+    return ffmpegJNI.AVFilterContext_priv_get(swigCPtr);
   }
 
   public void setCommand_queue(SWIGTYPE_p_AVFilterCommand value) {

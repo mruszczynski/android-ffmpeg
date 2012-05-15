@@ -8,18 +8,18 @@
 
 package com.pluggedin.ffmpeg;
 
-public class SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int {
+public class SWIGTYPE_p_int64_t {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_int64_t(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int() {
+  protected SWIGTYPE_p_int64_t() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_f_p_struct_AVCodecContext_p_q_const__unsigned_char_unsigned_int__int obj) {
+  protected static long getCPtr(SWIGTYPE_p_int64_t obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

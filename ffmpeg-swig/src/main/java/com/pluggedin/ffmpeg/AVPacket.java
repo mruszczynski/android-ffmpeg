@@ -35,29 +35,29 @@ public class AVPacket {
     }
   }
 
-  public void setPts(long value) {
-    ffmpegJNI.AVPacket_pts_set(swigCPtr, this, value);
+  public void setPts(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVPacket_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getPts() {
-    return ffmpegJNI.AVPacket_pts_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getPts() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVPacket_pts_get(swigCPtr, this), true);
   }
 
-  public void setDts(long value) {
-    ffmpegJNI.AVPacket_dts_set(swigCPtr, this, value);
+  public void setDts(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVPacket_dts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getDts() {
-    return ffmpegJNI.AVPacket_dts_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getDts() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVPacket_dts_get(swigCPtr, this), true);
   }
 
-  public void setData(SWIGTYPE_p_unsigned_char value) {
-    ffmpegJNI.AVPacket_data_set(swigCPtr, this, SWIGTYPE_p_unsigned_char.getCPtr(value));
+  public void setData(SWIGTYPE_p_uint8_t value) {
+    ffmpegJNI.AVPacket_data_set(swigCPtr, this, SWIGTYPE_p_uint8_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_unsigned_char getData() {
+  public SWIGTYPE_p_uint8_t getData() {
     long cPtr = ffmpegJNI.AVPacket_data_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_uint8_t(cPtr, false);
   }
 
   public void setSize(int value) {
@@ -109,29 +109,28 @@ public class AVPacket {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVPacket__void(cPtr, false);
   }
 
-  public void setPriv(SWIGTYPE_p_void value) {
-    ffmpegJNI.AVPacket_priv_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
+  public void setPriv(long value) {
+    ffmpegJNI.AVPacket_priv_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_void getPriv() {
-    long cPtr = ffmpegJNI.AVPacket_priv_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
+  public long getPriv() {
+    return ffmpegJNI.AVPacket_priv_get(swigCPtr, this);
   }
 
-  public void setPos(long value) {
-    ffmpegJNI.AVPacket_pos_set(swigCPtr, this, value);
+  public void setPos(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVPacket_pos_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getPos() {
-    return ffmpegJNI.AVPacket_pos_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getPos() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVPacket_pos_get(swigCPtr, this), true);
   }
 
-  public void setConvergence_duration(long value) {
-    ffmpegJNI.AVPacket_convergence_duration_set(swigCPtr, this, value);
+  public void setConvergence_duration(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVPacket_convergence_duration_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getConvergence_duration() {
-    return ffmpegJNI.AVPacket_convergence_duration_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getConvergence_duration() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVPacket_convergence_duration_get(swigCPtr, this), true);
   }
 
   public AVPacket_side_data getSide_data() {

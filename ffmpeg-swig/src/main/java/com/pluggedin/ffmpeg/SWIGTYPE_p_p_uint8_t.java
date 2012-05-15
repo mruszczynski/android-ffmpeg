@@ -8,18 +8,18 @@
 
 package com.pluggedin.ffmpeg;
 
-public class SWIGTYPE_p_p_signed_char {
+public class SWIGTYPE_p_p_uint8_t {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_p_signed_char(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_p_uint8_t(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_p_signed_char() {
+  protected SWIGTYPE_p_p_uint8_t() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_p_signed_char obj) {
+  protected static long getCPtr(SWIGTYPE_p_p_uint8_t obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

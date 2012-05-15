@@ -35,20 +35,20 @@ public class AVIndexEntry {
     }
   }
 
-  public void setPos(long value) {
-    ffmpegJNI.AVIndexEntry_pos_set(swigCPtr, this, value);
+  public void setPos(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVIndexEntry_pos_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getPos() {
-    return ffmpegJNI.AVIndexEntry_pos_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getPos() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVIndexEntry_pos_get(swigCPtr, this), true);
   }
 
-  public void setTimestamp(long value) {
-    ffmpegJNI.AVIndexEntry_timestamp_set(swigCPtr, this, value);
+  public void setTimestamp(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVIndexEntry_timestamp_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getTimestamp() {
-    return ffmpegJNI.AVIndexEntry_timestamp_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getTimestamp() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVIndexEntry_timestamp_get(swigCPtr, this), true);
   }
 
   public void setFlags(int value) {

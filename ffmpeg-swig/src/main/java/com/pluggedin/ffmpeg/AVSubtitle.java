@@ -35,28 +35,28 @@ public class AVSubtitle {
     }
   }
 
-  public void setFormat(int value) {
-    ffmpegJNI.AVSubtitle_format_set(swigCPtr, this, value);
+  public void setFormat(SWIGTYPE_p_uint16_t value) {
+    ffmpegJNI.AVSubtitle_format_set(swigCPtr, this, SWIGTYPE_p_uint16_t.getCPtr(value));
   }
 
-  public int getFormat() {
-    return ffmpegJNI.AVSubtitle_format_get(swigCPtr, this);
+  public SWIGTYPE_p_uint16_t getFormat() {
+    return new SWIGTYPE_p_uint16_t(ffmpegJNI.AVSubtitle_format_get(swigCPtr, this), true);
   }
 
-  public void setStart_display_time(long value) {
-    ffmpegJNI.AVSubtitle_start_display_time_set(swigCPtr, this, value);
+  public void setStart_display_time(SWIGTYPE_p_uint32_t value) {
+    ffmpegJNI.AVSubtitle_start_display_time_set(swigCPtr, this, SWIGTYPE_p_uint32_t.getCPtr(value));
   }
 
-  public long getStart_display_time() {
-    return ffmpegJNI.AVSubtitle_start_display_time_get(swigCPtr, this);
+  public SWIGTYPE_p_uint32_t getStart_display_time() {
+    return new SWIGTYPE_p_uint32_t(ffmpegJNI.AVSubtitle_start_display_time_get(swigCPtr, this), true);
   }
 
-  public void setEnd_display_time(long value) {
-    ffmpegJNI.AVSubtitle_end_display_time_set(swigCPtr, this, value);
+  public void setEnd_display_time(SWIGTYPE_p_uint32_t value) {
+    ffmpegJNI.AVSubtitle_end_display_time_set(swigCPtr, this, SWIGTYPE_p_uint32_t.getCPtr(value));
   }
 
-  public long getEnd_display_time() {
-    return ffmpegJNI.AVSubtitle_end_display_time_get(swigCPtr, this);
+  public SWIGTYPE_p_uint32_t getEnd_display_time() {
+    return new SWIGTYPE_p_uint32_t(ffmpegJNI.AVSubtitle_end_display_time_get(swigCPtr, this), true);
   }
 
   public void setNum_rects(long value) {
@@ -76,12 +76,12 @@ public class AVSubtitle {
     return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVSubtitleRect(cPtr, false);
   }
 
-  public void setPts(long value) {
-    ffmpegJNI.AVSubtitle_pts_set(swigCPtr, this, value);
+  public void setPts(SWIGTYPE_p_int64_t value) {
+    ffmpegJNI.AVSubtitle_pts_set(swigCPtr, this, SWIGTYPE_p_int64_t.getCPtr(value));
   }
 
-  public long getPts() {
-    return ffmpegJNI.AVSubtitle_pts_get(swigCPtr, this);
+  public SWIGTYPE_p_int64_t getPts() {
+    return new SWIGTYPE_p_int64_t(ffmpegJNI.AVSubtitle_pts_get(swigCPtr, this), true);
   }
 
   public AVSubtitle() {

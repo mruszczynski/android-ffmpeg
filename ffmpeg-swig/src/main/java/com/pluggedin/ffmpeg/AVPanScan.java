@@ -59,13 +59,13 @@ public class AVPanScan {
     return ffmpegJNI.AVPanScan_height_get(swigCPtr, this);
   }
 
-  public void setPosition(SWIGTYPE_p_a_2__short value) {
-    ffmpegJNI.AVPanScan_position_set(swigCPtr, this, SWIGTYPE_p_a_2__short.getCPtr(value));
+  public void setPosition(SWIGTYPE_p_a_2__int16_t value) {
+    ffmpegJNI.AVPanScan_position_set(swigCPtr, this, SWIGTYPE_p_a_2__int16_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_a_2__short getPosition() {
+  public SWIGTYPE_p_a_2__int16_t getPosition() {
     long cPtr = ffmpegJNI.AVPanScan_position_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_a_2__short(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_a_2__int16_t(cPtr, false);
   }
 
   public AVPanScan() {

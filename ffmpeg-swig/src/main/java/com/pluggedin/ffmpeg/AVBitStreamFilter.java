@@ -35,11 +35,11 @@ public class AVBitStreamFilter {
     }
   }
 
-  public void setName(String value) {
+  public void setName(byte[] value) {
     ffmpegJNI.AVBitStreamFilter_name_set(swigCPtr, this, value);
   }
 
-  public String getName() {
+  public byte[] getName() {
     return ffmpegJNI.AVBitStreamFilter_name_get(swigCPtr, this);
   }
 

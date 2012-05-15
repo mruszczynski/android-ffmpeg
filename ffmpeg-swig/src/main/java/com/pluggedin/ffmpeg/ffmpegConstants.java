@@ -9,6 +9,14 @@
 package com.pluggedin.ffmpeg;
 
 public interface ffmpegConstants {
+  public final static int AV_OPT_FLAG_ENCODING_PARAM = 1;
+  public final static int AV_OPT_FLAG_DECODING_PARAM = 2;
+  public final static int AV_OPT_FLAG_METADATA = 4;
+  public final static int AV_OPT_FLAG_AUDIO_PARAM = 8;
+  public final static int AV_OPT_FLAG_VIDEO_PARAM = 16;
+  public final static int AV_OPT_FLAG_SUBTITLE_PARAM = 32;
+  public final static int AV_OPT_SEARCH_CHILDREN = 0x0001;
+  public final static int AV_OPT_SEARCH_FAKE_OBJ = 0x0002;
   public final static int LIBAVUTIL_VERSION_MAJOR = 51;
   public final static int LIBAVUTIL_VERSION_MINOR = 32;
   public final static int LIBAVUTIL_VERSION_MICRO = 0;

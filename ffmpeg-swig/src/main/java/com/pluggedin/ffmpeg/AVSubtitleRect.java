@@ -92,19 +92,19 @@ public class AVSubtitleRect {
     return AVSubtitleType.swigToEnum(ffmpegJNI.AVSubtitleRect_type_get(swigCPtr, this));
   }
 
-  public void setText(String value) {
+  public void setText(byte[] value) {
     ffmpegJNI.AVSubtitleRect_text_set(swigCPtr, this, value);
   }
 
-  public String getText() {
+  public byte[] getText() {
     return ffmpegJNI.AVSubtitleRect_text_get(swigCPtr, this);
   }
 
-  public void setAss(String value) {
+  public void setAss(byte[] value) {
     ffmpegJNI.AVSubtitleRect_ass_set(swigCPtr, this, value);
   }
 
-  public String getAss() {
+  public byte[] getAss() {
     return ffmpegJNI.AVSubtitleRect_ass_get(swigCPtr, this);
   }
 

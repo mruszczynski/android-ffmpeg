@@ -35,11 +35,11 @@ public class AVProbeData {
     }
   }
 
-  public void setFilename(String value) {
+  public void setFilename(byte[] value) {
     ffmpegJNI.AVProbeData_filename_set(swigCPtr, this, value);
   }
 
-  public String getFilename() {
+  public byte[] getFilename() {
     return ffmpegJNI.AVProbeData_filename_get(swigCPtr, this);
   }
 
