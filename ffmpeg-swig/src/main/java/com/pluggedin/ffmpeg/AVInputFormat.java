@@ -164,13 +164,13 @@ public class AVInputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int(cPtr, false);
   }
 
-  public void setPriv_class(SWIGTYPE_p_AVClass value) {
-    ffmpegJNI.AVInputFormat_priv_class_set(swigCPtr, this, SWIGTYPE_p_AVClass.getCPtr(value));
+  public void setPriv_class(AVClass value) {
+    ffmpegJNI.AVInputFormat_priv_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVClass getPriv_class() {
+  public AVClass getPriv_class() {
     long cPtr = ffmpegJNI.AVInputFormat_priv_class_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVClass(cPtr, false);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
   }
 
   public void setNext(AVInputFormat value) {

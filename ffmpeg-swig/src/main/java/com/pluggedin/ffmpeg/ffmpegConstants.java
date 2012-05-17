@@ -35,6 +35,15 @@ public interface ffmpegConstants {
   public final static int FF_LAMBDA_MAX = (256*128-1);
   public final static int FF_QUALITY_SCALE = (1 << 7);
   public final static int AV_TIME_BASE = 1000000;
+  public final static int AV_LOG_QUIET = -8;
+  public final static int AV_LOG_PANIC = 0;
+  public final static int AV_LOG_FATAL = 8;
+  public final static int AV_LOG_ERROR = 16;
+  public final static int AV_LOG_WARNING = 24;
+  public final static int AV_LOG_INFO = 32;
+  public final static int AV_LOG_VERBOSE = 40;
+  public final static int AV_LOG_DEBUG = 48;
+  public final static int AV_LOG_SKIP_REPEATED = 1;
   public final static int LIBSWSCALE_VERSION_MAJOR = 2;
   public final static int LIBSWSCALE_VERSION_MINOR = 1;
   public final static int LIBSWSCALE_VERSION_MICRO = 0;

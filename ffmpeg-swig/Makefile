@@ -1,4 +1,4 @@
-all: target/ffmpeg_wrap.so
+all: target/libffmpegjni.so
 clean:
 	rm -rf target/
 
@@ -18,10 +18,17 @@ target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 		-c src/main/c/ffmpeg_wrap.c \
 		-o target/ffmpeg_wrap.o
 
-target/ffmpeg_wrap.so: target/ffmpeg_wrap.o
-	gcc -shared -Wl,-soname,ffmpegjni.so.1 \
-		-o target/ffmpegjni.so.1.0 \
+target/libffmpegjni.so.1: target/ffmpeg_wrap.o
+	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
+		-L../linux \
+		-lavfilter \
+		-lavutil \
+		-lavcodec \
+		-lswscale \
+		-o target/libffmpegjni.so.1 \
 		target/ffmpeg_wrap.o
 
+target/libffmpegjni.so: target/libffmpegjni.so.1
+	ln -s libffmpegjni.so.1 target/libffmpegjni.so
 
 

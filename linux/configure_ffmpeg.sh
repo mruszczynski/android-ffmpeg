@@ -2,15 +2,13 @@
 pushd `dirname $0`
 . settings.sh
 
-if [[ $DEBUG == 1 ]]; then
-  echo "DEBUG = 1"
-  DEBUG_FLAG="--disable-stripping"
-fi
-
 pushd ../ffmpeg
 
 ./configure \
-$DEBUG_FLAG \
+\
+--disable-stripping \
+--enable-debug=3 \
+\
 --enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \

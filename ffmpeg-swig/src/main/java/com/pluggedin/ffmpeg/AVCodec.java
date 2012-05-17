@@ -190,13 +190,13 @@ public class AVCodec {
     return ffmpegJNI.AVCodec_max_lowres_get(swigCPtr, this);
   }
 
-  public void setPriv_class(SWIGTYPE_p_AVClass value) {
-    ffmpegJNI.AVCodec_priv_class_set(swigCPtr, this, SWIGTYPE_p_AVClass.getCPtr(value));
+  public void setPriv_class(AVClass value) {
+    ffmpegJNI.AVCodec_priv_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVClass getPriv_class() {
+  public AVClass getPriv_class() {
     long cPtr = ffmpegJNI.AVCodec_priv_class_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVClass(cPtr, false);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
   }
 
   public void setProfiles(AVProfile value) {

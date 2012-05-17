@@ -16,13 +16,13 @@ popd
 find ../speex -name '*.so' -exec cp \{\} ./ \;
 find ../speex -name '*.so.*' -exec cp \{\} ./ \;
 
-pushd ../ffmpeg-swig
-mvn clean
-make || die "Error making ffmpeg-swig"
-mvn install
-popd
-find ../ffmpeg-swig -name '*.so' -exec cp \{\} ./ \;
-find ../ffmpeg-swig -name '*.so.*' -exec cp \{\} ./ \;
+#pushd ../ffmpeg-swig
+#mvn clean
+#make || die "Error making ffmpeg-swig"
+#mvn install
+#popd
+#find ../ffmpeg-swig -name '*.so' -exec cp \{\} ./ \;
+#find ../ffmpeg-swig -name '*.so.*' -exec cp \{\} ./ \;
 
 #pushd ../libaacplus-2.0.2
 #./autogen.sh || die "running libaacplus/autogen.sh"

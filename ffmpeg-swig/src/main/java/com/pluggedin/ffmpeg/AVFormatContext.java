@@ -35,13 +35,13 @@ public class AVFormatContext {
     }
   }
 
-  public void setAv_class(SWIGTYPE_p_AVClass value) {
-    ffmpegJNI.AVFormatContext_av_class_set(swigCPtr, this, SWIGTYPE_p_AVClass.getCPtr(value));
+  public void setAv_class(AVClass value) {
+    ffmpegJNI.AVFormatContext_av_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVClass getAv_class() {
+  public AVClass getAv_class() {
     long cPtr = ffmpegJNI.AVFormatContext_av_class_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVClass(cPtr, false);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
   }
 
   public void setIformat(AVInputFormat value) {
