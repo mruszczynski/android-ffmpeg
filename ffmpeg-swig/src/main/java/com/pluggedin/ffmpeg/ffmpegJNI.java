@@ -15,6 +15,12 @@ public class ffmpegJNI {
   public final static native void intArray_setitem(long jarg1, intArray jarg1_, int jarg2, int jarg3);
   public final static native long intArray_cast(long jarg1, intArray jarg1_);
   public final static native long intArray_frompointer(long jarg1);
+  public final static native long new_doubleArray(int jarg1);
+  public final static native void delete_doubleArray(long jarg1);
+  public final static native double doubleArray_getitem(long jarg1, doubleArray jarg1_, int jarg2);
+  public final static native void doubleArray_setitem(long jarg1, doubleArray jarg1_, int jarg2, double jarg3);
+  public final static native long doubleArray_cast(long jarg1, doubleArray jarg1_);
+  public final static native long doubleArray_frompointer(long jarg1);
   public final static native void init_log();
   public final static native long newAVRational(int jarg1, int jarg2);
   public final static native void copyBytesIn(long jarg1, byte[] jarg2, int jarg3, int jarg4);

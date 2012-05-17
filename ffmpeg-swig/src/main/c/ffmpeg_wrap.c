@@ -229,6 +229,27 @@ SWIGINTERN intArray *intArray_frompointer(int *t){
   return (intArray *) t;
 }
 
+typedef double doubleArray;
+
+SWIGINTERN doubleArray *new_doubleArray(int nelements){
+  return (double *) calloc(nelements,sizeof(double));
+}
+SWIGINTERN void delete_doubleArray(doubleArray *self){
+  free(self);
+}
+SWIGINTERN double doubleArray_getitem(doubleArray *self,int index){
+  return self[index];
+}
+SWIGINTERN void doubleArray_setitem(doubleArray *self,int index,double value){
+  self[index] = value;
+}
+SWIGINTERN double *doubleArray_cast(doubleArray *self){
+  return self;
+}
+SWIGINTERN doubleArray *doubleArray_frompointer(double *t){
+  return (doubleArray *) t;
+}
+
 SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_copyBytesIn(JNIEnv *jenv, jclass jcls, jlong ptr, jbyteArray array, jint length, jint offset) {
     (*jenv)->SetByteArrayRegion(jenv, array, offset, length, *(unsigned char **)&ptr);
 }
@@ -238,7 +259,6 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_copyBytesOut(JNIEnv 
 void log_callback_stdout(void* ptr, int level, const char* fmt, va_list vl)
 {
     vfprintf(stdout, fmt, vl);
-    fflush(stdout);
 }
 
 
@@ -409,6 +429,91 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_intArray_1frompoint
   arg1 = *(int **)&jarg1; 
   result = (intArray *)intArray_frompointer(arg1);
   *(intArray **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_new_1doubleArray(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jlong jresult = 0 ;
+  int arg1 ;
+  doubleArray *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  result = (doubleArray *)new_doubleArray(arg1);
+  *(doubleArray **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_delete_1doubleArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  doubleArray *arg1 = (doubleArray *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(doubleArray **)&jarg1; 
+  delete_doubleArray(arg1);
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_doubleArray_1getitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jdouble jresult = 0 ;
+  doubleArray *arg1 = (doubleArray *) 0 ;
+  int arg2 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(doubleArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (double)doubleArray_getitem(arg1,arg2);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_doubleArray_1setitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jdouble jarg3) {
+  doubleArray *arg1 = (doubleArray *) 0 ;
+  int arg2 ;
+  double arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(doubleArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (double)jarg3; 
+  doubleArray_setitem(arg1,arg2,arg3);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_doubleArray_1cast(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  doubleArray *arg1 = (doubleArray *) 0 ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(doubleArray **)&jarg1; 
+  result = (double *)doubleArray_cast(arg1);
+  *(double **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_doubleArray_1frompointer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  double *arg1 = (double *) 0 ;
+  doubleArray *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(double **)&jarg1; 
+  result = (doubleArray *)doubleArray_frompointer(arg1);
+  *(doubleArray **)&jresult = result; 
   return jresult;
 }
 
