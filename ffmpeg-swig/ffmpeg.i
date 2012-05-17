@@ -35,6 +35,7 @@
 %apply int8_t { unsigned char, uint8_t }
 
 %array_class(int,intArray);
+%array_class(double,doubleArray);
 
 %{
 SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_copyBytesIn(JNIEnv *jenv, jclass jcls, jlong ptr, jbyteArray array, jint length, jint offset) {
