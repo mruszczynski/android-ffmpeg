@@ -25,6 +25,7 @@
 #include "../ffmpeg/libavcodec/avcodec.h"
 #include "../ffmpeg/libavfilter/avfilter.h"
 #include "../ffmpeg/libavformat/avformat.h"
+#include "../ffmpeg/libavformat/avio.h"
 #include "../ffmpeg/libswresample/swresample.h"
 %}
 
@@ -51,6 +52,37 @@ void log_callback_stdout(void* ptr, int level, const char* fmt, va_list vl)
 %}
 
 %inline %{
+
+int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* data, int size)
+{
+    AVCodecContext *c = st->codec;
+    AVPacket pkt;
+    av_init_packet(&pkt);
+    if (c->coded_frame->pts != AV_NOPTS_VALUE) pkt.pts = av_rescale_q(c->coded_frame->pts, c->time_base, st->time_base);
+    if (c->coded_frame->key_frame) pkt.flags |= AV_PKT_FLAG_KEY;
+    pkt.stream_index = st->index;
+    pkt.data = data;
+    pkt.size = size;
+    return av_interleaved_write_frame(oc, &pkt);
+}
+
+static AVFormatContext* init_output_context(const char *format_name, const char *filename) {
+    AVFormatContext *ctx = 0;
+    int result = avformat_alloc_output_context2(&ctx, NULL, format_name, filename);
+    if(0 > result)
+    {
+        return NULL;
+    }
+    else
+    {
+        return ctx;
+    }
+}
+
+static int init_avformatcontext_pb(AVFormatContext*s, const char *url, int flags)
+{
+    return avio_open(&(s->pb), url, flags);
+}
 
 static void init_log() {
     av_log_set_callback(log_callback_stdout);
@@ -110,10 +142,12 @@ static void delByteArray(unsigned char* self) {
 %ignore av_vlog;
 %ignore av_log_default_callback;
 %ignore av_log_format_line;
+%ignore av_class;
 
 %ignore AVBitStreamFilter::filter;
 %ignore AVFrame::motion_val;
 %ignore please_use_av_free;
+
 
 %include "../ffmpeg/libavutil/opt.h"
 %include "../ffmpeg/libavutil/mem.h"
@@ -129,4 +163,5 @@ static void delByteArray(unsigned char* self) {
 %include "../ffmpeg/libavcodec/avcodec.h";
 %include "../ffmpeg/libavfilter/avfilter.h";
 %include "../ffmpeg/libavformat/avformat.h";
+%include "../ffmpeg/libavformat/avio.h"
 %include "../ffmpeg/libswresample/swresample.h";

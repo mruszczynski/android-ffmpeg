@@ -9,6 +9,19 @@
 package com.pluggedin.ffmpeg;
 
 public class ffmpeg implements ffmpegConstants {
+  public static int write_video_frame(AVFormatContext oc, AVStream st, SWIGTYPE_p_unsigned_char data, int size) {
+    return ffmpegJNI.write_video_frame(AVFormatContext.getCPtr(oc), oc, AVStream.getCPtr(st), st, SWIGTYPE_p_unsigned_char.getCPtr(data), size);
+  }
+
+  public static AVFormatContext init_output_context(String format_name, String filename) {
+    long cPtr = ffmpegJNI.init_output_context(format_name, filename);
+    return (cPtr == 0) ? null : new AVFormatContext(cPtr, false);
+  }
+
+  public static int init_avformatcontext_pb(AVFormatContext s, String url, int flags) {
+    return ffmpegJNI.init_avformatcontext_pb(AVFormatContext.getCPtr(s), s, url, flags);
+  }
+
   public static void init_log() {
     ffmpegJNI.init_log();
   }
@@ -1212,12 +1225,12 @@ public class ffmpeg implements ffmpegConstants {
     return ffmpegJNI.avformat_license();
   }
 
-  public static int av_get_packet(SWIGTYPE_p_AVIOContext s, AVPacket pkt, int size) {
-    return ffmpegJNI.av_get_packet(SWIGTYPE_p_AVIOContext.getCPtr(s), AVPacket.getCPtr(pkt), pkt, size);
+  public static int av_get_packet(AVIOContext s, AVPacket pkt, int size) {
+    return ffmpegJNI.av_get_packet(AVIOContext.getCPtr(s), s, AVPacket.getCPtr(pkt), pkt, size);
   }
 
-  public static int av_append_packet(SWIGTYPE_p_AVIOContext s, AVPacket pkt, int size) {
-    return ffmpegJNI.av_append_packet(SWIGTYPE_p_AVIOContext.getCPtr(s), AVPacket.getCPtr(pkt), pkt, size);
+  public static int av_append_packet(AVIOContext s, AVPacket pkt, int size) {
+    return ffmpegJNI.av_append_packet(AVIOContext.getCPtr(s), s, AVPacket.getCPtr(pkt), pkt, size);
   }
 
   public static AVInputFormat av_iformat_next(AVInputFormat f) {
@@ -1304,8 +1317,8 @@ public class ffmpeg implements ffmpegConstants {
     return (cPtr == 0) ? null : new AVInputFormat(cPtr, false);
   }
 
-  public static int av_probe_input_buffer(SWIGTYPE_p_AVIOContext pb, SWIGTYPE_p_p_AVInputFormat fmt, String filename, long logctx, long offset, long max_probe_size) {
-    return ffmpegJNI.av_probe_input_buffer(SWIGTYPE_p_AVIOContext.getCPtr(pb), SWIGTYPE_p_p_AVInputFormat.getCPtr(fmt), filename, logctx, offset, max_probe_size);
+  public static int av_probe_input_buffer(AVIOContext pb, SWIGTYPE_p_p_AVInputFormat fmt, String filename, long logctx, long offset, long max_probe_size) {
+    return ffmpegJNI.av_probe_input_buffer(AVIOContext.getCPtr(pb), pb, SWIGTYPE_p_p_AVInputFormat.getCPtr(fmt), filename, logctx, offset, max_probe_size);
   }
 
   public static int avformat_open_input(SWIGTYPE_p_p_AVFormatContext ps, String filename, AVInputFormat fmt, SWIGTYPE_p_p_AVDictionary options) {
@@ -1454,6 +1467,175 @@ public class ffmpeg implements ffmpegConstants {
 
   public static int avformat_network_deinit() {
     return ffmpegJNI.avformat_network_deinit();
+  }
+
+  public static int avio_check(String url, int flags) {
+    return ffmpegJNI.avio_check(url, flags);
+  }
+
+  public static AVIOContext avio_alloc_context(SWIGTYPE_p_unsigned_char buffer, int buffer_size, int write_flag, long opaque, SWIGTYPE_p_f_p_void_p_unsigned_char_int__int read_packet, SWIGTYPE_p_f_p_void_p_unsigned_char_int__int write_packet, SWIGTYPE_p_f_p_void_long_long_int__long_long seek) {
+    long cPtr = ffmpegJNI.avio_alloc_context(SWIGTYPE_p_unsigned_char.getCPtr(buffer), buffer_size, write_flag, opaque, SWIGTYPE_p_f_p_void_p_unsigned_char_int__int.getCPtr(read_packet), SWIGTYPE_p_f_p_void_p_unsigned_char_int__int.getCPtr(write_packet), SWIGTYPE_p_f_p_void_long_long_int__long_long.getCPtr(seek));
+    return (cPtr == 0) ? null : new AVIOContext(cPtr, false);
+  }
+
+  public static void avio_w8(AVIOContext s, int b) {
+    ffmpegJNI.avio_w8(AVIOContext.getCPtr(s), s, b);
+  }
+
+  public static void avio_write(AVIOContext s, SWIGTYPE_p_unsigned_char buf, int size) {
+    ffmpegJNI.avio_write(AVIOContext.getCPtr(s), s, SWIGTYPE_p_unsigned_char.getCPtr(buf), size);
+  }
+
+  public static void avio_wl64(AVIOContext s, java.math.BigInteger val) {
+    ffmpegJNI.avio_wl64(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wb64(AVIOContext s, java.math.BigInteger val) {
+    ffmpegJNI.avio_wb64(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wl32(AVIOContext s, long val) {
+    ffmpegJNI.avio_wl32(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wb32(AVIOContext s, long val) {
+    ffmpegJNI.avio_wb32(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wl24(AVIOContext s, long val) {
+    ffmpegJNI.avio_wl24(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wb24(AVIOContext s, long val) {
+    ffmpegJNI.avio_wb24(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wl16(AVIOContext s, long val) {
+    ffmpegJNI.avio_wl16(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static void avio_wb16(AVIOContext s, long val) {
+    ffmpegJNI.avio_wb16(AVIOContext.getCPtr(s), s, val);
+  }
+
+  public static int avio_put_str(AVIOContext s, String str) {
+    return ffmpegJNI.avio_put_str(AVIOContext.getCPtr(s), s, str);
+  }
+
+  public static int avio_put_str16le(AVIOContext s, String str) {
+    return ffmpegJNI.avio_put_str16le(AVIOContext.getCPtr(s), s, str);
+  }
+
+  public static long avio_seek(AVIOContext s, long offset, int whence) {
+    return ffmpegJNI.avio_seek(AVIOContext.getCPtr(s), s, offset, whence);
+  }
+
+  public static long avio_skip(AVIOContext s, long offset) {
+    return ffmpegJNI.avio_skip(AVIOContext.getCPtr(s), s, offset);
+  }
+
+  public static long avio_tell(AVIOContext s) {
+    return ffmpegJNI.avio_tell(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_size(AVIOContext s) {
+    return ffmpegJNI.avio_size(AVIOContext.getCPtr(s), s);
+  }
+
+  public static int url_feof(AVIOContext s) {
+    return ffmpegJNI.url_feof(AVIOContext.getCPtr(s), s);
+  }
+
+  public static int avio_printf(AVIOContext s, String fmt) {
+    return ffmpegJNI.avio_printf(AVIOContext.getCPtr(s), s, fmt);
+  }
+
+  public static void avio_flush(AVIOContext s) {
+    ffmpegJNI.avio_flush(AVIOContext.getCPtr(s), s);
+  }
+
+  public static int avio_read(AVIOContext s, SWIGTYPE_p_unsigned_char buf, int size) {
+    return ffmpegJNI.avio_read(AVIOContext.getCPtr(s), s, SWIGTYPE_p_unsigned_char.getCPtr(buf), size);
+  }
+
+  public static int avio_r8(AVIOContext s) {
+    return ffmpegJNI.avio_r8(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_rl16(AVIOContext s) {
+    return ffmpegJNI.avio_rl16(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_rl24(AVIOContext s) {
+    return ffmpegJNI.avio_rl24(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_rl32(AVIOContext s) {
+    return ffmpegJNI.avio_rl32(AVIOContext.getCPtr(s), s);
+  }
+
+  public static java.math.BigInteger avio_rl64(AVIOContext s) {
+    return ffmpegJNI.avio_rl64(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_rb16(AVIOContext s) {
+    return ffmpegJNI.avio_rb16(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_rb24(AVIOContext s) {
+    return ffmpegJNI.avio_rb24(AVIOContext.getCPtr(s), s);
+  }
+
+  public static long avio_rb32(AVIOContext s) {
+    return ffmpegJNI.avio_rb32(AVIOContext.getCPtr(s), s);
+  }
+
+  public static java.math.BigInteger avio_rb64(AVIOContext s) {
+    return ffmpegJNI.avio_rb64(AVIOContext.getCPtr(s), s);
+  }
+
+  public static int avio_get_str(AVIOContext pb, int maxlen, String buf, int buflen) {
+    return ffmpegJNI.avio_get_str(AVIOContext.getCPtr(pb), pb, maxlen, buf, buflen);
+  }
+
+  public static int avio_get_str16le(AVIOContext pb, int maxlen, String buf, int buflen) {
+    return ffmpegJNI.avio_get_str16le(AVIOContext.getCPtr(pb), pb, maxlen, buf, buflen);
+  }
+
+  public static int avio_get_str16be(AVIOContext pb, int maxlen, String buf, int buflen) {
+    return ffmpegJNI.avio_get_str16be(AVIOContext.getCPtr(pb), pb, maxlen, buf, buflen);
+  }
+
+  public static int avio_open(SWIGTYPE_p_p_AVIOContext s, String url, int flags) {
+    return ffmpegJNI.avio_open(SWIGTYPE_p_p_AVIOContext.getCPtr(s), url, flags);
+  }
+
+  public static int avio_open2(SWIGTYPE_p_p_AVIOContext s, String url, int flags, AVIOInterruptCB int_cb, SWIGTYPE_p_p_AVDictionary options) {
+    return ffmpegJNI.avio_open2(SWIGTYPE_p_p_AVIOContext.getCPtr(s), url, flags, AVIOInterruptCB.getCPtr(int_cb), int_cb, SWIGTYPE_p_p_AVDictionary.getCPtr(options));
+  }
+
+  public static int avio_close(AVIOContext s) {
+    return ffmpegJNI.avio_close(AVIOContext.getCPtr(s), s);
+  }
+
+  public static int avio_open_dyn_buf(SWIGTYPE_p_p_AVIOContext s) {
+    return ffmpegJNI.avio_open_dyn_buf(SWIGTYPE_p_p_AVIOContext.getCPtr(s));
+  }
+
+  public static int avio_close_dyn_buf(AVIOContext s, SWIGTYPE_p_p_unsigned_char pbuffer) {
+    return ffmpegJNI.avio_close_dyn_buf(AVIOContext.getCPtr(s), s, SWIGTYPE_p_p_unsigned_char.getCPtr(pbuffer));
+  }
+
+  public static String avio_enum_protocols(SWIGTYPE_p_p_void opaque, int output) {
+    return ffmpegJNI.avio_enum_protocols(SWIGTYPE_p_p_void.getCPtr(opaque), output);
+  }
+
+  public static int avio_pause(AVIOContext h, int pause) {
+    return ffmpegJNI.avio_pause(AVIOContext.getCPtr(h), h, pause);
+  }
+
+  public static long avio_seek_time(AVIOContext h, int stream_index, long timestamp, int flags) {
+    return ffmpegJNI.avio_seek_time(AVIOContext.getCPtr(h), h, stream_index, timestamp, flags);
   }
 
   public static SWIGTYPE_p_SwrContext swr_alloc() {

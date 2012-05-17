@@ -35,15 +35,6 @@ public class AVCodecContext {
     }
   }
 
-  public void setAv_class(AVClass value) {
-    ffmpegJNI.AVCodecContext_av_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
-  }
-
-  public AVClass getAv_class() {
-    long cPtr = ffmpegJNI.AVCodecContext_av_class_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVClass(cPtr, false);
-  }
-
   public void setBit_rate(int value) {
     ffmpegJNI.AVCodecContext_bit_rate_set(swigCPtr, this, value);
   }

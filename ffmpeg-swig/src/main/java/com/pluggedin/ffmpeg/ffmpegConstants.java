@@ -423,6 +423,13 @@ public interface ffmpegConstants {
   public final static int AVSEEK_FLAG_BYTE = 2;
   public final static int AVSEEK_FLAG_ANY = 4;
   public final static int AVSEEK_FLAG_FRAME = 8;
+  public final static int AVIO_SEEKABLE_NORMAL = 0x0001;
+  public final static int AVSEEK_SIZE = 0x10000;
+  public final static int AVSEEK_FORCE = 0x20000;
+  public final static int AVIO_FLAG_READ = 1;
+  public final static int AVIO_FLAG_WRITE = 2;
+  public final static int AVIO_FLAG_READ_WRITE = (1|2);
+  public final static int AVIO_FLAG_NONBLOCK = 8;
   public final static int LIBSWRESAMPLE_VERSION_MAJOR = 0;
   public final static int LIBSWRESAMPLE_VERSION_MINOR = 5;
   public final static int LIBSWRESAMPLE_VERSION_MICRO = 0;

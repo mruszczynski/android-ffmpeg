@@ -22,6 +22,7 @@ target/libffmpegjni.so.1: target/ffmpeg_wrap.o
 	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
 		-L../linux \
 		-lavfilter \
+		-lavformat \
 		-lavutil \
 		-lavcodec \
 		-lswscale \

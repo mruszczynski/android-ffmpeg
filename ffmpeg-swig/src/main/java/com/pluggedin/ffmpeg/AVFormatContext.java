@@ -17,7 +17,7 @@ public class AVFormatContext {
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(AVFormatContext obj) {
+  public static long getCPtr(AVFormatContext obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -33,15 +33,6 @@ public class AVFormatContext {
       }
       swigCPtr = 0;
     }
-  }
-
-  public void setAv_class(AVClass value) {
-    ffmpegJNI.AVFormatContext_av_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
-  }
-
-  public AVClass getAv_class() {
-    long cPtr = ffmpegJNI.AVFormatContext_av_class_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVClass(cPtr, false);
   }
 
   public void setIformat(AVInputFormat value) {
@@ -70,13 +61,13 @@ public class AVFormatContext {
     return ffmpegJNI.AVFormatContext_priv_data_get(swigCPtr, this);
   }
 
-  public void setPb(SWIGTYPE_p_AVIOContext value) {
-    ffmpegJNI.AVFormatContext_pb_set(swigCPtr, this, SWIGTYPE_p_AVIOContext.getCPtr(value));
+  public void setPb(AVIOContext value) {
+    ffmpegJNI.AVFormatContext_pb_set(swigCPtr, this, AVIOContext.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVIOContext getPb() {
+  public AVIOContext getPb() {
     long cPtr = ffmpegJNI.AVFormatContext_pb_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_AVIOContext(cPtr, false);
+    return (cPtr == 0) ? null : new AVIOContext(cPtr, false);
   }
 
   public void setNb_streams(long value) {
@@ -308,12 +299,13 @@ public class AVFormatContext {
     return ffmpegJNI.AVFormatContext_error_recognition_get(swigCPtr, this);
   }
 
-  public void setInterrupt_callback(SWIGTYPE_p_AVIOInterruptCB value) {
-    ffmpegJNI.AVFormatContext_interrupt_callback_set(swigCPtr, this, SWIGTYPE_p_AVIOInterruptCB.getCPtr(value));
+  public void setInterrupt_callback(AVIOInterruptCB value) {
+    ffmpegJNI.AVFormatContext_interrupt_callback_set(swigCPtr, this, AVIOInterruptCB.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_AVIOInterruptCB getInterrupt_callback() {
-    return new SWIGTYPE_p_AVIOInterruptCB(ffmpegJNI.AVFormatContext_interrupt_callback_get(swigCPtr, this), true);
+  public AVIOInterruptCB getInterrupt_callback() {
+    long cPtr = ffmpegJNI.AVFormatContext_interrupt_callback_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVIOInterruptCB(cPtr, false);
   }
 
   public void setTs_id(int value) {

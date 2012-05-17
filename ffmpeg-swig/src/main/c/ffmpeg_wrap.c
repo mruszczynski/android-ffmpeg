@@ -205,6 +205,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../ffmpeg/libavcodec/avcodec.h"
 #include "../ffmpeg/libavfilter/avfilter.h"
 #include "../ffmpeg/libavformat/avformat.h"
+#include "../ffmpeg/libavformat/avio.h"
 #include "../ffmpeg/libswresample/swresample.h"
 
 
@@ -262,6 +263,37 @@ void log_callback_stdout(void* ptr, int level, const char* fmt, va_list vl)
 }
 
 
+
+int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* data, int size)
+{
+    AVCodecContext *c = st->codec;
+    AVPacket pkt;
+    av_init_packet(&pkt);
+    if (c->coded_frame->pts != AV_NOPTS_VALUE) pkt.pts = av_rescale_q(c->coded_frame->pts, c->time_base, st->time_base);
+    if (c->coded_frame->key_frame) pkt.flags |= AV_PKT_FLAG_KEY;
+    pkt.stream_index = st->index;
+    pkt.data = data;
+    pkt.size = size;
+    return av_interleaved_write_frame(oc, &pkt);
+}
+
+static AVFormatContext* init_output_context(const char *format_name, const char *filename) {
+    AVFormatContext *ctx = 0;
+    int result = avformat_alloc_output_context2(&ctx, NULL, format_name, filename);
+    if(0 > result)
+    {
+        return NULL;
+    }
+    else
+    {
+        return ctx;
+    }
+}
+
+static int init_avformatcontext_pb(AVFormatContext*s, const char *url, int flags)
+{
+    return avio_open(&(s->pb), url, flags);
+}
 
 static void init_log() {
     av_log_set_callback(log_callback_stdout);
@@ -514,6 +546,78 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_doubleArray_1frompo
   arg1 = *(double **)&jarg1; 
   result = (doubleArray *)doubleArray_frompointer(arg1);
   *(doubleArray **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_write_1video_1frame(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jint jarg4) {
+  jint jresult = 0 ;
+  AVFormatContext *arg1 = (AVFormatContext *) 0 ;
+  AVStream *arg2 = (AVStream *) 0 ;
+  unsigned char *arg3 = (unsigned char *) 0 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(AVFormatContext **)&jarg1; 
+  arg2 = *(AVStream **)&jarg2; 
+  arg3 = *(unsigned char **)&jarg3; 
+  arg4 = (int)jarg4; 
+  result = (int)write_video_frame(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1output_1context(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jlong jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  AVFormatContext *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  result = (AVFormatContext *)init_output_context((char const *)arg1,(char const *)arg2);
+  *(AVFormatContext **)&jresult = result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1avformatcontext_1pb(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  AVFormatContext *arg1 = (AVFormatContext *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVFormatContext **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = (int)jarg3; 
+  result = (int)init_avformatcontext_pb(arg1,(char const *)arg2,arg3);
+  jresult = (jint)result; 
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -5862,35 +5966,6 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_delete_1AVFrame(JNIE
   (void)jcls;
   arg1 = *(struct AVFrame **)&jarg1; 
   free((char *) arg1);
-}
-
-
-SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1av_1class_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  struct AVCodecContext *arg1 = (struct AVCodecContext *) 0 ;
-  AVClass *arg2 = (AVClass *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(struct AVCodecContext **)&jarg1; 
-  arg2 = *(AVClass **)&jarg2; 
-  if (arg1) (arg1)->av_class = (AVClass const *)arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1av_1class_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  struct AVCodecContext *arg1 = (struct AVCodecContext *) 0 ;
-  AVClass *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(struct AVCodecContext **)&jarg1; 
-  result = (AVClass *) ((arg1)->av_class);
-  *(AVClass **)&jresult = result; 
-  return jresult;
 }
 
 
@@ -18433,33 +18508,6 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_delete_1AVFilter(JNI
 }
 
 
-SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterContext_1av_1class_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
-  struct AVFilterContext *arg1 = (struct AVFilterContext *) 0 ;
-  AVClass *arg2 = (AVClass *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg2_;
-  arg1 = *(struct AVFilterContext **)&jarg1; 
-  arg2 = *(AVClass **)&jarg2; 
-  if (arg1) (arg1)->av_class = (AVClass const *)arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterContext_1av_1class_1get(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  jlong jresult = 0 ;
-  struct AVFilterContext *arg1 = (struct AVFilterContext *) 0 ;
-  AVClass *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(struct AVFilterContext **)&jarg1; 
-  result = (AVClass *) ((arg1)->av_class);
-  *(AVClass **)&jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterContext_1filter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
   struct AVFilterContext *arg1 = (struct AVFilterContext *) 0 ;
   AVFilter *arg2 = (AVFilter *) 0 ;
@@ -19951,7 +19999,7 @@ SWIGEXPORT jstring JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avformat_1license
 }
 
 
-SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1packet(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1packet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
   jint jresult = 0 ;
   AVIOContext *arg1 = (AVIOContext *) 0 ;
   AVPacket *arg2 = (AVPacket *) 0 ;
@@ -19960,6 +20008,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1packet(JNIE
   
   (void)jenv;
   (void)jcls;
+  (void)jarg1_;
   (void)jarg2_;
   arg1 = *(AVIOContext **)&jarg1; 
   arg2 = *(AVPacket **)&jarg2; 
@@ -19970,7 +20019,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1packet(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1append_1packet(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1append_1packet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
   jint jresult = 0 ;
   AVIOContext *arg1 = (AVIOContext *) 0 ;
   AVPacket *arg2 = (AVPacket *) 0 ;
@@ -19979,6 +20028,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1append_1packet(J
   
   (void)jenv;
   (void)jcls;
+  (void)jarg1_;
   (void)jarg2_;
   arg1 = *(AVIOContext **)&jarg1; 
   arg2 = *(AVPacket **)&jarg2; 
@@ -23295,35 +23345,6 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_delete_1AVChapter(JN
 }
 
 
-SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1av_1class_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  struct AVFormatContext *arg1 = (struct AVFormatContext *) 0 ;
-  AVClass *arg2 = (AVClass *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(struct AVFormatContext **)&jarg1; 
-  arg2 = *(AVClass **)&jarg2; 
-  if (arg1) (arg1)->av_class = (AVClass const *)arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1av_1class_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  struct AVFormatContext *arg1 = (struct AVFormatContext *) 0 ;
-  AVClass *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(struct AVFormatContext **)&jarg1; 
-  result = (AVClass *) ((arg1)->av_class);
-  *(AVClass **)&jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1iformat_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   struct AVFormatContext *arg1 = (struct AVFormatContext *) 0 ;
   struct AVInputFormat *arg2 = (struct AVInputFormat *) 0 ;
@@ -23410,13 +23431,14 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1pr
 }
 
 
-SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1pb_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1pb_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   struct AVFormatContext *arg1 = (struct AVFormatContext *) 0 ;
   AVIOContext *arg2 = (AVIOContext *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
+  (void)jarg2_;
   arg1 = *(struct AVFormatContext **)&jarg1; 
   arg2 = *(AVIOContext **)&jarg2; 
   if (arg1) (arg1)->pb = arg2;
@@ -24236,40 +24258,31 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1err
 }
 
 
-SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1interrupt_1callback_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1interrupt_1callback_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   struct AVFormatContext *arg1 = (struct AVFormatContext *) 0 ;
-  AVIOInterruptCB arg2 ;
-  AVIOInterruptCB *argp2 ;
+  AVIOInterruptCB *arg2 = (AVIOInterruptCB *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
+  (void)jarg2_;
   arg1 = *(struct AVFormatContext **)&jarg1; 
-  argp2 = *(AVIOInterruptCB **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null AVIOInterruptCB");
-    return ;
-  }
-  arg2 = *argp2; 
-  if (arg1) (arg1)->interrupt_callback = arg2;
+  arg2 = *(AVIOInterruptCB **)&jarg2; 
+  if (arg1) (arg1)->interrupt_callback = *arg2;
 }
 
 
 SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1interrupt_1callback_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   struct AVFormatContext *arg1 = (struct AVFormatContext *) 0 ;
-  AVIOInterruptCB result;
+  AVIOInterruptCB *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(struct AVFormatContext **)&jarg1; 
-  result =  ((arg1)->interrupt_callback);
-  {
-    AVIOInterruptCB * resultptr = (AVIOInterruptCB *) malloc(sizeof(AVIOInterruptCB));
-    memmove(resultptr, &result, sizeof(AVIOInterruptCB));
-    *(AVIOInterruptCB **)&jresult = resultptr;
-  }
+  result = (AVIOInterruptCB *)& ((arg1)->interrupt_callback);
+  *(AVIOInterruptCB **)&jresult = result; 
   return jresult;
 }
 
@@ -25036,7 +25049,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1probe_1input_1f
 }
 
 
-SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1probe_1input_1buffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jstring jarg3, jlong jarg4, jlong jarg5, jlong jarg6) {
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1probe_1input_1buffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3, jlong jarg4, jlong jarg5, jlong jarg6) {
   jint jresult = 0 ;
   AVIOContext *arg1 = (AVIOContext *) 0 ;
   AVInputFormat **arg2 = (AVInputFormat **) 0 ;
@@ -25048,6 +25061,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1probe_1input_1bu
   
   (void)jenv;
   (void)jcls;
+  (void)jarg1_;
   arg1 = *(AVIOContext **)&jarg1; 
   arg2 = *(AVInputFormat ***)&jarg2; 
   arg3 = 0;
@@ -25761,6 +25775,1463 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avformat_1network_1d
   (void)jcls;
   result = (int)avformat_network_deinit();
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOInterruptCB_1callback_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOInterruptCB *arg1 = (AVIOInterruptCB *) 0 ;
+  int (*arg2)(void *) = (int (*)(void *)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOInterruptCB **)&jarg1; 
+  arg2 = *(int (**)(void *))&jarg2; 
+  if (arg1) (arg1)->callback = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOInterruptCB_1callback_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOInterruptCB *arg1 = (AVIOInterruptCB *) 0 ;
+  int (*result)(void *) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOInterruptCB **)&jarg1; 
+  result = (int (*)(void *)) ((arg1)->callback);
+  *(int (**)(void *))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOInterruptCB_1opaque_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOInterruptCB *arg1 = (AVIOInterruptCB *) 0 ;
+  void *arg2 = (void *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOInterruptCB **)&jarg1; 
+  arg2 = (void *)jarg2; 
+  if (arg1) (arg1)->opaque = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOInterruptCB_1opaque_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOInterruptCB *arg1 = (AVIOInterruptCB *) 0 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOInterruptCB **)&jarg1; 
+  result = (void *) ((arg1)->opaque);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_new_1AVIOInterruptCB(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  AVIOInterruptCB *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (AVIOInterruptCB *)calloc(1, sizeof(AVIOInterruptCB));
+  *(AVIOInterruptCB **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_delete_1AVIOInterruptCB(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  AVIOInterruptCB *arg1 = (AVIOInterruptCB *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(AVIOInterruptCB **)&jarg1; 
+  free((char *) arg1);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buffer_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned char **)&jarg2; 
+  if (arg1) (arg1)->buffer = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buffer_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned char *) ((arg1)->buffer);
+  *(unsigned char **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buffer_1size_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->buffer_size = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buffer_1size_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->buffer_size);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buf_1ptr_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned char **)&jarg2; 
+  if (arg1) (arg1)->buf_ptr = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buf_1ptr_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned char *) ((arg1)->buf_ptr);
+  *(unsigned char **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buf_1end_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned char **)&jarg2; 
+  if (arg1) (arg1)->buf_end = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1buf_1end_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned char *) ((arg1)->buf_end);
+  *(unsigned char **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1opaque_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  void *arg2 = (void *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (void *)jarg2; 
+  if (arg1) (arg1)->opaque = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1opaque_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (void *) ((arg1)->opaque);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1read_1packet_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int (*arg2)(void *,uint8_t *,int) = (int (*)(void *,uint8_t *,int)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(int (**)(void *,uint8_t *,int))&jarg2; 
+  if (arg1) (arg1)->read_packet = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1read_1packet_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int (*result)(void *,uint8_t *,int) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int (*)(void *,uint8_t *,int)) ((arg1)->read_packet);
+  *(int (**)(void *,uint8_t *,int))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1write_1packet_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int (*arg2)(void *,uint8_t *,int) = (int (*)(void *,uint8_t *,int)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(int (**)(void *,uint8_t *,int))&jarg2; 
+  if (arg1) (arg1)->write_packet = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1write_1packet_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int (*result)(void *,uint8_t *,int) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int (*)(void *,uint8_t *,int)) ((arg1)->write_packet);
+  *(int (**)(void *,uint8_t *,int))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1seek_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t (*arg2)(void *,int64_t,int) = (int64_t (*)(void *,int64_t,int)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(int64_t (**)(void *,int64_t,int))&jarg2; 
+  if (arg1) (arg1)->seek = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1seek_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t (*result)(void *,int64_t,int) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int64_t (*)(void *,int64_t,int)) ((arg1)->seek);
+  *(int64_t (**)(void *,int64_t,int))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1pos_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int64_t)jarg2; 
+  if (arg1) (arg1)->pos = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1pos_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int64_t) ((arg1)->pos);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1must_1flush_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->must_flush = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1must_1flush_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->must_flush);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1eof_1reached_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->eof_reached = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1eof_1reached_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->eof_reached);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1write_1flag_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->write_flag = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1write_1flag_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->write_flag);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1max_1packet_1size_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->max_packet_size = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1max_1packet_1size_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->max_packet_size);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1checksum_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned long)jarg2; 
+  if (arg1) (arg1)->checksum = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1checksum_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned long result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned long) ((arg1)->checksum);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1checksum_1ptr_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned char **)&jarg2; 
+  if (arg1) (arg1)->checksum_ptr = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1checksum_1ptr_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned char *) ((arg1)->checksum_ptr);
+  *(unsigned char **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1update_1checksum_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned long (*arg2)(unsigned long,uint8_t const *,unsigned int) = (unsigned long (*)(unsigned long,uint8_t const *,unsigned int)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned long (**)(unsigned long,uint8_t const *,unsigned int))&jarg2; 
+  if (arg1) (arg1)->update_checksum = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1update_1checksum_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned long (*result)(unsigned long,uint8_t const *,unsigned int) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned long (*)(unsigned long,uint8_t const *,unsigned int)) ((arg1)->update_checksum);
+  *(unsigned long (**)(unsigned long,uint8_t const *,unsigned int))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1error_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->error = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1error_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->error);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1read_1pause_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int (*arg2)(void *,int) = (int (*)(void *,int)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(int (**)(void *,int))&jarg2; 
+  if (arg1) (arg1)->read_pause = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1read_1pause_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int (*result)(void *,int) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int (*)(void *,int)) ((arg1)->read_pause);
+  *(int (**)(void *,int))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1read_1seek_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t (*arg2)(void *,int,int64_t,int) = (int64_t (*)(void *,int,int64_t,int)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(int64_t (**)(void *,int,int64_t,int))&jarg2; 
+  if (arg1) (arg1)->read_seek = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1read_1seek_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t (*result)(void *,int,int64_t,int) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int64_t (*)(void *,int,int64_t,int)) ((arg1)->read_seek);
+  *(int64_t (**)(void *,int,int64_t,int))&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1seekable_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->seekable = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVIOContext_1seekable_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int) ((arg1)->seekable);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_new_1AVIOContext(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  AVIOContext *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (AVIOContext *)calloc(1, sizeof(AVIOContext));
+  *(AVIOContext **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_delete_1AVIOContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(AVIOContext **)&jarg1; 
+  free((char *) arg1);
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1check(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int arg2 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = (int)jarg2; 
+  result = (int)avio_check((char const *)arg1,arg2);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1alloc_1context(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jint jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7) {
+  jlong jresult = 0 ;
+  unsigned char *arg1 = (unsigned char *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *arg4 = (void *) 0 ;
+  int (*arg5)(void *,uint8_t *,int) = (int (*)(void *,uint8_t *,int)) 0 ;
+  int (*arg6)(void *,uint8_t *,int) = (int (*)(void *,uint8_t *,int)) 0 ;
+  int64_t (*arg7)(void *,int64_t,int) = (int64_t (*)(void *,int64_t,int)) 0 ;
+  AVIOContext *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(unsigned char **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (void *)jarg4; 
+  arg5 = *(int (**)(void *,uint8_t *,int))&jarg5; 
+  arg6 = *(int (**)(void *,uint8_t *,int))&jarg6; 
+  arg7 = *(int64_t (**)(void *,int64_t,int))&jarg7; 
+  result = (AVIOContext *)avio_alloc_context(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  *(AVIOContext **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1w8(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  avio_w8(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1write(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  int arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned char **)&jarg2; 
+  arg3 = (int)jarg3; 
+  avio_write(arg1,(unsigned char const *)arg2,arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wl64(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  uint64_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = (*jenv)->GetObjectClass(jenv, jarg2);
+    mid = (*jenv)->GetMethodID(jenv, clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)(*jenv)->CallObjectMethod(jenv, jarg2, mid);
+    bae = (*jenv)->GetByteArrayElements(jenv, ba, 0);
+    sz = (*jenv)->GetArrayLength(jenv, ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (uint64_t)(unsigned char)bae[i];
+    }
+    (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
+  }
+  avio_wl64(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wb64(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  uint64_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = (*jenv)->GetObjectClass(jenv, jarg2);
+    mid = (*jenv)->GetMethodID(jenv, clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)(*jenv)->CallObjectMethod(jenv, jarg2, mid);
+    bae = (*jenv)->GetByteArrayElements(jenv, ba, 0);
+    sz = (*jenv)->GetArrayLength(jenv, ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (uint64_t)(unsigned char)bae[i];
+    }
+    (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
+  }
+  avio_wb64(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wl32(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  avio_wl32(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wb32(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  avio_wb32(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wl24(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  avio_wl24(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wb24(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  avio_wb24(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wl16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  avio_wl16(arg1,arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1wb16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  avio_wb16(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1put_1str(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  result = (int)avio_put_str(arg1,(char const *)arg2);
+  jresult = (jint)result; 
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1put_1str16le(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  result = (int)avio_put_str16le(arg1,(char const *)arg2);
+  jresult = (jint)result; 
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1seek(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t arg2 ;
+  int arg3 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int64_t)jarg2; 
+  arg3 = (int)jarg3; 
+  result = (int64_t)avio_seek(arg1,arg2,arg3);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1skip(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t arg2 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int64_t)jarg2; 
+  result = (int64_t)avio_skip(arg1,arg2);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1tell(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int64_t)avio_tell(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int64_t)avio_size(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_url_1feof(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int)url_feof(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1printf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *arg3 = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  result = (int)avio_printf(arg1,(char const *)arg2,arg3);
+  jresult = (jint)result; 
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1flush(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  avio_flush(arg1);
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1read(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  int arg3 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(unsigned char **)&jarg2; 
+  arg3 = (int)jarg3; 
+  result = (int)avio_read(arg1,arg2,arg3);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1r8(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int)avio_r8(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rl16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned int)avio_rl16(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rl24(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned int)avio_rl24(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rl32(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned int)avio_rl32(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rl64(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jobject jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  uint64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (uint64_t)avio_rl64(arg1);
+  {
+    jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
+    jbyte* bae = (*jenv)->GetByteArrayElements(jenv, ba, 0);
+    jclass clazz = (*jenv)->FindClass(jenv, "java/math/BigInteger");
+    jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
+    jobject bigint;
+    int i;
+    
+    bae[0] = 0;
+    for(i=1; i<9; i++ ) {
+      bae[i] = (jbyte)(result>>8*(8-i));
+    }
+    
+    (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
+    bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    jresult = bigint;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rb16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned int)avio_rb16(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rb24(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned int)avio_rb24(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rb32(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (unsigned int)avio_rb32(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1rb64(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jobject jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  uint64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (uint64_t)avio_rb64(arg1);
+  {
+    jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
+    jbyte* bae = (*jenv)->GetByteArrayElements(jenv, ba, 0);
+    jclass clazz = (*jenv)->FindClass(jenv, "java/math/BigInteger");
+    jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
+    jobject bigint;
+    int i;
+    
+    bae[0] = 0;
+    for(i=1; i<9; i++ ) {
+      bae[i] = (jbyte)(result>>8*(8-i));
+    }
+    
+    (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
+    bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    jresult = bigint;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1get_1str(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jint jarg4) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = 0;
+  if (jarg3) {
+    arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
+    if (!arg3) return 0;
+  }
+  arg4 = (int)jarg4; 
+  result = (int)avio_get_str(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1get_1str16le(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jint jarg4) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = 0;
+  if (jarg3) {
+    arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
+    if (!arg3) return 0;
+  }
+  arg4 = (int)jarg4; 
+  result = (int)avio_get_str16le(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1get_1str16be(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jint jarg4) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = 0;
+  if (jarg3) {
+    arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
+    if (!arg3) return 0;
+  }
+  arg4 = (int)jarg4; 
+  result = (int)avio_get_str16be(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1open(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  AVIOContext **arg1 = (AVIOContext **) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(AVIOContext ***)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = (int)jarg3; 
+  result = (int)avio_open(arg1,(char const *)arg2,arg3);
+  jresult = (jint)result; 
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1open2(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jint jarg3, jlong jarg4, jobject jarg4_, jlong jarg5) {
+  jint jresult = 0 ;
+  AVIOContext **arg1 = (AVIOContext **) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  AVIOInterruptCB *arg4 = (AVIOInterruptCB *) 0 ;
+  AVDictionary **arg5 = (AVDictionary **) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg4_;
+  arg1 = *(AVIOContext ***)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = (int)jarg3; 
+  arg4 = *(AVIOInterruptCB **)&jarg4; 
+  arg5 = *(AVDictionary ***)&jarg5; 
+  result = (int)avio_open2(arg1,(char const *)arg2,arg3,(AVIOInterruptCB const *)arg4,arg5);
+  jresult = (jint)result; 
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1close(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  result = (int)avio_close(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1open_1dyn_1buf(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jint jresult = 0 ;
+  AVIOContext **arg1 = (AVIOContext **) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(AVIOContext ***)&jarg1; 
+  result = (int)avio_open_dyn_buf(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1close_1dyn_1buf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  uint8_t **arg2 = (uint8_t **) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = *(uint8_t ***)&jarg2; 
+  result = (int)avio_close_dyn_buf(arg1,arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1enum_1protocols(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
+  jstring jresult = 0 ;
+  void **arg1 = (void **) 0 ;
+  int arg2 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(void ***)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (char *)avio_enum_protocols(arg1,arg2);
+  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1pause(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jint jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (int)avio_pause(arg1,arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1seek_1time(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jint jarg4) {
+  jlong jresult = 0 ;
+  AVIOContext *arg1 = (AVIOContext *) 0 ;
+  int arg2 ;
+  int64_t arg3 ;
+  int arg4 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVIOContext **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int64_t)jarg3; 
+  arg4 = (int)jarg4; 
+  result = (int64_t)avio_seek_time(arg1,arg2,arg3,arg4);
+  jresult = (jlong)result; 
   return jresult;
 }
 
