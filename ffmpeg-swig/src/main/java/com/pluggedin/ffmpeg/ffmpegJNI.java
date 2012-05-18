@@ -21,6 +21,16 @@ public class ffmpegJNI {
   public final static native void doubleArray_setitem(long jarg1, doubleArray jarg1_, int jarg2, double jarg3);
   public final static native long doubleArray_cast(long jarg1, doubleArray jarg1_);
   public final static native long doubleArray_frompointer(long jarg1);
+  public final static native void DecodeResult_returnCode_set(long jarg1, DecodeResult jarg1_, int jarg2);
+  public final static native int DecodeResult_returnCode_get(long jarg1, DecodeResult jarg1_);
+  public final static native void DecodeResult_gotPicture_set(long jarg1, DecodeResult jarg1_, int jarg2);
+  public final static native int DecodeResult_gotPicture_get(long jarg1, DecodeResult jarg1_);
+  public final static native long new_DecodeResult();
+  public final static native void delete_DecodeResult(long jarg1);
+  public final static native long decodeVideo(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, AVPacket jarg3_);
+  public final static native long getAVStream(long jarg1, int jarg2);
+  public final static native long newPacket();
+  public final static native long init_input_formatcontext(String jarg1, String jarg2);
   public final static native int write_video_frame(long jarg1, AVFormatContext jarg1_, long jarg2, AVStream jarg2_, long jarg3, int jarg4);
   public final static native long init_output_context(String jarg1, String jarg2);
   public final static native int init_avformatcontext_pb(long jarg1, AVFormatContext jarg1_, String jarg2, int jarg3);

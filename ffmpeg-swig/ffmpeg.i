@@ -48,12 +48,56 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_copyBytesOut(JNIEnv 
 void log_callback_stdout(void* ptr, int level, const char* fmt, va_list vl)
 {
     vfprintf(stdout, fmt, vl);
+    fflush(stdout);
 }
 %}
 
 %inline %{
 
-int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* data, int size)
+typedef struct DecodeResult {
+    int returnCode;
+    int gotPicture;
+} DecodeResult;
+
+static DecodeResult* decodeVideo(AVCodecContext *avctx, AVFrame *picture, AVPacket *avpkt)
+{
+    DecodeResult *result = av_malloc(sizeof(DecodeResult));
+    result->gotPicture = 0;
+    result->returnCode = avcodec_decode_video2(avctx, picture, &(result->gotPicture), avpkt);
+    return result;
+}
+
+static AVStream* getAVStream(AVStream** array, int pos)
+{
+    return array[pos];
+}
+
+static AVPacket* newPacket()
+{
+    AVPacket *packet = av_malloc(sizeof(AVPacket));
+    av_init_packet(packet);
+    return packet;
+}
+
+static AVFormatContext* init_input_formatcontext(const char *filename, const char *format_name)
+{
+    AVFormatContext *ctx = avformat_alloc_context();
+//    int result = avio_open(&(ctx->pb), filename, AVIO_FLAG_READ);
+//    if(0 > result)
+//    {
+//      av_log(ioCtx, AV_LOG_ERROR, "(%s:%s) Error opening io: %s\n", __FILE__, __LINE__, filename);
+//        return NULL;
+//    }
+    int result =  avformat_open_input(&ctx, filename, format_name, NULL);
+    if(0 > result)
+    {
+        av_log(ctx, AV_LOG_ERROR, "(%s:%s) Error opening input: %s\n", __FILE__, __LINE__, filename);
+        return NULL;
+    }
+    return ctx;
+}
+
+static int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* data, int size)
 {
     AVCodecContext *c = st->codec;
     AVPacket pkt;

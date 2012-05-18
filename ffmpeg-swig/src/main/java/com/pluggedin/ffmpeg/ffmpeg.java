@@ -9,6 +9,26 @@
 package com.pluggedin.ffmpeg;
 
 public class ffmpeg implements ffmpegConstants {
+  public static DecodeResult decodeVideo(AVCodecContext avctx, AVFrame picture, AVPacket avpkt) {
+    long cPtr = ffmpegJNI.decodeVideo(AVCodecContext.getCPtr(avctx), avctx, AVFrame.getCPtr(picture), picture, AVPacket.getCPtr(avpkt), avpkt);
+    return (cPtr == 0) ? null : new DecodeResult(cPtr, false);
+  }
+
+  public static AVStream getAVStream(SWIGTYPE_p_p_AVStream array, int pos) {
+    long cPtr = ffmpegJNI.getAVStream(SWIGTYPE_p_p_AVStream.getCPtr(array), pos);
+    return (cPtr == 0) ? null : new AVStream(cPtr, false);
+  }
+
+  public static AVPacket newPacket() {
+    long cPtr = ffmpegJNI.newPacket();
+    return (cPtr == 0) ? null : new AVPacket(cPtr, false);
+  }
+
+  public static AVFormatContext init_input_formatcontext(String filename, String format_name) {
+    long cPtr = ffmpegJNI.init_input_formatcontext(filename, format_name);
+    return (cPtr == 0) ? null : new AVFormatContext(cPtr, false);
+  }
+
   public static int write_video_frame(AVFormatContext oc, AVStream st, SWIGTYPE_p_unsigned_char data, int size) {
     return ffmpegJNI.write_video_frame(AVFormatContext.getCPtr(oc), oc, AVStream.getCPtr(st), st, SWIGTYPE_p_unsigned_char.getCPtr(data), size);
   }

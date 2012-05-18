@@ -16,6 +16,7 @@ target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 		-I../ffmpeg \
 		-I/usr/include/ \
 		-c src/main/c/ffmpeg_wrap.c \
+		-g \
 		-o target/ffmpeg_wrap.o
 
 target/libffmpegjni.so.1: target/ffmpeg_wrap.o
