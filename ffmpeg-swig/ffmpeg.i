@@ -82,16 +82,10 @@ static AVPacket* newPacket()
 static AVFormatContext* init_input_formatcontext(const char *filename, const char *format_name)
 {
     AVFormatContext *ctx = avformat_alloc_context();
-//    int result = avio_open(&(ctx->pb), filename, AVIO_FLAG_READ);
-//    if(0 > result)
-//    {
-//      av_log(ioCtx, AV_LOG_ERROR, "(%s:%s) Error opening io: %s\n", __FILE__, __LINE__, filename);
-//        return NULL;
-//    }
     int result =  avformat_open_input(&ctx, filename, format_name, NULL);
     if(0 > result)
     {
-        av_log(ctx, AV_LOG_ERROR, "(%s:%s) Error opening input: %s\n", __FILE__, __LINE__, filename);
+        av_log(ctx, AV_LOG_ERROR, "Error opening input: %s (%s)\n", filename, result);
         return NULL;
     }
     return ctx;

@@ -14,6 +14,7 @@ pushd ../ffmpeg
 --enable-shared \
 --enable-small \
 --enable-version3 \
+--enable-gpl \
 --enable-memalign-hack \
 --disable-doc \
 \
@@ -22,16 +23,24 @@ pushd ../ffmpeg
 \
 --enable-hwaccels \
 \
+--enable-network \
+--enable-protocol=tcp \
+--enable-protocol=udp \
+--enable-demuxer=rtsp \
+\
 --enable-ffmpeg \
 --disable-ffplay \
 --disable-ffprobe \
 --disable-ffserver \
+--disable-avdevice \
+--disable-devices \
+\
 --enable-libspeex \
 --enable-zlib \
+--enable-libx264 \
+\
 --extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
 --extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \
---disable-avdevice \
---disable-devices
 
 
 #--enable-static \
