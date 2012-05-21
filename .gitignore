@@ -3,3 +3,4 @@ faac-1.28.tar.gz
 build.log
 *.so
 *.so.*
+target/
