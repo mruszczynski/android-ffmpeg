@@ -1,6 +1,7 @@
 %module ffmpeg
 
 #define MKBETAG(a,b,c,d) makeCodecTag(a,b,c,d)
+#define FF_API_OLD_ENCODE_VIDEO 1
 
 %javaconst(1);
 %include "enums.swg"

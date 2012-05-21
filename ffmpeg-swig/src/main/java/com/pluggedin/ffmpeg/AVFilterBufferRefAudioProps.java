@@ -59,14 +59,6 @@ public class AVFilterBufferRefAudioProps {
     return ffmpegJNI.AVFilterBufferRefAudioProps_sample_rate_get(swigCPtr, this);
   }
 
-  public void setPlanar(int value) {
-    ffmpegJNI.AVFilterBufferRefAudioProps_planar_set(swigCPtr, this, value);
-  }
-
-  public int getPlanar() {
-    return ffmpegJNI.AVFilterBufferRefAudioProps_planar_get(swigCPtr, this);
-  }
-
   public AVFilterBufferRefAudioProps() {
     this(ffmpegJNI.new_AVFilterBufferRefAudioProps(), true);
   }

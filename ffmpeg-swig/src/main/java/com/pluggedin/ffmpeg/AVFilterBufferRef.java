@@ -120,6 +120,15 @@ public class AVFilterBufferRef {
     return (cPtr == 0) ? null : new AVFilterBufferRefAudioProps(cPtr, false);
   }
 
+  public void setExtended_data(SWIGTYPE_p_p_unsigned_char value) {
+    ffmpegJNI.AVFilterBufferRef_extended_data_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_p_unsigned_char getExtended_data() {
+    long cPtr = ffmpegJNI.AVFilterBufferRef_extended_data_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
+  }
+
   public AVFilterBufferRef() {
     this(ffmpegJNI.new_AVFilterBufferRef(), true);
   }

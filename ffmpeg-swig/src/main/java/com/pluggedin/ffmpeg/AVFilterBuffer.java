@@ -93,6 +93,15 @@ public class AVFilterBuffer {
     return ffmpegJNI.AVFilterBuffer_h_get(swigCPtr, this);
   }
 
+  public void setExtended_data(SWIGTYPE_p_p_unsigned_char value) {
+    ffmpegJNI.AVFilterBuffer_extended_data_set(swigCPtr, this, SWIGTYPE_p_p_unsigned_char.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_p_unsigned_char getExtended_data() {
+    long cPtr = ffmpegJNI.AVFilterBuffer_extended_data_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_unsigned_char(cPtr, false);
+  }
+
   public AVFilterBuffer() {
     this(ffmpegJNI.new_AVFilterBuffer(), true);
   }

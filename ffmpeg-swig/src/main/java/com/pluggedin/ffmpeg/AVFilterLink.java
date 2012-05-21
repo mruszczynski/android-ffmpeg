@@ -120,20 +120,12 @@ public class AVFilterLink {
     return ffmpegJNI.AVFilterLink_channel_layout_get(swigCPtr);
   }
 
-  public void setSample_rate(long value) {
+  public void setSample_rate(int value) {
     ffmpegJNI.AVFilterLink_sample_rate_set(swigCPtr, value);
   }
 
-  public long getSample_rate() {
+  public int getSample_rate() {
     return ffmpegJNI.AVFilterLink_sample_rate_get(swigCPtr);
-  }
-
-  public void setPlanar(int value) {
-    ffmpegJNI.AVFilterLink_planar_set(swigCPtr, value);
-  }
-
-  public int getPlanar() {
-    return ffmpegJNI.AVFilterLink_planar_get(swigCPtr);
   }
 
   public void setFormat(int value) {
@@ -159,42 +151,6 @@ public class AVFilterLink {
 
   public AVFilterFormats getOut_formats() {
     long cPtr = ffmpegJNI.AVFilterLink_out_formats_get(swigCPtr);
-    return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
-  }
-
-  public void setIn_chlayouts(AVFilterFormats value) {
-    ffmpegJNI.AVFilterLink_in_chlayouts_set(swigCPtr, AVFilterFormats.getCPtr(value), value);
-  }
-
-  public AVFilterFormats getIn_chlayouts() {
-    long cPtr = ffmpegJNI.AVFilterLink_in_chlayouts_get(swigCPtr);
-    return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
-  }
-
-  public void setOut_chlayouts(AVFilterFormats value) {
-    ffmpegJNI.AVFilterLink_out_chlayouts_set(swigCPtr, AVFilterFormats.getCPtr(value), value);
-  }
-
-  public AVFilterFormats getOut_chlayouts() {
-    long cPtr = ffmpegJNI.AVFilterLink_out_chlayouts_get(swigCPtr);
-    return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
-  }
-
-  public void setIn_packing(AVFilterFormats value) {
-    ffmpegJNI.AVFilterLink_in_packing_set(swigCPtr, AVFilterFormats.getCPtr(value), value);
-  }
-
-  public AVFilterFormats getIn_packing() {
-    long cPtr = ffmpegJNI.AVFilterLink_in_packing_get(swigCPtr);
-    return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
-  }
-
-  public void setOut_packing(AVFilterFormats value) {
-    ffmpegJNI.AVFilterLink_out_packing_set(swigCPtr, AVFilterFormats.getCPtr(value), value);
-  }
-
-  public AVFilterFormats getOut_packing() {
-    long cPtr = ffmpegJNI.AVFilterLink_out_packing_get(swigCPtr);
     return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
   }
 
@@ -234,6 +190,42 @@ public class AVFilterLink {
     return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
+  public void setIn_samplerates(AVFilterFormats value) {
+    ffmpegJNI.AVFilterLink_in_samplerates_set(swigCPtr, AVFilterFormats.getCPtr(value), value);
+  }
+
+  public AVFilterFormats getIn_samplerates() {
+    long cPtr = ffmpegJNI.AVFilterLink_in_samplerates_get(swigCPtr);
+    return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
+  }
+
+  public void setOut_samplerates(AVFilterFormats value) {
+    ffmpegJNI.AVFilterLink_out_samplerates_set(swigCPtr, AVFilterFormats.getCPtr(value), value);
+  }
+
+  public AVFilterFormats getOut_samplerates() {
+    long cPtr = ffmpegJNI.AVFilterLink_out_samplerates_get(swigCPtr);
+    return (cPtr == 0) ? null : new AVFilterFormats(cPtr, false);
+  }
+
+  public void setIn_channel_layouts(SWIGTYPE_p_AVFilterChannelLayouts value) {
+    ffmpegJNI.AVFilterLink_in_channel_layouts_set(swigCPtr, SWIGTYPE_p_AVFilterChannelLayouts.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_AVFilterChannelLayouts getIn_channel_layouts() {
+    long cPtr = ffmpegJNI.AVFilterLink_in_channel_layouts_get(swigCPtr);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVFilterChannelLayouts(cPtr, false);
+  }
+
+  public void setOut_channel_layouts(SWIGTYPE_p_AVFilterChannelLayouts value) {
+    ffmpegJNI.AVFilterLink_out_channel_layouts_set(swigCPtr, SWIGTYPE_p_AVFilterChannelLayouts.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_AVFilterChannelLayouts getOut_channel_layouts() {
+    long cPtr = ffmpegJNI.AVFilterLink_out_channel_layouts_get(swigCPtr);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVFilterChannelLayouts(cPtr, false);
+  }
+
   public void setPool(SWIGTYPE_p_AVFilterPool value) {
     ffmpegJNI.AVFilterLink_pool_set(swigCPtr, SWIGTYPE_p_AVFilterPool.getCPtr(value));
   }
@@ -241,6 +233,31 @@ public class AVFilterLink {
   public SWIGTYPE_p_AVFilterPool getPool() {
     long cPtr = ffmpegJNI.AVFilterLink_pool_get(swigCPtr);
     return (cPtr == 0) ? null : new SWIGTYPE_p_AVFilterPool(cPtr, false);
+  }
+
+  public void setGraph(SWIGTYPE_p_AVFilterGraph value) {
+    ffmpegJNI.AVFilterLink_graph_set(swigCPtr, SWIGTYPE_p_AVFilterGraph.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_AVFilterGraph getGraph() {
+    long cPtr = ffmpegJNI.AVFilterLink_graph_get(swigCPtr);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVFilterGraph(cPtr, false);
+  }
+
+  public void setCurrent_pts(long value) {
+    ffmpegJNI.AVFilterLink_current_pts_set(swigCPtr, value);
+  }
+
+  public long getCurrent_pts() {
+    return ffmpegJNI.AVFilterLink_current_pts_get(swigCPtr);
+  }
+
+  public void setAge_index(int value) {
+    ffmpegJNI.AVFilterLink_age_index_set(swigCPtr, value);
+  }
+
+  public int getAge_index() {
+    return ffmpegJNI.AVFilterLink_age_index_get(swigCPtr);
   }
 
   public AVFilterLink() {

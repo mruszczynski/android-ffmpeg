@@ -21,11 +21,15 @@ target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 
 target/libffmpegjni.so.1: target/ffmpeg_wrap.o
 	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
-		-L../linux \
+		-L../ffmpeg/libavfilter \
 		-lavfilter \
+		-L../ffmpeg/libavformat \
 		-lavformat \
+		-L../ffmpeg/libavutil \
 		-lavutil \
+		-L../ffmpeg/libavcodec \
 		-lavcodec \
+		-L../ffmpeg/libswscale \
 		-lswscale \
 		-o target/libffmpegjni.so.1 \
 		target/ffmpeg_wrap.o

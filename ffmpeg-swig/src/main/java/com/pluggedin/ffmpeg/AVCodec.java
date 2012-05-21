@@ -43,6 +43,14 @@ public class AVCodec {
     return ffmpegJNI.AVCodec_name_get(swigCPtr, this);
   }
 
+  public void setLong_name(String value) {
+    ffmpegJNI.AVCodec_long_name_set(swigCPtr, this, value);
+  }
+
+  public String getLong_name() {
+    return ffmpegJNI.AVCodec_long_name_get(swigCPtr, this);
+  }
+
   public void setType(AVMediaType value) {
     ffmpegJNI.AVCodec_type_set(swigCPtr, this, value.swigValue());
   }
@@ -59,74 +67,12 @@ public class AVCodec {
     return CodecID.swigToEnum(ffmpegJNI.AVCodec_id_get(swigCPtr, this));
   }
 
-  public void setPriv_data_size(int value) {
-    ffmpegJNI.AVCodec_priv_data_size_set(swigCPtr, this, value);
-  }
-
-  public int getPriv_data_size() {
-    return ffmpegJNI.AVCodec_priv_data_size_get(swigCPtr, this);
-  }
-
-  public void setInit(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {
-    ffmpegJNI.AVCodec_init_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__int.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_struct_AVCodecContext__int getInit() {
-    long cPtr = ffmpegJNI.AVCodec_init_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__int(cPtr, false);
-  }
-
-  public void setEncode(SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int value) {
-    ffmpegJNI.AVCodec_encode_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int getEncode() {
-    long cPtr = ffmpegJNI.AVCodec_encode_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int(cPtr, false);
-  }
-
-  public void setClose(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {
-    ffmpegJNI.AVCodec_close_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__int.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_struct_AVCodecContext__int getClose() {
-    long cPtr = ffmpegJNI.AVCodec_close_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__int(cPtr, false);
-  }
-
-  public void setDecode(SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int value) {
-    ffmpegJNI.AVCodec_decode_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int getDecode() {
-    long cPtr = ffmpegJNI.AVCodec_decode_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int(cPtr, false);
-  }
-
   public void setCapabilities(int value) {
     ffmpegJNI.AVCodec_capabilities_set(swigCPtr, this, value);
   }
 
   public int getCapabilities() {
     return ffmpegJNI.AVCodec_capabilities_get(swigCPtr, this);
-  }
-
-  public void setNext(AVCodec value) {
-    ffmpegJNI.AVCodec_next_set(swigCPtr, this, AVCodec.getCPtr(value), value);
-  }
-
-  public AVCodec getNext() {
-    long cPtr = ffmpegJNI.AVCodec_next_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVCodec(cPtr, false);
-  }
-
-  public void setFlush(SWIGTYPE_p_f_p_struct_AVCodecContext__void value) {
-    ffmpegJNI.AVCodec_flush_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__void.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_struct_AVCodecContext__void getFlush() {
-    long cPtr = ffmpegJNI.AVCodec_flush_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__void(cPtr, false);
   }
 
   public void setSupported_framerates(AVRational value) {
@@ -145,14 +91,6 @@ public class AVCodec {
   public SWIGTYPE_p_PixelFormat getPix_fmts() {
     long cPtr = ffmpegJNI.AVCodec_pix_fmts_get(swigCPtr, this);
     return (cPtr == 0) ? null : new SWIGTYPE_p_PixelFormat(cPtr, false);
-  }
-
-  public void setLong_name(String value) {
-    ffmpegJNI.AVCodec_long_name_set(swigCPtr, this, value);
-  }
-
-  public String getLong_name() {
-    return ffmpegJNI.AVCodec_long_name_get(swigCPtr, this);
   }
 
   public void setSupported_samplerates(SWIGTYPE_p_int value) {
@@ -208,6 +146,23 @@ public class AVCodec {
     return (cPtr == 0) ? null : new AVProfile(cPtr, false);
   }
 
+  public void setPriv_data_size(int value) {
+    ffmpegJNI.AVCodec_priv_data_size_set(swigCPtr, this, value);
+  }
+
+  public int getPriv_data_size() {
+    return ffmpegJNI.AVCodec_priv_data_size_get(swigCPtr, this);
+  }
+
+  public void setNext(AVCodec value) {
+    ffmpegJNI.AVCodec_next_set(swigCPtr, this, AVCodec.getCPtr(value), value);
+  }
+
+  public AVCodec getNext() {
+    long cPtr = ffmpegJNI.AVCodec_next_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVCodec(cPtr, false);
+  }
+
   public void setInit_thread_copy(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {
     ffmpegJNI.AVCodec_init_thread_copy_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__int.getCPtr(value));
   }
@@ -242,6 +197,60 @@ public class AVCodec {
   public SWIGTYPE_p_f_p_struct_AVCodec__void getInit_static_data() {
     long cPtr = ffmpegJNI.AVCodec_init_static_data_get(swigCPtr, this);
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodec__void(cPtr, false);
+  }
+
+  public void setInit(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {
+    ffmpegJNI.AVCodec_init_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__int.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVCodecContext__int getInit() {
+    long cPtr = ffmpegJNI.AVCodec_init_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__int(cPtr, false);
+  }
+
+  public void setEncode(SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int value) {
+    ffmpegJNI.AVCodec_encode_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int getEncode() {
+    long cPtr = ffmpegJNI.AVCodec_encode_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_unsigned_char_int_p_void__int(cPtr, false);
+  }
+
+  public void setEncode2(SWIGTYPE_p_f_p_struct_AVCodecContext_p_struct_AVPacket_p_q_const__struct_AVFrame_p_int__int value) {
+    ffmpegJNI.AVCodec_encode2_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_struct_AVPacket_p_q_const__struct_AVFrame_p_int__int.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_struct_AVPacket_p_q_const__struct_AVFrame_p_int__int getEncode2() {
+    long cPtr = ffmpegJNI.AVCodec_encode2_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_struct_AVPacket_p_q_const__struct_AVFrame_p_int__int(cPtr, false);
+  }
+
+  public void setDecode(SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int value) {
+    ffmpegJNI.AVCodec_decode_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int getDecode() {
+    long cPtr = ffmpegJNI.AVCodec_decode_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext_p_void_p_int_p_struct_AVPacket__int(cPtr, false);
+  }
+
+  public void setClose(SWIGTYPE_p_f_p_struct_AVCodecContext__int value) {
+    ffmpegJNI.AVCodec_close_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__int.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVCodecContext__int getClose() {
+    long cPtr = ffmpegJNI.AVCodec_close_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__int(cPtr, false);
+  }
+
+  public void setFlush(SWIGTYPE_p_f_p_struct_AVCodecContext__void value) {
+    ffmpegJNI.AVCodec_flush_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVCodecContext__void.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVCodecContext__void getFlush() {
+    long cPtr = ffmpegJNI.AVCodec_flush_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVCodecContext__void(cPtr, false);
   }
 
   public AVCodec() {

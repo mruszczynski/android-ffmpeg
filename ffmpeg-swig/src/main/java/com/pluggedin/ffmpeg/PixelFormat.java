@@ -107,6 +107,8 @@ public enum PixelFormat {
   PIX_FMT_RGB0,
   PIX_FMT_0BGR,
   PIX_FMT_BGR0,
+  PIX_FMT_YUVA444P,
+  PIX_FMT_YUVA422P,
   PIX_FMT_NB;
 
   public final int swigValue() {

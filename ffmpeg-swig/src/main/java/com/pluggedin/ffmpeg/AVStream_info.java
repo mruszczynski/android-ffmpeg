@@ -84,6 +84,14 @@ public class AVStream_info {
     return ffmpegJNI.AVStream_info_nb_decoded_frames_get(swigCPtr, this);
   }
 
+  public void setFound_decoder(int value) {
+    ffmpegJNI.AVStream_info_found_decoder_set(swigCPtr, this, value);
+  }
+
+  public int getFound_decoder() {
+    return ffmpegJNI.AVStream_info_found_decoder_get(swigCPtr, this);
+  }
+
   public AVStream_info() {
     this(ffmpegJNI.new_AVStream_info(), true);
   }

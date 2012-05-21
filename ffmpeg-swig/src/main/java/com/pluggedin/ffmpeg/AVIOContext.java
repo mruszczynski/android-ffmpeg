@@ -205,6 +205,22 @@ public class AVIOContext {
     return ffmpegJNI.AVIOContext_seekable_get(swigCPtr, this);
   }
 
+  public void setMaxsize(long value) {
+    ffmpegJNI.AVIOContext_maxsize_set(swigCPtr, this, value);
+  }
+
+  public long getMaxsize() {
+    return ffmpegJNI.AVIOContext_maxsize_get(swigCPtr, this);
+  }
+
+  public void setDirect(int value) {
+    ffmpegJNI.AVIOContext_direct_set(swigCPtr, this, value);
+  }
+
+  public int getDirect() {
+    return ffmpegJNI.AVIOContext_direct_get(swigCPtr, this);
+  }
+
   public AVIOContext() {
     this(ffmpegJNI.new_AVIOContext(), true);
   }
