@@ -1,4 +1,4 @@
-all: target/libffmpegjni.so
+all: target/ffmpegjni.dll
 clean:
 	rm -rf target/
 
@@ -11,26 +11,23 @@ src/main/c/ffmpeg_wrap.c: ffmpeg.i
 
 target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 	mkdir -p target
-	gcc -fPIC \
+	i686-mingw32-gcc -fPIC \
 		-I/usr/lib/jvm/java-6-openjdk/include/ \
 		-I../ffmpeg \
-		-I/usr/include/ \
+		-I/usr/i686-mingw32/include/ \
 		-c src/main/c/ffmpeg_wrap.c \
 		-g \
 		-o target/ffmpeg_wrap.o
 
-target/libffmpegjni.so.1: target/ffmpeg_wrap.o
-	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
+target/ffmpegjni.dll: target/ffmpeg_wrap.o
+	i686-mingw32-gcc -shared -Wl,-soname,ffmpegjni.dll \
 		-L../linux \
 		-lavfilter \
 		-lavformat \
 		-lavutil \
 		-lavcodec \
 		-lswscale \
-		-o target/libffmpegjni.so.1 \
+		-o target/ffmpegjni.dll \
 		target/ffmpeg_wrap.o
-
-target/libffmpegjni.so: target/libffmpegjni.so.1
-	ln -s libffmpegjni.so.1 target/libffmpegjni.so
 
 
