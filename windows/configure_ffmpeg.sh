@@ -37,11 +37,11 @@ pushd ../ffmpeg
 --disable-avdevice \
 --disable-devices \
 \
---enable-libspeex \
---enable-zlib \
-\
---extra-cflags="-I../speex/include/" \
---extra-ldflags="-L../speex/libspeex/.libs/" \
+#--enable-libspeex \
+#--enable-zlib \
+#\
+#--extra-cflags="-I../speex/include/" \
+#--extra-ldflags="-L../speex/libspeex/.libs/" \
 
 
 #--enable-static \
