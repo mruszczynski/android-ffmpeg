@@ -12,7 +12,7 @@ public class AVPicture {
   private long swigCPtr;
   protected boolean swigCMemOwn;
 
-  protected AVPicture(long cPtr, boolean cMemoryOwn) {
+  public AVPicture(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
