@@ -13,6 +13,6 @@ ln -s ../ffmpeg/libavresample/avresample-0.dll
 ln -s ../ffmpeg/libavutil/avutil-51.dll
 ln -s ../ffmpeg/libswresample/swresample-0.dll
 ln -s ../ffmpeg/libavformat/avformat-54.dll
-cp -u ../ffmpeg/ffmpeg ./
+ln -s ../ffmpeg/ffmpeg.exe
 popd
 

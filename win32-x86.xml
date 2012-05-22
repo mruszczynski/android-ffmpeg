@@ -12,6 +12,13 @@
       <outputDirectory>/</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>windows</directory>
+      <includes>
+        <include>ffmpeg.exe</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>ffmpeg</directory>
       <includes>
         <include>LICENSE</include>
