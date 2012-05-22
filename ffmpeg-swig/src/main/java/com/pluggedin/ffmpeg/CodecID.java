@@ -324,7 +324,7 @@ public enum CodecID {
   CODEC_ID_DVB_TELETEXT,
   CODEC_ID_SRT,
   CODEC_ID_MICRODVD(CodecUtil.makeCodecTag('m','D','V','D')),
-  CODEC_ID_EIA_608(CodecUtil.makeCodecTag(''0'','6','0','8')),
+  CODEC_ID_EIA_608(CodecUtil.makeCodecTag('0','6','0','8')),
   CODEC_ID_JACOSUB(CodecUtil.makeCodecTag('J','S','U','B')),
   CODEC_ID_FIRST_UNKNOWN(0x18000),
   CODEC_ID_TTF(0x18000),

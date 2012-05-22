@@ -17,7 +17,7 @@ public class AVFrame {
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(AVFrame obj) {
+  public static long getCPtr(AVFrame obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 

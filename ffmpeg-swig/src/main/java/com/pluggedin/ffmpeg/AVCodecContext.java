@@ -17,7 +17,7 @@ public class AVCodecContext {
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(AVCodecContext obj) {
+  public static long getCPtr(AVCodecContext obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
