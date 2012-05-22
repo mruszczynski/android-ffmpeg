@@ -28,6 +28,10 @@
 #include "../ffmpeg/libavformat/avformat.h"
 #include "../ffmpeg/libavformat/avio.h"
 #include "../ffmpeg/libswresample/swresample.h"
+
+#undef  malloc
+#undef  free
+
 %}
 
 %clear unsigned char *;
@@ -185,7 +189,6 @@ static void delByteArray(unsigned char* self) {
 
 %ignore AVBitStreamFilter::filter;
 %ignore AVFrame::motion_val;
-%ignore please_use_av_free;
 
 
 %include "../ffmpeg/libavutil/opt.h"

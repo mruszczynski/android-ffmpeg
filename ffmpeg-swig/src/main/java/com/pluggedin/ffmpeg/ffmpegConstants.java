@@ -23,7 +23,7 @@ public interface ffmpegConstants {
   public final static int INT32_MIN = (-0x7fffffff-1);
   public final static int INT32_MAX = 0x7fffffff;
   public final static int UINT32_MAX = 0xffffffff;
-  public final static long INT64_MIN = (-0x7fffffffffffffffL-1);
+  public final static long INT64_MIN = (-0x7fffffffffffffffLL-1);
   public final static int LIBAVUTIL_VERSION_MAJOR = 51;
   public final static int LIBAVUTIL_VERSION_MINOR = 53;
   public final static int LIBAVUTIL_VERSION_MICRO = 100;
@@ -44,7 +44,7 @@ public interface ffmpegConstants {
   public final static int AV_LOG_INFO = 32;
   public final static int AV_LOG_VERBOSE = 40;
   public final static int AV_LOG_DEBUG = 48;
-  public final static int AV_LOG_MAX_OFFSET = (48-8);
+  public final static int AV_LOG_MAX_OFFSET = (48--8);
   public final static int AV_LOG_SKIP_REPEATED = 1;
   public final static int LIBSWSCALE_VERSION_MAJOR = 2;
   public final static int LIBSWSCALE_VERSION_MINOR = 1;

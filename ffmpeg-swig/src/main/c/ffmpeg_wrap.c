@@ -208,6 +208,10 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../ffmpeg/libavformat/avio.h"
 #include "../ffmpeg/libswresample/swresample.h"
 
+#undef  malloc
+#undef  free
+
+
 
 typedef int intArray;
 
@@ -6573,7 +6577,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1code
   }
   {
     if(arg2) {
-      strncpy((char*)arg1->codec_name, (const char *)arg2, 32-1);
+      av_strlcpy((char*)arg1->codec_name, (const char *)arg2, 32-1);
       arg1->codec_name[32-1] = 0;
     } else {
       arg1->codec_name[0] = 0;
@@ -17050,6 +17054,34 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterBuffer_1pri
 }
 
 
+SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterBuffer_1please_1use_1av_1free_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  struct AVFilterBuffer *arg1 = (struct AVFilterBuffer *) 0 ;
+  void (*arg2)(struct AVFilterBuffer *) = (void (*)(struct AVFilterBuffer *)) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(struct AVFilterBuffer **)&jarg1; 
+  arg2 = *(void (**)(struct AVFilterBuffer *))&jarg2; 
+  if (arg1) (arg1)->please_use_av_free = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterBuffer_1please_1use_1av_1free_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  struct AVFilterBuffer *arg1 = (struct AVFilterBuffer *) 0 ;
+  void (*result)(struct AVFilterBuffer *) = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(struct AVFilterBuffer **)&jarg1; 
+  result = (void (*)(struct AVFilterBuffer *)) ((arg1)->please_use_av_free);
+  *(void (**)(struct AVFilterBuffer *))&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFilterBuffer_1format_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   struct AVFilterBuffer *arg1 = (struct AVFilterBuffer *) 0 ;
   int arg2 ;
@@ -24061,7 +24093,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1fil
   }
   {
     if(arg2) {
-      strncpy((char*)arg1->filename, (const char *)arg2, 1024-1);
+      av_strlcpy((char*)arg1->filename, (const char *)arg2, 1024-1);
       arg1->filename[1024-1] = 0;
     } else {
       arg1->filename[0] = 0;

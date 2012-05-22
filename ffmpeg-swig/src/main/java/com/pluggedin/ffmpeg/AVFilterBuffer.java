@@ -69,6 +69,15 @@ public class AVFilterBuffer {
     return ffmpegJNI.AVFilterBuffer_priv_get(swigCPtr, this);
   }
 
+  public void setPlease_use_av_free(SWIGTYPE_p_f_p_struct_AVFilterBuffer__void value) {
+    ffmpegJNI.AVFilterBuffer_please_use_av_free_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFilterBuffer__void.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_f_p_struct_AVFilterBuffer__void getPlease_use_av_free() {
+    long cPtr = ffmpegJNI.AVFilterBuffer_please_use_av_free_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFilterBuffer__void(cPtr, false);
+  }
+
   public void setFormat(int value) {
     ffmpegJNI.AVFilterBuffer_format_set(swigCPtr, this, value);
   }

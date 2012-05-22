@@ -5,3 +5,4 @@ build.log
 *.so.*
 target/
 *~
+*.dll

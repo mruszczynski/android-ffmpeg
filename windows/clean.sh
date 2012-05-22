@@ -5,6 +5,8 @@ pushd `dirname $0`
 find .. -name '*.o' -delete
 find .. -name '*.so' -delete
 find .. -name '*.so.*' -delete
+find .. -name '*.a' -delete
+find .. -name '*.dll' -delete
 
 pushd ../speex
 make distclean

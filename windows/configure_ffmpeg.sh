@@ -36,7 +36,9 @@ pushd ../ffmpeg
 --disable-ffserver \
 --disable-avdevice \
 --disable-devices \
-\
+|| die "Failed to configure ffmpeg"
+
+
 #--enable-libspeex \
 #--enable-zlib \
 #\

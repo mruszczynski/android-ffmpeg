@@ -1107,6 +1107,8 @@ public class ffmpegJNI {
   public final static native long AVFilterBuffer_refcount_get(long jarg1, AVFilterBuffer jarg1_);
   public final static native void AVFilterBuffer_priv_set(long jarg1, AVFilterBuffer jarg1_, long jarg2);
   public final static native long AVFilterBuffer_priv_get(long jarg1, AVFilterBuffer jarg1_);
+  public final static native void AVFilterBuffer_please_use_av_free_set(long jarg1, AVFilterBuffer jarg1_, long jarg2);
+  public final static native long AVFilterBuffer_please_use_av_free_get(long jarg1, AVFilterBuffer jarg1_);
   public final static native void AVFilterBuffer_format_set(long jarg1, AVFilterBuffer jarg1_, int jarg2);
   public final static native int AVFilterBuffer_format_get(long jarg1, AVFilterBuffer jarg1_);
   public final static native void AVFilterBuffer_w_set(long jarg1, AVFilterBuffer jarg1_, int jarg2);
