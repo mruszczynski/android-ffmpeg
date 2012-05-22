@@ -14,7 +14,6 @@ pushd ../ffmpeg
 --enable-shared \
 --enable-small \
 --enable-version3 \
---enable-gpl \
 --enable-memalign-hack \
 --disable-doc \
 \
@@ -37,11 +36,12 @@ pushd ../ffmpeg
 \
 --enable-libspeex \
 --enable-zlib \
---enable-libx264 \
 \
---extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
---extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \
+--extra-cflags="-I../speex/include/ " \
+--extra-ldflags="-L../speex/libspeex/.libs/" \
 
+#--extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
+#--extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \
 
 #--enable-static \
 #--enable-gpl \

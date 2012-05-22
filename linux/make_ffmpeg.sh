@@ -6,7 +6,7 @@ pushd ../ffmpeg
 make -j4
 popd; 
 #find ../ffmpeg -name '*.so' -exec cp \{\} ./ \;
-find ../ffmpeg -name '*.so.*' -exec cp \{\} ./ \;
-cp -u ../ffmpeg/ffmpeg ./
+find ../ffmpeg -name '*.so.*' -exec ln -s \{\} \;
+ln -s ../ffmpeg/ffmpeg
 popd
 

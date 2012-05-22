@@ -300,7 +300,7 @@ static AVFormatContext* init_input_formatcontext(const char *filename, const cha
     int result =  avformat_open_input(&ctx, filename, format_name, NULL);
     if(0 > result)
     {
-        av_log(ctx, AV_LOG_ERROR, "Error opening input: %s (%s)\n", filename, result);
+        //av_log(ctx, AV_LOG_ERROR, "Error opening input: %s (%s)\n", filename, result);
         return NULL;
     }
     return ctx;

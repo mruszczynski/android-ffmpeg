@@ -14,7 +14,7 @@ make clean || die "Error making speex"
 make || die "Error making speex"
 popd
 #find ../speex -name '*.so' -exec cp \{\} ./ \;
-find ../speex -name '*.so.*' -exec cp \{\} ./ \;
+find ../speex -name '*.so.*' -exec ln -s \{\} \;
 
 #pushd ../ffmpeg-swig
 #mvn clean
