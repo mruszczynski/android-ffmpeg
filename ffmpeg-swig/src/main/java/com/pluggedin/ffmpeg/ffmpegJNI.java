@@ -1858,5 +1858,4 @@ public class ffmpegJNI {
   public final static native long swr_get_delay(long jarg1, long jarg2);
   public final static native long swresample_version();
   public final static native String swresample_configuration();
-  public final static native String swresample_license();
 }

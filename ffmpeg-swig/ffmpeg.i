@@ -190,6 +190,7 @@ static void delByteArray(unsigned char* self) {
 
 %ignore AVBitStreamFilter::filter;
 %ignore AVFrame::motion_val;
+%ignore swresample_license;
 
 
 %include "../ffmpeg/libavutil/opt.h"

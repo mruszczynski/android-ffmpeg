@@ -28268,18 +28268,6 @@ SWIGEXPORT jstring JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_swresample_1confi
 }
 
 
-SWIGEXPORT jstring JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_swresample_1license(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  char *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (char *)swresample_license();
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  return jresult;
-}
-
-
 #ifdef __cplusplus
 }
 #endif

@@ -1786,8 +1786,4 @@ public class ffmpeg implements ffmpegConstants {
     return ffmpegJNI.swresample_configuration();
   }
 
-  public static String swresample_license() {
-    return ffmpegJNI.swresample_license();
-  }
-
 }
