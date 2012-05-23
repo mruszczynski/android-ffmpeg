@@ -27,7 +27,6 @@
 #include "../ffmpeg/libavfilter/avfilter.h"
 #include "../ffmpeg/libavformat/avformat.h"
 #include "../ffmpeg/libavformat/avio.h"
-#include "../ffmpeg/libswresample/swresample.h"
 
 #undef  malloc
 #define malloc av_malloc
@@ -190,8 +189,6 @@ static void delByteArray(unsigned char* self) {
 
 %ignore AVBitStreamFilter::filter;
 %ignore AVFrame::motion_val;
-%ignore swresample_license;
-
 
 %include "../ffmpeg/libavutil/opt.h"
 %include "../ffmpeg/libavutil/mem.h"
@@ -208,4 +205,3 @@ static void delByteArray(unsigned char* self) {
 %include "../ffmpeg/libavfilter/avfilter.h";
 %include "../ffmpeg/libavformat/avformat.h";
 %include "../ffmpeg/libavformat/avio.h"
-%include "../ffmpeg/libswresample/swresample.h";
