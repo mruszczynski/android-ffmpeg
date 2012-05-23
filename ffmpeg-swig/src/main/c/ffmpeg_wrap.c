@@ -209,7 +209,9 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../ffmpeg/libswresample/swresample.h"
 
 #undef  malloc
+#define malloc av_malloc
 #undef  free
+#define free av_free
 
 
 
