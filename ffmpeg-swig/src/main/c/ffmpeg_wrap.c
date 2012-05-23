@@ -805,6 +805,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1output_1conte
   *(AVFormatContext **)&jresult = result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  fprintf(stdout, "\ninit context: (%p)(%li)\n", result, jresult);fflush(stdout);
   return jresult;
 }
 
