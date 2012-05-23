@@ -35,6 +35,15 @@ public class AVFilterContext {
     }
   }
 
+  public void setAv_class(AVClass value) {
+    ffmpegJNI.AVFilterContext_av_class_set(swigCPtr, AVClass.getCPtr(value), value);
+  }
+
+  public AVClass getAv_class() {
+    long cPtr = ffmpegJNI.AVFilterContext_av_class_get(swigCPtr);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
+  }
+
   public void setFilter(AVFilter value) {
     ffmpegJNI.AVFilterContext_filter_set(swigCPtr, AVFilter.getCPtr(value), value);
   }

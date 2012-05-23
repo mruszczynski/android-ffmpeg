@@ -35,6 +35,15 @@ public class AVFormatContext {
     }
   }
 
+  public void setAv_class(AVClass value) {
+    ffmpegJNI.AVFormatContext_av_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
+  }
+
+  public AVClass getAv_class() {
+    long cPtr = ffmpegJNI.AVFormatContext_av_class_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
+  }
+
   public void setIformat(AVInputFormat value) {
     ffmpegJNI.AVFormatContext_iformat_set(swigCPtr, this, AVInputFormat.getCPtr(value), value);
   }

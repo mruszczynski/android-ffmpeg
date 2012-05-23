@@ -35,6 +35,15 @@ public class AVIOContext {
     }
   }
 
+  public void setAv_class(AVClass value) {
+    ffmpegJNI.AVIOContext_av_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
+  }
+
+  public AVClass getAv_class() {
+    long cPtr = ffmpegJNI.AVIOContext_av_class_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
+  }
+
   public void setBuffer(SWIGTYPE_p_unsigned_char value) {
     ffmpegJNI.AVIOContext_buffer_set(swigCPtr, this, SWIGTYPE_p_unsigned_char.getCPtr(value));
   }

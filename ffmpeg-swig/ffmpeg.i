@@ -185,7 +185,6 @@ static void delByteArray(unsigned char* self) {
 %ignore av_vlog;
 %ignore av_log_default_callback;
 %ignore av_log_format_line;
-%ignore av_class;
 
 %ignore AVBitStreamFilter::filter;
 %ignore AVFrame::motion_val;

@@ -393,6 +393,8 @@ public class ffmpegJNI {
   public final static native void av_frame_set_pkt_pos(long jarg1, AVFrame jarg1_, long jarg2);
   public final static native void av_frame_set_channel_layout(long jarg1, AVFrame jarg1_, long jarg2);
   public final static native void av_frame_set_sample_rate(long jarg1, AVFrame jarg1_, int jarg2);
+  public final static native void AVCodecContext_av_class_set(long jarg1, AVCodecContext jarg1_, long jarg2, AVClass jarg2_);
+  public final static native long AVCodecContext_av_class_get(long jarg1, AVCodecContext jarg1_);
   public final static native void AVCodecContext_log_level_offset_set(long jarg1, AVCodecContext jarg1_, int jarg2);
   public final static native int AVCodecContext_log_level_offset_get(long jarg1, AVCodecContext jarg1_);
   public final static native void AVCodecContext_codec_type_set(long jarg1, AVCodecContext jarg1_, int jarg2);
@@ -1251,6 +1253,8 @@ public class ffmpegJNI {
   public final static native long AVFilter_process_command_get(long jarg1, AVFilter jarg1_);
   public final static native long new_AVFilter();
   public final static native void delete_AVFilter(long jarg1);
+  public final static native void AVFilterContext_av_class_set(long jarg1, long jarg2, AVClass jarg2_);
+  public final static native long AVFilterContext_av_class_get(long jarg1);
   public final static native void AVFilterContext_filter_set(long jarg1, long jarg2, AVFilter jarg2_);
   public final static native long AVFilterContext_filter_get(long jarg1);
   public final static native void AVFilterContext_name_set(long jarg1, String jarg2);
@@ -1582,6 +1586,8 @@ public class ffmpegJNI {
   public final static native long AVChapter_metadata_get(long jarg1, AVChapter jarg1_);
   public final static native long new_AVChapter();
   public final static native void delete_AVChapter(long jarg1);
+  public final static native void AVFormatContext_av_class_set(long jarg1, AVFormatContext jarg1_, long jarg2, AVClass jarg2_);
+  public final static native long AVFormatContext_av_class_get(long jarg1, AVFormatContext jarg1_);
   public final static native void AVFormatContext_iformat_set(long jarg1, AVFormatContext jarg1_, long jarg2, AVInputFormat jarg2_);
   public final static native long AVFormatContext_iformat_get(long jarg1, AVFormatContext jarg1_);
   public final static native void AVFormatContext_oformat_set(long jarg1, AVFormatContext jarg1_, long jarg2, AVOutputFormat jarg2_);
@@ -1747,6 +1753,8 @@ public class ffmpegJNI {
   public final static native long AVIOInterruptCB_opaque_get(long jarg1, AVIOInterruptCB jarg1_);
   public final static native long new_AVIOInterruptCB();
   public final static native void delete_AVIOInterruptCB(long jarg1);
+  public final static native void AVIOContext_av_class_set(long jarg1, AVIOContext jarg1_, long jarg2, AVClass jarg2_);
+  public final static native long AVIOContext_av_class_get(long jarg1, AVIOContext jarg1_);
   public final static native void AVIOContext_buffer_set(long jarg1, AVIOContext jarg1_, long jarg2);
   public final static native long AVIOContext_buffer_get(long jarg1, AVIOContext jarg1_);
   public final static native void AVIOContext_buffer_size_set(long jarg1, AVIOContext jarg1_, int jarg2);
