@@ -325,10 +325,12 @@ static AVFormatContext* init_output_context(const char *format_name, const char 
     int result = avformat_alloc_output_context2(&ctx, NULL, format_name, filename);
     if(0 > result)
     {
+        fprintf(stdout, "Context failed to intialize: %i", result);fflush(stdout);
         return NULL;
     }
     else
     {
+        fprintf(stdout, "Context intialized: %i (%p)", result, ctx);fflush(stdout);
         return ctx;
     }
 }
