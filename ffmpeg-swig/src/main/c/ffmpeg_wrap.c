@@ -320,7 +320,7 @@ static int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* d
     return av_interleaved_write_frame(oc, &pkt);
 }
 
-static __stdcall AVFormatContext* init_output_context(const char *format_name, const char *filename) {
+static AVFormatContext* init_output_context(const char *format_name, const char *filename) {
     AVFormatContext *ctx = 0;
     int result = avformat_alloc_output_context2(&ctx, NULL, format_name, filename);
     if(0 > result)
