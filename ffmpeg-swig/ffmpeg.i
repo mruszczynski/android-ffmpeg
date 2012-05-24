@@ -24,7 +24,6 @@
 #include "../ffmpeg/libavutil/log.h"
 #include "../ffmpeg/libswscale/swscale.h"
 #include "../ffmpeg/libavcodec/avcodec.h"
-#include "../ffmpeg/libavfilter/avfilter.h"
 #include "../ffmpeg/libavformat/avformat.h"
 #include "../ffmpeg/libavformat/avio.h"
 
@@ -204,6 +203,7 @@ static void delByteArray(unsigned char* self) {
 %include "../ffmpeg/libavutil/log.h"
 %include "../ffmpeg/libswscale/swscale.h";
 %include "../ffmpeg/libavcodec/avcodec.h";
-%include "../ffmpeg/libavfilter/avfilter.h";
 %include "../ffmpeg/libavformat/avformat.h";
 %include "../ffmpeg/libavformat/avio.h"
+
+

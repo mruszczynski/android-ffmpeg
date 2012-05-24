@@ -357,16 +357,6 @@ public interface ffmpegConstants {
   public final static int FF_LOSS_ALPHA = 0x0008;
   public final static int FF_LOSS_COLORQUANT = 0x0010;
   public final static int FF_LOSS_CHROMA = 0x0020;
-  public final static int AV_PERM_READ = 0x01;
-  public final static int AV_PERM_WRITE = 0x02;
-  public final static int AV_PERM_PRESERVE = 0x04;
-  public final static int AV_PERM_REUSE = 0x08;
-  public final static int AV_PERM_REUSE2 = 0x10;
-  public final static int AV_PERM_NEG_LINESIZES = 0x20;
-  public final static int AV_PERM_ALIGN = 0x40;
-  public final static int AVFILTER_ALIGN = 16;
-  public final static int AVFILTER_CMD_FLAG_ONE = 1;
-  public final static int AVFILTER_CMD_FLAG_FAST = 2;
   public final static int AVPROBE_SCORE_MAX = 100;
   public final static int AVPROBE_PADDING_SIZE = 32;
   public final static int AVFMT_NOFILE = 0x0001;
