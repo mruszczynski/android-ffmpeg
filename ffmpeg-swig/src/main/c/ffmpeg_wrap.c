@@ -200,11 +200,13 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../ffmpeg/libavutil/internal.h"
 #include "../ffmpeg/libavutil/pixfmt.h"
 #include "../ffmpeg/libavutil/avutil.h"
+#include "../ffmpeg/libavutil/avstring.h"
 #include "../ffmpeg/libavutil/log.h"
 #include "../ffmpeg/libswscale/swscale.h"
 #include "../ffmpeg/libavcodec/avcodec.h"
 #include "../ffmpeg/libavformat/avformat.h"
 #include "../ffmpeg/libavformat/avio.h"
+#include <stdio.h>
 
 #undef  malloc
 #define malloc av_malloc
@@ -261,7 +263,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_copyBytesIn(JNIEnv *
 SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_copyBytesOut(JNIEnv *jenv, jclass jcls, jlong ptr, jbyteArray array, jint length, jint offset) {
     (*jenv)->GetByteArrayRegion(jenv, array, offset, length, *(unsigned char **)&ptr);
 }
-void log_callback_stdout(void* ptr, int level, const char* fmt, va_list vl)
+static void log_callback_stdout(void* ptr, int level, const char* fmt, va_list vl)
 {
     vfprintf(stdout, fmt, vl);
     fflush(stdout);
@@ -300,7 +302,6 @@ static AVFormatContext* init_input_formatcontext(const char *filename, const cha
     int result =  avformat_open_input(&ctx, filename, format_name, NULL);
     if(0 > result)
     {
-        //av_log(ctx, AV_LOG_ERROR, "Error opening input: %s (%s)\n", filename, result);
         return NULL;
     }
     return ctx;
@@ -319,17 +320,15 @@ static int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* d
     return av_interleaved_write_frame(oc, &pkt);
 }
 
-static AVFormatContext* init_output_context(const char *format_name, const char *filename) {
+static __stdcall AVFormatContext* init_output_context(const char *format_name, const char *filename) {
     AVFormatContext *ctx = 0;
     int result = avformat_alloc_output_context2(&ctx, NULL, format_name, filename);
     if(0 > result)
     {
-        fprintf(stdout, "Context failed to intialize: %i", result);fflush(stdout);
         return NULL;
     }
     else
     {
-        fprintf(stdout, "Context intialized: %i (%p)", result, ctx);fflush(stdout);
         return ctx;
     }
 }
@@ -802,8 +801,6 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1output_1conte
   }
   result = (AVFormatContext *)init_output_context((char const *)arg1,(char const *)arg2);
   *(AVFormatContext **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -15552,6 +15549,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avcodec_1find_1enco
   (void)jcls;
   arg1 = (enum CodecID)jarg1; 
   result = (AVCodec *)avcodec_find_encoder(arg1);
+//  fprintf(stdout, "Encoder: %p\n", result);fflush(stdout);
   *(AVCodec **)&jresult = result; 
   return jresult;
 }

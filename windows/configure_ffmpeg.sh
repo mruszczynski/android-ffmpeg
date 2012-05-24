@@ -11,24 +11,11 @@ pushd ../ffmpeg
 --disable-stripping \
 --enable-debug=3 \
 \
---enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
---enable-small \
 --enable-version3 \
---enable-gpl \
 --enable-memalign-hack \
 --disable-doc \
-\
---disable-asm \
---disable-yasm \
-\
---enable-hwaccels \
-\
---enable-network \
---enable-protocol=tcp \
---enable-protocol=udp \
---enable-demuxer=rtsp \
 \
 --enable-ffmpeg \
 --disable-ffplay \
@@ -38,7 +25,21 @@ pushd ../ffmpeg
 --disable-devices \
 || die "Failed to configure ffmpeg"
 
+#\
+#--enable-hwaccels \
+#\
+#--enable-runtime-cpudetect \
+#\
+#--disable-asm \
+#--disable-yasm \
 
+#\
+#--enable-network \
+#--enable-protocol=tcp \
+#--enable-protocol=udp \
+#--enable-demuxer=rtsp \
+
+#--enable-small \
 #--enable-libspeex \
 #--enable-zlib \
 #\

@@ -1,6 +1,6 @@
 all: target/ffmpegjni.dll
 clean:
-	rm -rf target/
+	rm -rf target/*
 
 src/main/c/ffmpeg_wrap.c: ffmpeg.i
 	mkdir -p src/main/java/com/pluggedin/ffmpeg
@@ -10,27 +10,23 @@ src/main/c/ffmpeg_wrap.c: ffmpeg.i
 	sed 's/(makeCodecTag(/(CodecUtil.makeCodecTag(/g' -i src/main/java/com/pluggedin/ffmpeg/CodecID.java
 	sed 's/strncpy/av_strlcpy/g' -i src/main/c/ffmpeg_wrap.c
 
+CFLAGS0= -I/usr/i686-mingw32/include/SDL -std=c99 -m32 -D_GNU_SOURCE=1 -D__GNUC__=1 -Dmain=SDL_main -D_ISOC99_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -U__STRICT_ANSI__ -DPIC -D__STDC_CONSTANT_MACROS
+CFLAGS2= -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -fno-common
+LDFLAGS1= -Wl,--as-needed -Wl,--warn-common -Wl,-rpath-link=libpostproc:libswresample:libswscale:libavfilter:libavdevice:libavformat:libavcodec:libavutil:libavresample -Wl,--enable-runtime-pseudo-reloc -Wl,--enable-auto-image-base -Wl,-Bsymbolic -Wl,-E -L/usr/i686-mingw32/lib -lmingw32 -lSDLmain -lSDL -lm -luser32 -lgdi32 -lwinmm -ldxguid -lws2_32 -lbz2 -lz -lpsapi
 
-target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
-	mkdir -p target
-	i686-mingw32-gcc -fPIC \
-		-I/usr/lib/jvm/java-6-openjdk/include/ \
+target/ffmpegjni.dll: src/main/c/ffmpeg_wrap.c
+	i686-mingw32-gcc \
+		$(CFLAGS0) $(CFLAGS2) $(LDFLAGS1) \
+		-fPIC -shared -Wl,-shared,-soname,ffmpegjni.dll \
+		-I/home/andrew/jdk1.7.0_04/include \
+		-I/home/andrew/jdk1.7.0_04/include/linux \
 		-I../ffmpeg \
-		-I/usr/i686-mingw32/include/ \
-		-c src/main/c/ffmpeg_wrap.c \
-		-g \
-		-o target/ffmpeg_wrap.o
-
-target/ffmpegjni.dll: target/ffmpeg_wrap.o
-	i686-mingw32-gcc -shared -Wl,--verbose,-soname,ffmpegjni.dll \
-		-o target/ffmpegjni.dll \
-		target/ffmpeg_wrap.o \
-		-L../ffmpeg/libavcodec -llibavcodec \
-		-L../ffmpeg/libavfilter -llibavfilter \
-		-L../ffmpeg/libswscale -llibswscale \
-		-L../ffmpeg/libavresample -llibavresample \
+		-I/usr/i686-mingw32/include \
+		src/main/c/ffmpeg_wrap.c \
 		-L../ffmpeg/libavutil -llibavutil \
-		-L../ffmpeg/libswresample -llibswresample \
+		-L../ffmpeg/libswscale -llibswscale \
+		-L../ffmpeg/libavcodec -llibavcodec \
 		-L../ffmpeg/libavformat -llibavformat \
+		-o target/ffmpegjni.dll
 
 
