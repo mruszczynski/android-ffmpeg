@@ -39,6 +39,9 @@ pushd ../ffmpeg
 --disable-ffserver \
 --disable-avdevice \
 --disable-devices \
+\
+--prefix=/tmp/.pluggedin \
+
 
 popd; 
 popd

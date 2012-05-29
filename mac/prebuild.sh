@@ -17,7 +17,8 @@ echo ""
 pushd ../speex
 ACLOCAL_FLAGS="-I /opt/local/share/aclocal" \
 ./autogen.sh || die "Error running speex/autogen.sh"
-./configure || die "Error configuring speex"
+./configure --prefix=/tmp/.pluggedin \
+ || die "Error configuring speex"
 make clean || die "Error making speex"
 make || die "Error making speex"
 popd

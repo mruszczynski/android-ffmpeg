@@ -63,8 +63,3 @@ echo "Make Links"
 echo "====================="
 echo ""
 echo ""
-
-for f in *.so*; do 
-  ls -alh $f; 
-  LD_LIBRARY_PATH=. ldd $f; 
-done
