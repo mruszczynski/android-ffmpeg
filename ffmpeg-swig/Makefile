@@ -13,7 +13,7 @@ src/main/c/ffmpeg_wrap.c: ffmpeg.i
 target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 	mkdir -p target
 	gcc -fPIC \
-		-I/usr/lib/jvm/java-6-openjdk/include/ \
+		-I$(JAVA_HOME)/include/ \
 		-I../ffmpeg \
 		-I/usr/include/ \
 		-c src/main/c/ffmpeg_wrap.c \
