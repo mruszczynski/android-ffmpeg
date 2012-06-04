@@ -36,6 +36,18 @@
               </descriptors>
             </configuration>
           </execution>
+          <execution>
+            <id>make-assembly-mac-amd64</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>mac-x86_64.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
