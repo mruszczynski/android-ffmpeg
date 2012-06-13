@@ -17,12 +17,11 @@ $DEBUG_FLAG \
 --target-os=linux \
 --enable-runtime-cpudetect \
 --enable-pic \
---enable-static \
+--enable-shared \
 --enable-small \
 --cross-prefix=$NDK_TOOLCHAIN_BASE/bin/arm-linux-androideabi- \
 --sysroot="$NDK_SYSROOT" \
 --enable-version3 \
---enable-gpl \
 --enable-memalign-hack \
 --disable-doc \
 \
@@ -36,30 +35,17 @@ $DEBUG_FLAG \
 --disable-ffprobe \
 --disable-ffserver \
 --enable-libspeex \
---enable-libx264 \
 --enable-zlib \
---extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
+--extra-cflags="-I../x264 -I../speex/include/" \
 --extra-ldflags="-L../x264 -L../android-project/obj/local/armeabi/" \
 --disable-avdevice \
 --disable-devices
 
 
-# --enable-shared \
-
-
-# Requires --enable-nonfree:
-#
-#--enable-libaacplus \
-#--enable-libfaac \
-
-# Doesn't work:
-#
-#--enable-libvo-aacenc \
+find -name 'Makefile' -exec sed -i 's|include $(SUBDIR)../config.mak||g' \{\} \;
 
 
 popd; 
-
 popd
-
 
 

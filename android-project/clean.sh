@@ -3,6 +3,9 @@ pushd `dirname $0`
 . settings.sh
 
 find .. -name \*.o -delete
+find .. -name \*.a -delete
+find .. -name \*.so -delete
+
 ndk-build clean
 
 pushd ../speex

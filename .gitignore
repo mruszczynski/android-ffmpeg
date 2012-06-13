@@ -8,3 +8,6 @@ target/
 *.dll
 *.exe
 *.dylib
+*.o
+*.lo
+*.Plo
