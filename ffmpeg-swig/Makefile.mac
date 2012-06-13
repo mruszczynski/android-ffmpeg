@@ -5,6 +5,7 @@ clean:
 
 target/libffmpegjni.1.dylib: src/main/c/ffmpeg_wrap.c
 	gcc -fPIC -shared \
+		-Wl,-install_name,/tmp/.pluggedin/lib/libffmpegjni.1.dylib \
 		-I/usr/include/ \
 		-I$(JAVA_HOME)/include/ \
 		-I../ffmpeg \
