@@ -17,7 +17,7 @@ public class AVFormatContext {
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(AVFormatContext obj) {
+  public static long getCPtr(AVFormatContext obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
