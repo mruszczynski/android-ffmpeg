@@ -64,6 +64,14 @@ typedef struct DecodeResult {
     int gotPicture;
 } DecodeResult;
 
+static DecodeResult* decodeAudio(AVCodecContext *avctx, AVFrame *picture, AVPacket *avpkt)
+{
+    DecodeResult *result = av_malloc(sizeof(DecodeResult));
+    result->gotPicture = 0;
+    result->returnCode = avcodec_decode_audio4(avctx, picture, &(result->gotPicture), avpkt);
+    return result;
+}
+
 static DecodeResult* decodeVideo(AVCodecContext *avctx, AVFrame *picture, AVPacket *avpkt)
 {
     DecodeResult *result = av_malloc(sizeof(DecodeResult));
@@ -94,6 +102,40 @@ static AVFormatContext* init_input_formatcontext(const char *filename, const cha
         return NULL;
     }
     return ctx;
+}
+
+
+//int dts = -1234;
+
+static int encode_audio_frame(AVStream *st, unsigned char* data, AVPacket *pkt, int audio_outbuf_size)
+{
+    pkt->size = avcodec_encode_audio(st->codec, pkt->data, audio_outbuf_size, data);
+    if(0 > pkt->size) return -1;
+    AVCodecContext *c = st->codec;
+    if (c->coded_frame->pts != AV_NOPTS_VALUE) pkt->pts = av_rescale_q(c->coded_frame->pts, c->time_base, st->time_base);
+    if (c->coded_frame->pkt_dts != AV_NOPTS_VALUE) pkt->dts = av_rescale_q(c->coded_frame->pkt_dts, c->time_base, st->time_base);
+
+//    if(-1234 == dts) pkt->dts = pkt->pts;
+//    pkt->dts = dts;
+//    dts += 1;
+    //pkt->dts = pkt->pts;
+
+    pkt->flags |= AV_PKT_FLAG_KEY;
+    pkt->stream_index = st->index;
+    return pkt->size;
+}
+
+static int write_audio_frame(AVFormatContext *oc, AVStream *st, unsigned char* data)
+{
+    AVPacket pkt;
+    av_init_packet(&pkt);
+    int audio_outbuf_size = 10000;
+    pkt.data = av_malloc(audio_outbuf_size);
+    int r = encode_audio_frame(st, data, &pkt, audio_outbuf_size);
+    if(0 > r) return r;
+    int returnValue = av_interleaved_write_frame(oc, &pkt);
+    av_free(pkt.data);
+    return returnValue;
 }
 
 static int write_video_frame(AVFormatContext *oc, AVStream *st, unsigned char* data, int size)
@@ -201,9 +243,11 @@ static void delByteArray(unsigned char* self) {
 %include "../ffmpeg/libavutil/pixfmt.h"
 %include "../ffmpeg/libavutil/avutil.h";
 %include "../ffmpeg/libavutil/log.h"
+%include "../ffmpeg/libavutil/mathematics.h"
 %include "../ffmpeg/libswscale/swscale.h";
 %include "../ffmpeg/libavcodec/avcodec.h";
 %include "../ffmpeg/libavformat/avformat.h";
 %include "../ffmpeg/libavformat/avio.h"
+
 
 

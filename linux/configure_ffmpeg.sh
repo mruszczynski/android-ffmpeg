@@ -8,11 +8,11 @@ pushd ../ffmpeg
 \
 --disable-stripping \
 --enable-debug=3 \
+--disable-optimizations \
 \
 --enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
---enable-small \
 --enable-version3 \
 --enable-memalign-hack \
 --disable-doc \
@@ -37,8 +37,12 @@ pushd ../ffmpeg
 --enable-libspeex \
 --enable-zlib \
 \
---extra-cflags="-I../speex/include/ " \
+--extra-cflags="-O0 -I../speex/include/ " \
 --extra-ldflags="-L../speex/libspeex/.libs/" \
+
+
+# --enable-small \
+
 
 #--extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
 #--extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \

@@ -46,6 +46,16 @@ public interface ffmpegConstants {
   public final static int AV_LOG_DEBUG = 48;
   public final static int AV_LOG_MAX_OFFSET = (48-8);
   public final static int AV_LOG_SKIP_REPEATED = 1;
+  public final static double M_E = 2.7182818284590452354;
+  public final static double M_LN2 = 0.69314718055994530942;
+  public final static double M_LN10 = 2.30258509299404568402;
+  public final static double M_LOG2_10 = 3.32192809488736234787;
+  public final static double M_PHI = 1.61803398874989484820;
+  public final static double M_PI = 3.14159265358979323846;
+  public final static double M_SQRT1_2 = 0.70710678118654752440;
+  public final static double M_SQRT2 = 1.41421356237309504880;
+  public final static double NAN = (0.0/0.0);
+  public final static double INFINITY = (1.0/0.0);
   public final static int LIBSWSCALE_VERSION_MAJOR = 2;
   public final static int LIBSWSCALE_VERSION_MINOR = 1;
   public final static int LIBSWSCALE_VERSION_MICRO = 100;

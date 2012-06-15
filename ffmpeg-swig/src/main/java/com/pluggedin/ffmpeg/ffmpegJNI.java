@@ -28,10 +28,13 @@ public class ffmpegJNI {
   public final static native int DecodeResult_gotPicture_get(long jarg1, DecodeResult jarg1_);
   public final static native long new_DecodeResult();
   public final static native void delete_DecodeResult(long jarg1);
+  public final static native long decodeAudio(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, AVPacket jarg3_);
   public final static native long decodeVideo(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, AVPacket jarg3_);
   public final static native long getAVStream(long jarg1, int jarg2);
   public final static native long newPacket();
   public final static native long init_input_formatcontext(String jarg1, String jarg2);
+  public final static native int encode_audio_frame(long jarg1, AVStream jarg1_, long jarg2, long jarg3, AVPacket jarg3_, int jarg4);
+  public final static native int write_audio_frame(long jarg1, AVFormatContext jarg1_, long jarg2, AVStream jarg2_, long jarg3);
   public final static native int write_video_frame(long jarg1, AVFormatContext jarg1_, long jarg2, AVStream jarg2_, long jarg3, int jarg4);
   public final static native long init_output_context(String jarg1, String jarg2);
   public final static native int init_avformatcontext_pb(long jarg1, AVFormatContext jarg1_, String jarg2, int jarg3);
@@ -194,6 +197,13 @@ public class ffmpegJNI {
   public final static native void av_log_set_callback(long jarg1);
   public final static native String av_default_item_name(long jarg1);
   public final static native void av_log_set_flags(int jarg1);
+  public final static native long av_gcd(long jarg1, long jarg2);
+  public final static native long av_rescale(long jarg1, long jarg2, long jarg3);
+  public final static native long av_rescale_rnd(long jarg1, long jarg2, long jarg3, int jarg4);
+  public final static native long av_rescale_q(long jarg1, long jarg2, AVRational jarg2_, long jarg3, AVRational jarg3_);
+  public final static native long av_rescale_q_rnd(long jarg1, long jarg2, AVRational jarg2_, long jarg3, AVRational jarg3_, int jarg4);
+  public final static native int av_compare_ts(long jarg1, long jarg2, AVRational jarg2_, long jarg3, long jarg4, AVRational jarg4_);
+  public final static native long av_compare_mod(java.math.BigInteger jarg1, java.math.BigInteger jarg2, java.math.BigInteger jarg3);
   public final static native long swscale_version();
   public final static native String swscale_configuration();
   public final static native String swscale_license();

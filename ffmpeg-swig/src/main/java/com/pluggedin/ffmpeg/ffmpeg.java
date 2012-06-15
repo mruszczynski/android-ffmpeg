@@ -9,6 +9,11 @@
 package com.pluggedin.ffmpeg;
 
 public class ffmpeg implements ffmpegConstants {
+  public static DecodeResult decodeAudio(AVCodecContext avctx, AVFrame picture, AVPacket avpkt) {
+    long cPtr = ffmpegJNI.decodeAudio(AVCodecContext.getCPtr(avctx), avctx, AVFrame.getCPtr(picture), picture, AVPacket.getCPtr(avpkt), avpkt);
+    return (cPtr == 0) ? null : new DecodeResult(cPtr, false);
+  }
+
   public static DecodeResult decodeVideo(AVCodecContext avctx, AVFrame picture, AVPacket avpkt) {
     long cPtr = ffmpegJNI.decodeVideo(AVCodecContext.getCPtr(avctx), avctx, AVFrame.getCPtr(picture), picture, AVPacket.getCPtr(avpkt), avpkt);
     return (cPtr == 0) ? null : new DecodeResult(cPtr, false);
@@ -27,6 +32,14 @@ public class ffmpeg implements ffmpegConstants {
   public static AVFormatContext init_input_formatcontext(String filename, String format_name) {
     long cPtr = ffmpegJNI.init_input_formatcontext(filename, format_name);
     return (cPtr == 0) ? null : new AVFormatContext(cPtr, false);
+  }
+
+  public static int encode_audio_frame(AVStream st, SWIGTYPE_p_unsigned_char data, AVPacket pkt, int audio_outbuf_size) {
+    return ffmpegJNI.encode_audio_frame(AVStream.getCPtr(st), st, SWIGTYPE_p_unsigned_char.getCPtr(data), AVPacket.getCPtr(pkt), pkt, audio_outbuf_size);
+  }
+
+  public static int write_audio_frame(AVFormatContext oc, AVStream st, SWIGTYPE_p_unsigned_char data) {
+    return ffmpegJNI.write_audio_frame(AVFormatContext.getCPtr(oc), oc, AVStream.getCPtr(st), st, SWIGTYPE_p_unsigned_char.getCPtr(data));
   }
 
   public static int write_video_frame(AVFormatContext oc, AVStream st, SWIGTYPE_p_unsigned_char data, int size) {
@@ -451,6 +464,34 @@ public class ffmpeg implements ffmpegConstants {
 
   public static void av_log_set_flags(int arg) {
     ffmpegJNI.av_log_set_flags(arg);
+  }
+
+  public static long av_gcd(long a, long b) {
+    return ffmpegJNI.av_gcd(a, b);
+  }
+
+  public static long av_rescale(long a, long b, long c) {
+    return ffmpegJNI.av_rescale(a, b, c);
+  }
+
+  public static long av_rescale_rnd(long a, long b, long c, AVRounding arg3) {
+    return ffmpegJNI.av_rescale_rnd(a, b, c, arg3.swigValue());
+  }
+
+  public static long av_rescale_q(long a, AVRational bq, AVRational cq) {
+    return ffmpegJNI.av_rescale_q(a, AVRational.getCPtr(bq), bq, AVRational.getCPtr(cq), cq);
+  }
+
+  public static long av_rescale_q_rnd(long a, AVRational bq, AVRational cq, AVRounding arg3) {
+    return ffmpegJNI.av_rescale_q_rnd(a, AVRational.getCPtr(bq), bq, AVRational.getCPtr(cq), cq, arg3.swigValue());
+  }
+
+  public static int av_compare_ts(long ts_a, AVRational tb_a, long ts_b, AVRational tb_b) {
+    return ffmpegJNI.av_compare_ts(ts_a, AVRational.getCPtr(tb_a), tb_a, ts_b, AVRational.getCPtr(tb_b), tb_b);
+  }
+
+  public static long av_compare_mod(java.math.BigInteger a, java.math.BigInteger b, java.math.BigInteger mod) {
+    return ffmpegJNI.av_compare_mod(a, b, mod);
   }
 
   public static long swscale_version() {

@@ -14,6 +14,7 @@ target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 	mkdir -p target
 	gcc -fPIC \
 		-I$(JAVA_HOME)/include/ \
+		-I$(JAVA_HOME)/include/linux/ \
 		-I../ffmpeg \
 		-I/usr/include/ \
 		-c src/main/c/ffmpeg_wrap.c \
