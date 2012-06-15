@@ -32,6 +32,7 @@ public class ffmpegJNI {
   public final static native long decodeVideo(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, AVPacket jarg3_);
   public final static native long getAVStream(long jarg1, int jarg2);
   public final static native long newPacket();
+  public final static native int swr_convert_2(long jarg1, long jarg2, int jarg3, long jarg4, int jarg5);
   public final static native long init_input_formatcontext(String jarg1, String jarg2);
   public final static native int encode_audio_frame(long jarg1, AVStream jarg1_, long jarg2, long jarg3, AVPacket jarg3_, int jarg4);
   public final static native int write_audio_frame(long jarg1, AVFormatContext jarg1_, long jarg2, AVStream jarg2_, long jarg3);
@@ -1596,4 +1597,20 @@ public class ffmpegJNI {
   public final static native String avio_enum_protocols(long jarg1, int jarg2);
   public final static native int avio_pause(long jarg1, AVIOContext jarg1_, int jarg2);
   public final static native long avio_seek_time(long jarg1, AVIOContext jarg1_, int jarg2, long jarg3, int jarg4);
+  public final static native long swr_get_class();
+  public final static native long swr_alloc();
+  public final static native int swr_init(long jarg1);
+  public final static native long swr_alloc_set_opts(long jarg1, long jarg2, int jarg3, int jarg4, long jarg5, int jarg6, int jarg7, int jarg8, long jarg9);
+  public final static native void swr_free(long jarg1);
+  public final static native int swr_convert(long jarg1, long jarg2, int jarg3, long jarg4, int jarg5);
+  public final static native long swr_next_pts(long jarg1, long jarg2);
+  public final static native int swr_set_compensation(long jarg1, int jarg2, int jarg3);
+  public final static native int swr_set_channel_mapping(long jarg1, long jarg2);
+  public final static native int swr_set_matrix(long jarg1, long jarg2, int jarg3);
+  public final static native int swr_drop_output(long jarg1, int jarg2);
+  public final static native int swr_inject_silence(long jarg1, int jarg2);
+  public final static native long swr_get_delay(long jarg1, long jarg2);
+  public final static native long swresample_version();
+  public final static native String swresample_configuration();
+  public final static native String swresample_license();
 }

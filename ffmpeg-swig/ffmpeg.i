@@ -26,6 +26,7 @@
 #include "../ffmpeg/libavcodec/avcodec.h"
 #include "../ffmpeg/libavformat/avformat.h"
 #include "../ffmpeg/libavformat/avio.h"
+#include "../ffmpeg/libswresample/swresample.h"
 
 #undef  malloc
 #define malloc av_malloc
@@ -92,6 +93,15 @@ static AVPacket* newPacket()
     return packet;
 }
 
+static int swr_convert_2(struct SwrContext *s,
+    const uint8_t *out_arg, int out_count,
+    const uint8_t *in_arg, int in_count)
+{
+    const uint8_t *in[] = { in_arg };
+    uint8_t *out[] = { out_arg };
+    return swr_convert(s, out, out_count, in, in_count);
+}
+
 static AVFormatContext* init_input_formatcontext(const char *filename, const char *format_name)
 {
     AVFormatContext *ctx = avformat_alloc_context();
@@ -105,8 +115,6 @@ static AVFormatContext* init_input_formatcontext(const char *filename, const cha
 }
 
 
-//int dts = -1234;
-
 static int encode_audio_frame(AVStream *st, unsigned char* data, AVPacket *pkt, int audio_outbuf_size)
 {
     pkt->size = avcodec_encode_audio(st->codec, pkt->data, audio_outbuf_size, data);
@@ -114,12 +122,6 @@ static int encode_audio_frame(AVStream *st, unsigned char* data, AVPacket *pkt, 
     AVCodecContext *c = st->codec;
     if (c->coded_frame->pts != AV_NOPTS_VALUE) pkt->pts = av_rescale_q(c->coded_frame->pts, c->time_base, st->time_base);
     if (c->coded_frame->pkt_dts != AV_NOPTS_VALUE) pkt->dts = av_rescale_q(c->coded_frame->pkt_dts, c->time_base, st->time_base);
-
-//    if(-1234 == dts) pkt->dts = pkt->pts;
-//    pkt->dts = dts;
-//    dts += 1;
-    //pkt->dts = pkt->pts;
-
     pkt->flags |= AV_PKT_FLAG_KEY;
     pkt->stream_index = st->index;
     return pkt->size;
@@ -248,6 +250,7 @@ static void delByteArray(unsigned char* self) {
 %include "../ffmpeg/libavcodec/avcodec.h";
 %include "../ffmpeg/libavformat/avformat.h";
 %include "../ffmpeg/libavformat/avio.h"
+%include "../ffmpeg/libswresample/swresample.h"
 
 
 

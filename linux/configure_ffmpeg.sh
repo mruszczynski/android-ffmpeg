@@ -42,15 +42,11 @@ pushd ../ffmpeg
 
 
 # --enable-small \
-
-
 #--extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
 #--extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \
-
 #--enable-static \
 #--enable-gpl \
 #--enable-libx264 \
-
 
 # Requires --enable-nonfree:
 #

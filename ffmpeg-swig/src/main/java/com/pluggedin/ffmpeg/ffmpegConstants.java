@@ -429,4 +429,10 @@ public interface ffmpegConstants {
   public final static int AVIO_FLAG_READ_WRITE = (1|2);
   public final static int AVIO_FLAG_NONBLOCK = 8;
   public final static int AVIO_FLAG_DIRECT = 0x8000;
+  public final static int LIBSWRESAMPLE_VERSION_MAJOR = 0;
+  public final static int LIBSWRESAMPLE_VERSION_MINOR = 15;
+  public final static int LIBSWRESAMPLE_VERSION_MICRO = 100;
+  public final static int LIBSWRESAMPLE_VERSION_INT = (0 << 16|15 << 8|100);
+  public final static int SWR_CH_MAX = 32;
+  public final static int SWR_FLAG_RESAMPLE = 1;
 }
