@@ -25,6 +25,7 @@ target/ffmpegjni.dll: src/main/c/ffmpeg_wrap.c
 		src/main/c/ffmpeg_wrap.c \
 		-L../ffmpeg/libavutil -llibavutil \
 		-L../ffmpeg/libswscale -llibswscale \
+		-L../ffmpeg/libswresample -llibswresample \
 		-L../ffmpeg/libavcodec -llibavcodec \
 		-L../ffmpeg/libavformat -llibavformat \
 		-o target/ffmpegjni.dll
