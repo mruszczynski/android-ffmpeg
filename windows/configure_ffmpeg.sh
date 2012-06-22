@@ -8,14 +8,19 @@ pushd ../ffmpeg
 \
 --enable-memalign-hack --arch=x86 --target-os=mingw32 --cross-prefix=i686-mingw32- \
 \
---disable-stripping \
---enable-debug=3 \
-\
+--enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
 --enable-version3 \
 --enable-memalign-hack \
 --disable-doc \
+\
+--enable-hwaccels \
+\
+--enable-network \
+--enable-protocol=tcp \
+--enable-protocol=udp \
+--enable-demuxer=rtsp \
 \
 --enable-ffmpeg \
 --disable-ffplay \
