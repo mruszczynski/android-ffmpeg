@@ -6,6 +6,10 @@ pushd ../ffmpeg
 
 ./configure \
 \
+--disable-stripping \
+--enable-debug=3 \
+--disable-optimizations \
+\
 --enable-memalign-hack --arch=x86 --target-os=mingw32 --cross-prefix=i686-mingw32- \
 \
 --enable-runtime-cpudetect \
