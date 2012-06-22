@@ -15,18 +15,6 @@ make || die "Error making speex"
 
 popd
 
-pushd jni/speex
-ndk-build
-popd
-
-pushd ../libaacplus-2.0.2
-
-./autogen.sh || die "running libaacplus/autogen.sh"
-./configure || die "configuring libaacplus"
-make || die "Error making libaacplus"
-
-popd
-
 popd
 
 

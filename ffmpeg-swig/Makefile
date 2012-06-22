@@ -9,6 +9,7 @@ src/main/c/ffmpeg_wrap.c: ffmpeg.i
 	sed 's/int\.swigToEnum//g' -i src/main/java/com/pluggedin/ffmpeg/*.java
 	sed 's/(makeCodecTag(/(CodecUtil.makeCodecTag(/g' -i src/main/java/com/pluggedin/ffmpeg/CodecID.java
 	sed 's/strncpy/av_strlcpy/g' -i src/main/c/ffmpeg_wrap.c
+	sed -i "/ReleaseStringUTFChars/ s/^/\/\//g" src/main/c/ffmpeg_wrap.c
 
 target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 	mkdir -p target

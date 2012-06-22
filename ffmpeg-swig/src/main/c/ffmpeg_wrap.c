@@ -324,6 +324,7 @@ static AVFormatContext* init_input_formatcontext(const char *filename, const cha
     return ctx;
 }
 
+
 static int encode_audio_frame(AVStream *st, unsigned char* data, AVPacket *pkt, int audio_outbuf_size)
 {
     pkt->size = avcodec_encode_audio(st->codec, pkt->data, audio_outbuf_size, data);
@@ -840,8 +841,8 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1input_1format
   }
   result = (AVFormatContext *)init_input_formatcontext((char const *)arg1,(char const *)arg2);
   *(AVFormatContext **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -930,8 +931,8 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1output_1conte
   }
   result = (AVFormatContext *)init_output_context((char const *)arg1,(char const *)arg2);
   *(AVFormatContext **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -955,7 +956,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_init_1avformatcontex
   arg3 = (int)jarg3; 
   result = (int)init_avformatcontext_pb(arg1,(char const *)arg2,arg3);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -1128,7 +1129,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOption_1name_1set(
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -1168,7 +1169,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOption_1help_1set(
       arg1->help = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -1348,7 +1349,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOption_1unit_1set(
       arg1->unit = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -1453,7 +1454,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOption_1default_1v
       arg1->str = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -1609,9 +1610,9 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1set_1options_1st
   }
   result = (int)av_set_options_string(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
   return jresult;
 }
 
@@ -1648,8 +1649,8 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1flag_1is_1s
   }
   result = (int)av_opt_flag_is_set(arg1,(char const *)arg2,(char const *)arg3);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1691,7 +1692,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1eval_1flags
   arg4 = *(int **)&jarg4; 
   result = (int)av_opt_eval_flags(arg1,(struct AVOption const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1717,7 +1718,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1eval_1int(J
   arg4 = *(int **)&jarg4; 
   result = (int)av_opt_eval_int(arg1,(struct AVOption const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1743,7 +1744,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1eval_1int64
   arg4 = *(int64_t **)&jarg4; 
   result = (int)av_opt_eval_int64(arg1,(struct AVOption const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1769,7 +1770,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1eval_1float
   arg4 = *(float **)&jarg4; 
   result = (int)av_opt_eval_float(arg1,(struct AVOption const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1795,7 +1796,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1eval_1doubl
   arg4 = *(double **)&jarg4; 
   result = (int)av_opt_eval_double(arg1,(struct AVOption const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1822,7 +1823,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1eval_1q(JNI
   arg4 = *(AVRational **)&jarg4; 
   result = (int)av_opt_eval_q(arg1,(struct AVOption const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1853,8 +1854,8 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1find(JNIEn
   arg5 = (int)jarg5; 
   result = (AVOption *)av_opt_find(arg1,(char const *)arg2,(char const *)arg3,arg4,arg5);
   *(AVOption **)&jresult = result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1887,8 +1888,8 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1find2(JNIE
   arg6 = *(void ***)&jarg6; 
   result = (AVOption *)av_opt_find2(arg1,(char const *)arg2,(char const *)arg3,arg4,arg5,arg6);
   *(AVOption **)&jresult = result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1968,8 +1969,8 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1set(JNIEnv 
   arg4 = (int)jarg4; 
   result = (int)av_opt_set(arg1,(char const *)arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -1994,7 +1995,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1set_1int(JN
   arg4 = (int)jarg4; 
   result = (int)av_opt_set_int(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2019,7 +2020,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1set_1double
   arg4 = (int)jarg4; 
   result = (int)av_opt_set_double(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2051,7 +2052,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1set_1q(JNIE
   arg4 = (int)jarg4; 
   result = (int)av_opt_set_q(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2076,7 +2077,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1get(JNIEnv 
   arg4 = *(uint8_t ***)&jarg4; 
   result = (int)av_opt_get(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2101,7 +2102,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1get_1int(JN
   arg4 = *(int64_t **)&jarg4; 
   result = (int)av_opt_get_int(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2126,7 +2127,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1get_1double
   arg4 = *(double **)&jarg4; 
   result = (int)av_opt_get_double(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2152,7 +2153,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1get_1q(JNIE
   arg4 = *(AVRational **)&jarg4; 
   result = (int)av_opt_get_q(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -2176,7 +2177,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1opt_1ptr(JNIEnv
   }
   result = (void *)av_opt_ptr((struct AVClass const *)arg1,arg2,(char const *)arg3);
   jresult = (jlong)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -2283,7 +2284,7 @@ SWIGEXPORT jstring JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1strdup(JNIEnv
   }
   result = (char *)av_strdup((char const *)arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -2368,7 +2369,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1sample_1fmt
   }
   result = (enum AVSampleFormat)av_get_sample_fmt((char const *)arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -2435,7 +2436,7 @@ SWIGEXPORT jstring JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1sample_1
   arg3 = (enum AVSampleFormat)jarg3; 
   result = (char *)av_get_sample_fmt_string(arg1,arg2,arg3);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -3375,7 +3376,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVClass_1class_1name
       arg1->class_name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -3629,7 +3630,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1log(JNIEnv *jenv
     if (!arg3) return ;
   }
   av_log(arg1,arg2,(char const *)arg3,arg4);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
 }
 
 
@@ -6981,7 +6982,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1code
     }
   }
   
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -10292,7 +10293,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1rc_1
       arg1->rc_eq = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -11173,7 +11174,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1stat
       arg1->stats_out = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -11214,7 +11215,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodecContext_1stat
       arg1->stats_in = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -12414,7 +12415,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVProfile_1name_1set
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -12476,7 +12477,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodec_1name_1set(J
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -12516,7 +12517,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVCodec_1long_1name_
       arg1->long_name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -13226,7 +13227,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVHWAccel_1name_1set
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -13827,7 +13828,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVSubtitleRect_1text
       arg1->text = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -13868,7 +13869,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVSubtitleRect_1ass_
       arg1->ass = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -14573,7 +14574,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avcodec_1find_1deco
   }
   result = (AVCodec *)avcodec_find_decoder_by_name((char const *)arg1);
   *(AVCodec **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -15937,7 +15938,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avcodec_1find_1enco
   }
   result = (AVCodec *)avcodec_find_encoder_by_name((char const *)arg1);
   *(AVCodec **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -16506,7 +16507,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1codec_1tag
   arg3 = (unsigned int)jarg3; 
   result = av_get_codec_tag_string(arg1,arg2,arg3);
   jresult = (jlong)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -16529,7 +16530,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avcodec_1string(JNIE
   arg3 = *(AVCodecContext **)&jarg3; 
   arg4 = (int)jarg4; 
   avcodec_string(arg1,arg2,arg3,arg4);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
 }
 
 
@@ -16864,7 +16865,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVBitStreamFilter_1n
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17015,7 +17016,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1bitstream_1filt
   }
   result = (AVBitStreamFilterContext *)av_bitstream_filter_init((char const *)arg1);
   *(AVBitStreamFilterContext **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -17050,7 +17051,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1bitstream_1filte
   arg8 = (int)jarg8; 
   result = (int)av_bitstream_filter_filter(arg1,arg2,(char const *)arg3,arg4,arg5,(unsigned char const *)arg6,arg7,arg8);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -17158,7 +17159,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1log_1missing_1fe
   }
   arg3 = (int)jarg3; 
   av_log_missing_feature(arg1,(char const *)arg2,arg3);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17176,7 +17177,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1log_1ask_1for_1s
     if (!arg2) return ;
   }
   av_log_ask_for_sample(arg1,(char const *)arg2,arg3);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17460,7 +17461,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVProbeData_1filenam
       arg1->filename = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17578,7 +17579,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOutputFormat_1name
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17618,7 +17619,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOutputFormat_1long
       arg1->long_name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17658,7 +17659,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOutputFormat_1mime
       arg1->mime_type = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -17698,7 +17699,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVOutputFormat_1exte
       arg1->extensions = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -18154,7 +18155,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVInputFormat_1name_
       arg1->name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -18194,7 +18195,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVInputFormat_1long_
       arg1->long_name = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -18262,7 +18263,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVInputFormat_1exten
       arg1->extensions = 0;
     }
   }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -20867,7 +20868,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_AVFormatContext_1fil
     }
   }
   
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
 
 
@@ -22274,8 +22275,8 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avformat_1alloc_1out
   }
   result = (int)avformat_alloc_output_context2(arg1,arg2,(char const *)arg3,(char const *)arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
   return jresult;
 }
 
@@ -22294,7 +22295,7 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1find_1input_1fo
   }
   result = (AVInputFormat *)av_find_input_format((char const *)arg1);
   *(AVInputFormat **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -22379,7 +22380,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1probe_1input_1bu
   arg6 = (unsigned int)jarg6; 
   result = (int)av_probe_input_buffer(arg1,arg2,(char const *)arg3,arg4,arg5,arg6);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -22405,7 +22406,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avformat_1open_1inpu
   arg4 = *(AVDictionary ***)&jarg4; 
   result = (int)avformat_open_input(arg1,(char const *)arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -22685,9 +22686,9 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1guess_1format(J
   }
   result = (AVOutputFormat *)av_guess_format((char const *)arg1,(char const *)arg2,(char const *)arg3);
   *(AVOutputFormat **)&jresult = result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -22723,9 +22724,9 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1guess_1codec(JNI
   arg5 = (enum AVMediaType)jarg5; 
   result = (enum CodecID)av_guess_codec(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,arg5);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
   return jresult;
 }
 
@@ -22955,11 +22956,11 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1url_1split(JNIEn
     if (!arg10) return ;
   }
   av_url_split(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,(char const *)arg10);
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  if (arg8) (*jenv)->ReleaseStringUTFChars(jenv, jarg8, (const char *)arg8);
-  if (arg10) (*jenv)->ReleaseStringUTFChars(jenv, jarg10, (const char *)arg10);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
+//  if (arg8) (*jenv)->ReleaseStringUTFChars(jenv, jarg8, (const char *)arg8);
+//  if (arg10) (*jenv)->ReleaseStringUTFChars(jenv, jarg10, (const char *)arg10);
 }
 
 
@@ -22981,7 +22982,7 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1dump_1format(JNI
   }
   arg4 = (int)jarg4; 
   av_dump_format(arg1,arg2,(char const *)arg3,arg4);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
 }
 
 
@@ -23021,8 +23022,8 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1get_1frame_1file
   arg4 = (int)jarg4; 
   result = (int)av_get_frame_filename(arg1,arg2,(char const *)arg3,arg4);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -23041,7 +23042,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1filename_1number
   }
   result = (int)av_filename_number_test((char const *)arg1);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -23067,7 +23068,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1sdp_1create(JNIE
   result = (int)av_sdp_create(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -23092,8 +23093,8 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_av_1match_1ext(JNIEn
   }
   result = (int)av_match_ext((char const *)arg1,(char const *)arg2);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -23927,7 +23928,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1check(JNIEnv *
   arg2 = (int)jarg2; 
   result = (int)avio_check((char const *)arg1,arg2);
   jresult = (jint)result; 
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+//  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 
@@ -24151,7 +24152,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1put_1str(JNIEn
   }
   result = (int)avio_put_str(arg1,(char const *)arg2);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -24173,7 +24174,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1put_1str16le(J
   }
   result = (int)avio_put_str16le(arg1,(char const *)arg2);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -24277,7 +24278,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1printf(JNIEnv 
   }
   result = (int)avio_printf(arg1,(char const *)arg2,arg3);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -24500,7 +24501,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1get_1str(JNIEn
   arg4 = (int)jarg4; 
   result = (int)avio_get_str(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -24526,7 +24527,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1get_1str16le(J
   arg4 = (int)jarg4; 
   result = (int)avio_get_str16le(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -24552,7 +24553,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1get_1str16be(J
   arg4 = (int)jarg4; 
   result = (int)avio_get_str16be(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
-  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
+//  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -24575,7 +24576,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1open(JNIEnv *j
   arg3 = (int)jarg3; 
   result = (int)avio_open(arg1,(char const *)arg2,arg3);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
@@ -24603,7 +24604,7 @@ SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avio_1open2(JNIEnv *
   arg5 = *(AVDictionary ***)&jarg5; 
   result = (int)avio_open2(arg1,(char const *)arg2,arg3,(AVIOInterruptCB const *)arg4,arg5);
   jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+//  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 
