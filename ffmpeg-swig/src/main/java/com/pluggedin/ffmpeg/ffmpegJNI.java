@@ -10,6 +10,7 @@ package com.pluggedin.ffmpeg;
 
 public class ffmpegJNI {
   public final static native int FF_API_OLD_ENCODE_VIDEO_get();
+  public final static native int FF_API_OLD_DECODE_AUDIO_get();
   public final static native long new_intArray(int jarg1);
   public final static native void delete_intArray(long jarg1);
   public final static native int intArray_getitem(long jarg1, intArray jarg1_, int jarg2);
@@ -29,6 +30,7 @@ public class ffmpegJNI {
   public final static native long new_DecodeResult();
   public final static native void delete_DecodeResult(long jarg1);
   public final static native long decodeAudio(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, AVPacket jarg3_);
+  public final static native int encodeAudio(long jarg1, AVCodecContext jarg1_, long jarg2, int jarg3, long jarg4);
   public final static native long decodeVideo(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, AVPacket jarg3_);
   public final static native long getAVStream(long jarg1, int jarg2);
   public final static native long newPacket();
@@ -946,6 +948,7 @@ public class ffmpegJNI {
   public final static native long avcodec_get_edge_width();
   public final static native void avcodec_align_dimensions(long jarg1, AVCodecContext jarg1_, long jarg2, long jarg3);
   public final static native void avcodec_align_dimensions2(long jarg1, AVCodecContext jarg1_, long jarg2, long jarg3, long jarg4);
+  public final static native int avcodec_decode_audio3(long jarg1, AVCodecContext jarg1_, long jarg2, long jarg3, long jarg4, AVPacket jarg4_);
   public final static native int avcodec_decode_audio4(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, long jarg4, AVPacket jarg4_);
   public final static native int avcodec_decode_video2(long jarg1, AVCodecContext jarg1_, long jarg2, AVFrame jarg2_, long jarg3, long jarg4, AVPacket jarg4_);
   public final static native int avcodec_decode_subtitle2(long jarg1, AVCodecContext jarg1_, long jarg2, AVSubtitle jarg2_, long jarg3, long jarg4, AVPacket jarg4_);

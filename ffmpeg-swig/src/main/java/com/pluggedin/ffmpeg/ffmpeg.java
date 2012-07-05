@@ -14,6 +14,10 @@ public class ffmpeg implements ffmpegConstants {
     return (cPtr == 0) ? null : new DecodeResult(cPtr, false);
   }
 
+  public static int encodeAudio(AVCodecContext avctx, SWIGTYPE_p_unsigned_char buf, int buf_size, SWIGTYPE_p_unsigned_char samples) {
+    return ffmpegJNI.encodeAudio(AVCodecContext.getCPtr(avctx), avctx, SWIGTYPE_p_unsigned_char.getCPtr(buf), buf_size, SWIGTYPE_p_unsigned_char.getCPtr(samples));
+  }
+
   public static DecodeResult decodeVideo(AVCodecContext avctx, AVFrame picture, AVPacket avpkt) {
     long cPtr = ffmpegJNI.decodeVideo(AVCodecContext.getCPtr(avctx), avctx, AVFrame.getCPtr(picture), picture, AVPacket.getCPtr(avpkt), avpkt);
     return (cPtr == 0) ? null : new DecodeResult(cPtr, false);
@@ -829,6 +833,10 @@ public class ffmpeg implements ffmpegConstants {
 
   public static void avcodec_align_dimensions2(AVCodecContext s, SWIGTYPE_p_int width, SWIGTYPE_p_int height, SWIGTYPE_p_int linesize_align) {
     ffmpegJNI.avcodec_align_dimensions2(AVCodecContext.getCPtr(s), s, SWIGTYPE_p_int.getCPtr(width), SWIGTYPE_p_int.getCPtr(height), SWIGTYPE_p_int.getCPtr(linesize_align));
+  }
+
+  public static int avcodec_decode_audio3(AVCodecContext avctx, SWIGTYPE_p_short samples, SWIGTYPE_p_int frame_size_ptr, AVPacket avpkt) {
+    return ffmpegJNI.avcodec_decode_audio3(AVCodecContext.getCPtr(avctx), avctx, SWIGTYPE_p_short.getCPtr(samples), SWIGTYPE_p_int.getCPtr(frame_size_ptr), AVPacket.getCPtr(avpkt), avpkt);
   }
 
   public static int avcodec_decode_audio4(AVCodecContext avctx, AVFrame frame, SWIGTYPE_p_int got_frame_ptr, AVPacket avpkt) {

@@ -2,6 +2,7 @@
 
 #define MKBETAG(a,b,c,d) makeCodecTag(a,b,c,d)
 #define FF_API_OLD_ENCODE_VIDEO 1
+#define FF_API_OLD_DECODE_AUDIO 1
 
 %javaconst(1);
 %include "enums.swg"
@@ -71,6 +72,11 @@ static DecodeResult* decodeAudio(AVCodecContext *avctx, AVFrame *picture, AVPack
     result->gotPicture = 0;
     result->returnCode = avcodec_decode_audio4(avctx, picture, &(result->gotPicture), avpkt);
     return result;
+}
+
+static int encodeAudio(AVCodecContext *avctx, uint8_t *buf, int buf_size, uint8_t *samples)
+{
+    return avcodec_encode_audio(avctx, buf, buf_size, (const short *)samples);
 }
 
 static DecodeResult* decodeVideo(AVCodecContext *avctx, AVFrame *picture, AVPacket *avpkt)

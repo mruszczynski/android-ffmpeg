@@ -283,6 +283,11 @@ static DecodeResult* decodeAudio(AVCodecContext *avctx, AVFrame *picture, AVPack
     return result;
 }
 
+static int encodeAudio(AVCodecContext *avctx, uint8_t *buf, int buf_size, uint8_t *samples)
+{
+    return avcodec_encode_audio(avctx, buf, buf_size, (const short *)samples);
+}
+
 static DecodeResult* decodeVideo(AVCodecContext *avctx, AVFrame *picture, AVPacket *avpkt)
 {
     DecodeResult *result = av_malloc(sizeof(DecodeResult));
@@ -470,6 +475,18 @@ extern "C" {
 #endif
 
 SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_FF_1API_1OLD_1ENCODE_1VIDEO_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)(1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_FF_1API_1OLD_1DECODE_1AUDIO_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
   
@@ -746,6 +763,27 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_decodeAudio(JNIEnv 
   arg3 = *(AVPacket **)&jarg3; 
   result = (DecodeResult *)decodeAudio(arg1,arg2,arg3);
   *(DecodeResult **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_encodeAudio(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jlong jarg4) {
+  jint jresult = 0 ;
+  AVCodecContext *arg1 = (AVCodecContext *) 0 ;
+  uint8_t *arg2 = (uint8_t *) 0 ;
+  int arg3 ;
+  uint8_t *arg4 = (uint8_t *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(AVCodecContext **)&jarg1; 
+  arg2 = *(uint8_t **)&jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = *(uint8_t **)&jarg4; 
+  result = (int)encodeAudio(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -14671,6 +14709,28 @@ SWIGEXPORT void JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avcodec_1align_1dime
   arg4 = *(int **)&jarg4; 
   avcodec_align_dimensions2(arg1,arg2,arg3,arg4);
   
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_avcodec_1decode_1audio3(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jobject jarg4_) {
+  jint jresult = 0 ;
+  AVCodecContext *arg1 = (AVCodecContext *) 0 ;
+  int16_t *arg2 = (int16_t *) 0 ;
+  int *arg3 = (int *) 0 ;
+  AVPacket *arg4 = (AVPacket *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg4_;
+  arg1 = *(AVCodecContext **)&jarg1; 
+  arg2 = *(int16_t **)&jarg2; 
+  arg3 = *(int **)&jarg3; 
+  arg4 = *(AVPacket **)&jarg4; 
+  result = (int)avcodec_decode_audio3(arg1,arg2,arg3,arg4);
+  jresult = (jint)result; 
+  return jresult;
 }
 
 

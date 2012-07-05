@@ -10,6 +10,7 @@ package com.pluggedin.ffmpeg;
 
 public interface ffmpegConstants {
   public final static int FF_API_OLD_ENCODE_VIDEO = ffmpegJNI.FF_API_OLD_ENCODE_VIDEO_get();
+  public final static int FF_API_OLD_DECODE_AUDIO = ffmpegJNI.FF_API_OLD_DECODE_AUDIO_get();
   public final static int AV_OPT_FLAG_ENCODING_PARAM = 1;
   public final static int AV_OPT_FLAG_DECODING_PARAM = 2;
   public final static int AV_OPT_FLAG_METADATA = 4;
@@ -96,6 +97,7 @@ public interface ffmpegConstants {
   public final static int SWS_CS_SMPTE170M = 5;
   public final static int SWS_CS_SMPTE240M = 7;
   public final static int SWS_CS_DEFAULT = 5;
+  public final static int AVCODEC_MAX_AUDIO_FRAME_SIZE = 192000;
   public final static int FF_INPUT_BUFFER_PADDING_SIZE = 16;
   public final static int FF_MIN_BUFFER_SIZE = 16384;
   public final static int FF_MAX_B_FRAMES = 16;
