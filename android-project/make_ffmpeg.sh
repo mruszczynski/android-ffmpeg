@@ -4,5 +4,5 @@ pushd `dirname $0`
 pushd ../ffmpeg
 make -j4
 popd; 
-cp -u ../ffmpeg/ffmpeg ./
+#cp -u ../ffmpeg/ffmpeg ./
 popd
