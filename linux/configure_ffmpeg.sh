@@ -6,10 +6,6 @@ pushd ../ffmpeg
 
 ./configure \
 \
---disable-stripping \
---enable-debug=3 \
---disable-optimizations \
-\
 --enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
@@ -17,50 +13,59 @@ pushd ../ffmpeg
 --enable-memalign-hack \
 --disable-doc \
 \
---disable-asm \
---disable-yasm \
+--disable-everything \
 \
---enable-hwaccels \
+--enable-filter=aresample \
 \
---enable-network \
---enable-protocol=tcp \
---enable-protocol=udp \
---enable-demuxer=rtsp \
+--enable-encoder=aac \
+--enable-decoder=aac \
+--enable-parser=aac \
 \
---enable-ffmpeg \
+--enable-encoder=mpeg4 \
+--enable-decoder=mpeg4 \
+--enable-parser=mpeg4video \
+\
+--enable-encoder=nellymoser \
+--enable-decoder=nellymoser \
+--enable-encoder=flv \
+--enable-decoder=flv \
+--enable-muxer=flv \
+--enable-demuxer=flv \
+--enable-protocol=rtmp \
+\
+--enable-encoder=libspeex \
+--enable-decoder=libspeex \
+\
+--disable-ffmpeg \
 --disable-ffplay \
 --disable-ffprobe \
 --disable-ffserver \
 --disable-avdevice \
 --disable-devices \
 \
+--disable-asm \
+--disable-yasm \
+\
+--enable-hwaccels \
+--enable-network \
+\
 --enable-libspeex \
 --enable-zlib \
 \
 --extra-cflags="-O0 -I../speex/include/ " \
 --extra-ldflags="-L../speex/libspeex/.libs/" \
-
-
-# --enable-small \
-#--extra-cflags="-I../x264 -I../speex/include/ -I../faac-1.28/include/" \
-#--extra-ldflags="-L../x264 -L../speex/libspeex/.libs/" \
-#--enable-static \
-#--enable-gpl \
-#--enable-libx264 \
-
-# Requires --enable-nonfree:
-#
-#--enable-libaacplus \
-#--enable-libfaac \
-
-# Doesn't work:
-#
-#--enable-libvo-aacenc \
-
+|| die "Failed to configure"
 
 popd; 
-
 popd
 
+exit 0;
 
+
+
+
+\
+--disable-stripping \
+--enable-debug=3 \
+--disable-optimizations \
 

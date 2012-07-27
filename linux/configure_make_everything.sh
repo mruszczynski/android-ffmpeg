@@ -10,7 +10,7 @@ function die {
 #./make_x264.sh || die "X264 make"
 ./configure_ffmpeg.sh || die "FFMPEG configure"
 ./make_ffmpeg.sh || die "FFMPEG make"
-./make_swig.sh || die "FFMPEG make"
+./make_swig.sh || die "Swig make"
 
 for f in *.so*; do 
   ls -alh $f; 

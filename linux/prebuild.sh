@@ -13,16 +13,8 @@ pushd ../speex
 make clean || die "Error making speex"
 make || die "Error making speex"
 popd
-#find ../speex -name '*.so' -exec cp \{\} ./ \;
-find ../speex -name '*.so.*' -exec ln -s \{\} \;
-
-#pushd ../ffmpeg-swig
-#mvn clean
-#make || die "Error making ffmpeg-swig"
-#mvn install
-#popd
-#find ../ffmpeg-swig -name '*.so' -exec cp \{\} ./ \;
-#find ../ffmpeg-swig -name '*.so.*' -exec cp \{\} ./ \;
+ln -s ../speex/libspeex/.libs/libspeexdsp.so.1 ;
+ln -s ../speex/libspeex/.libs/libspeex.so.1 ;
 
 #pushd ../libaacplus-2.0.2
 #./autogen.sh || die "running libaacplus/autogen.sh"
