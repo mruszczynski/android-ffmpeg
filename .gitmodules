@@ -10,4 +10,15 @@
 [submodule "opencore"]
 	path = opencore
 	url = git://opencore-amr.git.sourceforge.net/gitroot/opencore-amr/opencore-amr
-
+[submodule "theora"]
+	path = theora
+	url = git@github.com:acharneski/theora.git
+[submodule "opus"]
+	path = opus
+	url = git@github.com:acharneski/opus.git
+[submodule "vorbis"]
+	path = vorbis
+	url = git@github.com:acharneski/vorbis.git
+[submodule "libvpx"]
+	path = libvpx
+	url = git@github.com:acharneski/libvpx.git
