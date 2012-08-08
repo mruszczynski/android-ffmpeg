@@ -2,6 +2,7 @@
 DIR=`dirname $0`
 pushd $DIR
 . settings.sh
+
 pushd ../ffmpeg
 make -j8 || die "Failed to make ffmpeg"
 popd; 
