@@ -16,3 +16,6 @@
 [submodule "libvpx"]
 	path = libvpx
 	url = git@github.com:acharneski/libvpx.git
+[submodule "ogg"]
+	path = ogg
+	url = git@github.com:acharneski/ogg.git

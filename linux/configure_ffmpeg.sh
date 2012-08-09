@@ -34,8 +34,24 @@ pushd ../ffmpeg
 --enable-demuxer=flv \
 --enable-protocol=rtmp \
 \
+--enable-libspeex \
 --enable-encoder=libspeex \
 --enable-decoder=libspeex \
+\
+--enable-libtheora \
+--enable-encoder=libtheora \
+--enable-decoder=theora \
+\
+--enable-libvpx \
+--enable-encoder=libvpx \
+--enable-decoder=libvpx \
+\
+--enable-libvorbis \
+--enable-encoder=libvorbis \
+--enable-decoder=libvorbis \
+\
+--enable-encoder=flac \
+--enable-decoder=flac \
 \
 --disable-ffmpeg \
 --disable-ffplay \
@@ -53,8 +69,8 @@ pushd ../ffmpeg
 --enable-libspeex \
 --enable-zlib \
 \
---extra-cflags="-O0 -I../speex/include/ " \
---extra-ldflags="-L../speex/libspeex/.libs/" \
+--extra-cflags="-O0 -I../speex/include/ -I../libvpx -I../theora/include/ -I../vorbis/include/ -I../ogg/include/" \
+--extra-ldflags="-L../speex/libspeex/.libs/ -L../libvpx -L../theora/lib/.libs/ -L../vorbis/lib/.libs/ -L../ogg/src/.libs/" \
 || die "Failed to configure"
 
 popd; 
@@ -64,6 +80,8 @@ exit 0;
 
 
 
+--enable-decoder=libopus \
+--enable-libopus \
 
 \
 --disable-stripping \
