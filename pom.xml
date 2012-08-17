@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ffmpeg</groupId>
   <artifactId>ffmpeg-native</artifactId>
-  <version>1</version>
+  <version>2</version>
   <name>FFMPEG Libraries</name>
   <packaging>pom</packaging>
   
