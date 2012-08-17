@@ -14,6 +14,10 @@ pushd ../ffmpeg
 --enable-memalign-hack \
 --disable-doc \
 \
+--disable-stripping \
+--enable-debug=3 \
+--disable-optimizations \
+\
 --disable-everything \
 \
 --enable-filter=aresample \
@@ -53,6 +57,9 @@ pushd ../ffmpeg
 --enable-encoder=flac \
 --enable-decoder=flac \
 \
+--enable-encoder=zmbv \
+--enable-decoder=zmbv \
+\
 --disable-ffmpeg \
 --disable-ffplay \
 --disable-ffprobe \
@@ -79,6 +86,11 @@ popd
 exit 0;
 
 
+\
+--enable-encoder=pcm_s16be \
+--enable-decoder=pcm_s16be \
+--enable-encoder=pcm_s16le \
+--enable-decoder=pcm_s16le \
 
 --enable-decoder=libopus \
 --enable-libopus \
