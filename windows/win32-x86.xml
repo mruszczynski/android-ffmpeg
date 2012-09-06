@@ -1,0 +1,22 @@
+<assembly>
+  <id>libs</id>
+  <formats>
+    <format>jar</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <includes>
+        <include>*.dll</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../ffmpeg</directory>
+      <includes>
+        <include>LICENSE</include>
+      </includes>
+      <outputDirectory>ffmpeg</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

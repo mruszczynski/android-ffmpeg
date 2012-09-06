@@ -4,6 +4,14 @@
   <artifactId>ffmpeg-swig</artifactId>
   <version>1</version>
   <packaging>jar</packaging>
+
+  <distributionManagement>
+    <repository>
+      <id>pluggedin-3rd-party</id>
+      <name>PluggedIn 3rd-Party Repository</name>
+      <url>http://64.246.142.187/nexus-2.0.6/content/repositories/thirdparty/</url>
+    </repository>
+  </distributionManagement>
   
   <build>
     <plugins>

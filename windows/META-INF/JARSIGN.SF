@@ -1,0 +1,32 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: LcDTsLVUlcMYIjN7l2v/nHupbaM=
+Created-By: 1.6.0_24 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: gyvEvfV4S3L1AqG7cn+P9uTI6mU=
+
+Name: avutil-51.dll
+SHA1-Digest: /tpKJ2liCCq0DjZrHpXUMJ2NTjc=
+
+Name: LICENSE
+SHA1-Digest: AsYD/g87uYpeKQsLzWjCy7Z++g8=
+
+Name: ffmpegjni.dll
+SHA1-Digest: 9q6hUzqgFuWhCnPYE/siJX13B9M=
+
+Name: swscale-2.dll
+SHA1-Digest: filk4rc9SYN58u36X4vrdOtJjrM=
+
+Name: avresample-0.dll
+SHA1-Digest: FwOxkyrNJktiurjtUNxdRptuqGg=
+
+Name: avfilter-2.dll
+SHA1-Digest: WmSFKylqBN+o0mixk4krOfci0c0=
+
+Name: avformat-54.dll
+SHA1-Digest: btRFeXWgCehxDmyYQuezeiQgxWw=
+
+Name: swresample-0.dll
+SHA1-Digest: fpHJ3q8px7IVbB4AP4s1mw1deOU=
+
+Name: avcodec-54.dll
+SHA1-Digest: ff58AMSL8ALRS4DyN0SfFdQDWS0=
+

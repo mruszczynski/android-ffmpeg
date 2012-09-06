@@ -1,0 +1,50 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: tws3JgUSVVrERP3QO/N0jnXIBUc=
+Created-By: 1.6.0_24 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: HtIgjI48m7NSJzyJIgn3uUTyFjA=
+
+Name: libswscale.2.dylib
+SHA1-Digest: J+WKkTwQo9bA2k4Z+lSM+bYEi1M=
+
+Name: libavfilter.2.dylib
+SHA1-Digest: U0j+5CuAqIWJEBlPeRCRc0pGqfE=
+
+Name: libavutil.51.dylib
+SHA1-Digest: 1+5gAuiVT95uugwF+Y/BwWwpzsQ=
+
+Name: libspeex.1.5.0.dylib
+SHA1-Digest: IatKfWnfz7TaM4gcPBEItrq+pcI=
+
+Name: libspeexdsp.1.5.0.dylib
+SHA1-Digest: ZvPZsKBXmed7MXKDj33SIf32TR0=
+
+Name: libswscale.dylib
+SHA1-Digest: Pfm2zyYcBCLUf25VhvGs1SbFQss=
+
+Name: libavcodec.54.dylib
+SHA1-Digest: FG8el7on84j5X/b3jbJgYt7tGAU=
+
+Name: LICENSE
+SHA1-Digest: AsYD/g87uYpeKQsLzWjCy7Z++g8=
+
+Name: libspeexdsp.1.dylib
+SHA1-Digest: 5VHxK0UtN9Qy7isV9LVxsnw+pqg=
+
+Name: libswresample.dylib
+SHA1-Digest: 8u1+ymn75AdAyrrxNfiP1r6HRQg=
+
+Name: libavresample.0.dylib
+SHA1-Digest: n4na0XtDG+ewD2Q+/Q8NI0XEVcg=
+
+Name: libavformat.54.dylib
+SHA1-Digest: 4Y52XjGQlULDkTCBbiIuJouR0Kc=
+
+Name: libspeex.1.dylib
+SHA1-Digest: EyTLJQveQZtqpdQcsHoVCslxogw=
+
+Name: libffmpegjni.1.dylib
+SHA1-Digest: ecRJr3Po7a4CF6cgkzpU5MMiqbs=
+
+Name: libswresample.0.dylib
+SHA1-Digest: CxKlan0m3tQkKC+P9fCUNkXFq4Q=
+

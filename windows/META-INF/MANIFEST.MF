@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Created-By: 16.0-b13 (Sun Microsystems Inc.)
+Archiver-Version: Plexus Archiver
+
+Name: LICENSE
+SHA1-Digest: k4E38qxWNGqrP73dwqmJBWDNKDE=
+
+Name: avutil-51.dll
+SHA1-Digest: 1Y98qcrG/FCM4AkhYcDKPS7GQR4=
+
+Name: ffmpegjni.dll
+SHA1-Digest: /YZx1oMCvbAXV5xRzgN19DFnUwo=
+
+Name: swscale-2.dll
+SHA1-Digest: OhiDpjTfY5LMXwtksqLvq7IYaEk=
+
+Name: avresample-0.dll
+SHA1-Digest: e/oRXfMRfoWBUZ3RbhfPdhj48g8=
+
+Name: avfilter-2.dll
+SHA1-Digest: Qzom7jbf1xjwI5+13j+ttF6M8JU=
+
+Name: avformat-54.dll
+SHA1-Digest: vvpBDH64sCuOpBoZXGEfmpjq7w0=
+
+Name: avcodec-54.dll
+SHA1-Digest: rIjLImjsqJZSLhyDTvrBBN9jewg=
+
+Name: swresample-0.dll
+SHA1-Digest: ZL4uwGwn446ZEz0gBiFaWnfln2o=
+

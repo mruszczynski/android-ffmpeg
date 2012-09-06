@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Created-By: 20.6-b01-415 (Apple Inc.)
+Archiver-Version: Plexus Archiver
+
+Name: libswscale.2.dylib
+SHA1-Digest: zHtEdXKUfWvJHbn1ILrDCyB7ImY=
+
+Name: libavfilter.2.dylib
+SHA1-Digest: UuCXALN41zmZBUGRyNV7IVKmoio=
+
+Name: libavutil.51.dylib
+SHA1-Digest: AimF41ep5SCbabzPTkA9bNLWu4U=
+
+Name: libspeex.1.5.0.dylib
+SHA1-Digest: uGx17yqiydHcr2xeULsbe578zKI=
+
+Name: libspeexdsp.1.5.0.dylib
+SHA1-Digest: 4vjYHQAjlFYAtVRQUnsv0EQZ6fA=
+
+Name: libswscale.dylib
+SHA1-Digest: zHtEdXKUfWvJHbn1ILrDCyB7ImY=
+
+Name: libavcodec.54.dylib
+SHA1-Digest: ngxebGQcWfzLVviLW39TzTgZVmQ=
+
+Name: LICENSE
+SHA1-Digest: k4E38qxWNGqrP73dwqmJBWDNKDE=
+
+Name: libspeexdsp.1.dylib
+SHA1-Digest: 4vjYHQAjlFYAtVRQUnsv0EQZ6fA=
+
+Name: libswresample.dylib
+SHA1-Digest: G3izXq4+5+PuFEjzhcjarQSEAWY=
+
+Name: libavresample.0.dylib
+SHA1-Digest: mNqS6IQtQtKiRS3F0Mnq7b4kqMw=
+
+Name: libavformat.54.dylib
+SHA1-Digest: YOk827Wsl/UP6OgeaPtnPD779lU=
+
+Name: libffmpegjni.1.dylib
+SHA1-Digest: gJz2DXJxbpctGdyw7sleTfauyTg=
+
+Name: libspeex.1.dylib
+SHA1-Digest: uGx17yqiydHcr2xeULsbe578zKI=
+
+Name: libswresample.0.dylib
+SHA1-Digest: G3izXq4+5+PuFEjzhcjarQSEAWY=
+

@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ffmpeg</groupId>
+  <artifactId>ffmpeg-native-win32-x86</artifactId>
+  <version>1</version>
+  <name>FFMPEG Libraries</name>
+  <packaging>pom</packaging>
+
+  <distributionManagement>
+    <repository>
+      <id>pluggedin-3rd-party</id>
+      <name>PluggedIn 3rd-Party Repository</name>
+      <url>dav:http://64.246.142.187/nexus-2.0.6/content/repositories/thirdparty/</url>
+    </repository>
+  </distributionManagement>
+  
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+        <version>1.0-beta-2</version>
+      </extension>
+    </extensions>  
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2.2</version>
+        <executions>
+          <execution>
+            <id>make-platform-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>win32-x86.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
