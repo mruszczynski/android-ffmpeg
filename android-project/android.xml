@@ -6,18 +6,18 @@
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
     <fileSet>
-      <directory>obj/local/armeabi</directory>
+      <directory>libs/armeabi</directory>
       <includes>
         <include>*.*</include>
       </includes>
-      <outputDirectory>obj/local/armeabi</outputDirectory>
+      <outputDirectory>/armeabi</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>obj/local/armeabi-v7a</directory>
+      <directory>libs/armeabi-v7a</directory>
       <includes>
         <include>*.*</include>
       </includes>
-      <outputDirectory>obj/local/armeabi-v7a</outputDirectory>
+      <outputDirectory>/armeabi-v7a</outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>
