@@ -1566,10 +1566,7 @@ public class ffmpeg implements ffmpegConstants {
   }
 
   public static SWIGTYPE_p_SwrContext swr_alloc_set_opts(SWIGTYPE_p_SwrContext s, long out_ch_layout, AVSampleFormat out_sample_fmt, int out_sample_rate, long in_ch_layout, AVSampleFormat in_sample_fmt, int in_sample_rate, int log_offset, long log_ctx) {
-    long cPtr2 = SWIGTYPE_p_SwrContext.getCPtr(s);
-    int swigValue = out_sample_fmt.swigValue();
-    int swigValue2 = in_sample_fmt.swigValue();
-    long cPtr = ffmpegJNI.swr_alloc_set_opts(cPtr2, out_ch_layout, swigValue, out_sample_rate, in_ch_layout, swigValue2, in_sample_rate, log_offset, log_ctx);
+    long cPtr = ffmpegJNI.swr_alloc_set_opts(SWIGTYPE_p_SwrContext.getCPtr(s), out_ch_layout, out_sample_fmt.swigValue(), out_sample_rate, in_ch_layout, in_sample_fmt.swigValue(), in_sample_rate, log_offset, log_ctx);
     return (cPtr == 0) ? null : new SWIGTYPE_p_SwrContext(cPtr, false);
   }
 

@@ -9,7 +9,7 @@
 package com.pluggedin.ffmpeg;
 
 public class SWIGTYPE_p_unsigned_char {
-  public long swigCPtr;
+  private long swigCPtr;
 
   protected SWIGTYPE_p_unsigned_char(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;

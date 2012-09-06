@@ -1021,7 +1021,6 @@ SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_newAVRational(JNIEn
   return jresult;
 }
 
-
 SWIGEXPORT jlong JNICALL Java_com_pluggedin_ffmpeg_ffmpegJNI_getByte2d(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   jlong jresult = 0 ;
   unsigned char **arg1 = (unsigned char **) 0 ;
