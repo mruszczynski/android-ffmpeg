@@ -1,5 +1,11 @@
 #!/bin/bash
-pushd `dirname $0`
+
+function die {
+  echo "$1 failed" && exit 1
+}
+
+DIR=`dirname $0`
+pushd $DIR
 . settings.sh
 
 if [[ $DEBUG == 1 ]]; then
@@ -39,11 +45,13 @@ $DEBUG_FLAG \
 --extra-cflags="-I../x264 -I../speex/include/" \
 --extra-ldflags="-L../x264 -L../android-project/obj/local/armeabi/" \
 --disable-avdevice \
---disable-devices
+--disable-devices \
+|| die 'configure'
 
 
 find -name 'Makefile' -exec sed -i 's|include $(SUBDIR)../config.mak||g' \{\} \;
 
+patch config.sh $DIR/config.h.diff || die 'configure'
 
 popd; 
 popd
