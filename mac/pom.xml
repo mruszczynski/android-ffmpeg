@@ -10,7 +10,7 @@
     <repository>
       <id>pluggedin-3rd-party</id>
       <name>PluggedIn 3rd-Party Repository</name>
-      <url>dav:http://64.246.142.187/nexus-2.0.6/content/repositories/thirdparty/</url>
+      <url>dav:http://nexus-staging.pluggedin-tech.com/nexus/content/repositories/thirdparty/</url>
     </repository>
   </distributionManagement>
   
