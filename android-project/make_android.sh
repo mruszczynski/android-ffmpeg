@@ -1,6 +1,6 @@
 #!/bin/bash
 pushd `dirname $0`
 . settings.sh
-ndk-build
+ndk-build -j8
 popd
 

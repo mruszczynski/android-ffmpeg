@@ -13,7 +13,7 @@ pushd `dirname $0`
 ./make_x264.sh || die "X264 make"
 ./configure_ffmpeg.sh || die "FFMPEG configure"
 #./make_ffmpeg.sh || die "FFMPEG make"
-ndk-build || die "ndk-build"
+ndk-build -j8 || die "ndk-build"
 popd
 
 
