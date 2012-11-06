@@ -4,8 +4,13 @@ function die {
   echo "$1 failed" && exit 1
 }
 
+<<<<<<< HEAD
 pushd `dirname $0`
 DIR=`pwd`
+=======
+DIR=`dirname $0`
+pushd $DIR
+>>>>>>> 74a44763c1379fc548562bb3dbb8269d1f822c01
 . settings.sh
 
 if [[ $DEBUG == 1 ]]; then
