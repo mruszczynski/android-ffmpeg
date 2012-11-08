@@ -1,0 +1,24 @@
+<assembly>
+  <!-- Dependent projects will use this id as the classifier to match this assembly -->
+  <id>libs</id>
+  <formats>
+    <format>jar</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>.</directory>
+      <includes>
+        <include>*.dylib</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../ffmpeg</directory>
+      <includes>
+        <include>LICENSE</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

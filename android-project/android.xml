@@ -1,27 +1,27 @@
 <assembly>
   <!-- Dependent projects will use this id as the classifier to match this assembly -->
-  <id>linux-amd64</id>
+  <id>libs</id>
   <formats>
-    <format>jar</format>
+    <format>zip</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
     <fileSet>
-      <directory>linux</directory>
+      <directory>obj/local/armeabi</directory>
       <includes>
-        <include>*.so*</include>
+        <include>*.*</include>
       </includes>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>obj/local/armeabi</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>linux</directory>
+      <directory>obj/local/armeabi-v7a</directory>
       <includes>
-        <include>ffmpeg</include>
+        <include>*.*</include>
       </includes>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>obj/local/armeabi-v7a</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>ffmpeg</directory>
+      <directory>../ffmpeg</directory>
       <includes>
         <include>LICENSE</include>
       </includes>
@@ -29,3 +29,4 @@
     </fileSet>
   </fileSets>
 </assembly>
+

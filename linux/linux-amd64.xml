@@ -1,25 +1,20 @@
 <assembly>
   <!-- Dependent projects will use this id as the classifier to match this assembly -->
-  <id>win32-x86</id>
+  <id>libs</id>
   <formats>
     <format>jar</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
     <fileSet>
-      <directory>windows</directory>
-      <includes><include>*.dll</include></includes>
-      <outputDirectory>/</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>windows</directory>
+      <directory>.</directory>
       <includes>
-        <include>ffmpeg.exe</include>
+        <include>*.so*</include>
       </includes>
       <outputDirectory>/</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>ffmpeg</directory>
+      <directory>../ffmpeg</directory>
       <includes>
         <include>LICENSE</include>
       </includes>

@@ -21,7 +21,7 @@ ln -s ../libvpx/libvpx.so.0 ;
 
 pushd ../ogg
 ./autogen.sh || die "running ogg/autogen.sh"
-pushd build/;export OGGDIR=`pwd`;popd
+mkdir build;pushd build/;export OGGDIR=`pwd`;popd
 ./configure --prefix=$OGGDIR || die "configuring libogg"
 make clean || die "cleaning libogg"
 make -j8 || die "making libogg"
