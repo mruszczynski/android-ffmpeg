@@ -1,8 +1,10 @@
 #!/bin/bash
-pushd `dirname $0`
+DIR=`dirname $0`
+pushd $DIR
 . settings.sh
+
 pushd ../ffmpeg
-make -j4
+make -j8
 popd; 
-#cp -u ../ffmpeg/ffmpeg ./
+
 popd
