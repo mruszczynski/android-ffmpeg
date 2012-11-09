@@ -4,6 +4,19 @@
   <artifactId>ffmpeg-swig</artifactId>
   <version>2</version>
   <packaging>jar</packaging>
+
+  <distributionManagement>
+    <repository>
+      <id>pluggedin-releases</id>
+      <name>PluggedIn Releases Repository</name>
+      <url>http://nexus-staging.pluggedin-tech.com/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>pluggedin-snapshots</id>
+      <name>PluggedIn Snapshot Repository</name>
+      <url>http://nexus-staging.pluggedin-tech.com/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   
   <build>
     <plugins>

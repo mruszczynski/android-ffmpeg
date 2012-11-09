@@ -11,14 +11,14 @@
       <includes>
         <include>*.*</include>
       </includes>
-      <outputDirectory>obj/local/armeabi</outputDirectory>
+      <outputDirectory>armeabi</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>obj/local/armeabi-v7a</directory>
       <includes>
         <include>*.*</include>
       </includes>
-      <outputDirectory>obj/local/armeabi-v7a</outputDirectory>
+      <outputDirectory>armeabi-v7a</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>../ffmpeg</directory>
