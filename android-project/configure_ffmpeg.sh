@@ -1,6 +1,5 @@
 #!/bin/bash
-DIR=`dirname $0`
-pushd $DIR
+pushd `dirname $0`
 . settings.sh
 
 pushd ../ffmpeg
@@ -14,6 +13,7 @@ pushd ../ffmpeg
 --enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
+--enable-static \
 --enable-small \
 --cross-prefix=$NDK_TOOLCHAIN_BASE/bin/arm-linux-androideabi- \
 --sysroot="$NDK_SYSROOT" \
