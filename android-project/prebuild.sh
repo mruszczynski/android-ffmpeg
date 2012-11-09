@@ -1,7 +1,11 @@
 #!/bin/bash
-DIR=`dirname $0`
-pushd $DIR
-. settings.sh
+pushd `dirname $0`
+
+#. settings.sh
+function die {
+  echo "$1 failed" && exit 1
+}
+
 
 pushd ../speex
 ./autogen.sh || die "running speex/autogen.sh"

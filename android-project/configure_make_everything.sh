@@ -1,15 +1,17 @@
 #!/bin/bash
-DIR=`dirname $0`
-pushd $DIR
+pushd `dirname $0`
 
-. settings.sh
+#. settings.sh
+function die {
+  echo "$1 failed" && exit 1
+}
+
 ./clean.sh
 ./prebuild.sh || die "Prebuild"
-./make_android.sh || die "ndk-build"
+./make_android.sh prebuild || die "ndk-build prebuild"
 ./configure_ffmpeg.sh || die "FFMPEG configure"
 ./make_ffmpeg.sh || die "FFMPEG make"
-ndk-build -j8 || die "ndk-build"
-#./make_swig.sh || die "Swig make"
+./make_android.sh all || die "ndk-build all"
 
 for f in *.so*; do 
   ls -alh $f; 

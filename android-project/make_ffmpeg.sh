@@ -1,6 +1,6 @@
 #!/bin/bash
-DIR=`dirname $0`
-pushd $DIR
+pushd `dirname $0`
+DIR=`pwd`
 . settings.sh
 
 pushd ../ffmpeg

@@ -1,0 +1,11 @@
+BASE_PATH := $(call my-dir)
+
+#NDK_TOOLCHAIN_VERSION := 4.4.3
+TARGET_PLATFORM := android-8
+
+include $(CLEAR_VARS) 
+#include $(all-subdir-makefiles)
+include $(BASE_PATH)/speex/Android.mk
+include $(BASE_PATH)/ffmpeg-prebuilt/Android.mk
+include $(BASE_PATH)/ffmpeg_wrap/Android.mk
+

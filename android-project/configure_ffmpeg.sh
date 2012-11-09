@@ -32,7 +32,14 @@ pushd ../ffmpeg
 \
 --disable-everything \
 \
+--enable-swresample \
+--enable-postproc \
+\
 --enable-filter=aresample \
+\
+--enable-libspeex \
+--enable-encoder=libspeex \
+--enable-decoder=libspeex \
 \
 --enable-encoder=aac \
 --enable-decoder=aac \
@@ -49,10 +56,6 @@ pushd ../ffmpeg
 --enable-muxer=flv \
 --enable-demuxer=flv \
 --enable-protocol=rtmp \
-\
---enable-libspeex \
---enable-encoder=libspeex \
---enable-decoder=libspeex \
 \
 --enable-encoder=flac \
 --enable-decoder=flac \
@@ -73,10 +76,9 @@ pushd ../ffmpeg
 --enable-hwaccels \
 --enable-network \
 \
---enable-libspeex \
 --enable-zlib \
 \
---extra-cflags="-O0 -I../speex/include/" \
+--extra-cflags="-I../speex/include/ -I/home/shared/android-ndk-r8b/platforms/android-8/arch-arm/usr/include/" \
 --extra-ldflags="-L../android-project/obj/local/armeabi/" \
 \
 --disable-avdevice \
@@ -84,7 +86,13 @@ pushd ../ffmpeg
 \
 || die "Failed to configure"
 
-popd; 
+find -name 'Makefile' -exec sed -i 's|include $(SUBDIR)../config.mak||g' \{\} \;
+
+popd
+
+cp ../ffmpeg/config.h ./config.h.original
+patch ../ffmpeg/config.h ./config.h.diff
+
 popd
 
 exit 0;
@@ -95,7 +103,7 @@ exit 0;
 --disable-devices
 
 
-find -name 'Makefile' -exec sed -i 's|include $(SUBDIR)../config.mak||g' \{\} \;
+
 
 
 \
