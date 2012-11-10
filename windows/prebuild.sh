@@ -9,7 +9,7 @@ function die {
 
 pushd ../speex
 
-./autogen.sh || die "Error running speex/autogen.sh"
+./autogen.sh || die "speex/autogen.sh"
 
 #  CC          C compiler command
 export CC=`which i686-mingw32-gcc`
@@ -30,10 +30,10 @@ export CC=`which i686-mingw32-gcc`
 \
 --enable-memalign-hack --host \
 \
- || die "Error configuring speex"
+ || die "configuring speex"
 
-make clean || die "Error making speex"
-make || die "Error making speex"
+make clean || die "making speex"
+make || die "making speex"
 popd
 find ../speex -name '*.so.*' -exec cp \{\} ./ \;
 
