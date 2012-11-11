@@ -27,8 +27,6 @@ echo ""
 echo ""
 
 ./prebuild.sh || die "Prebuild"
-#./configure_x264.sh || die "X264 configure"
-#./make_x264.sh || die "X264 make"
 
 echo ""
 echo "====================="

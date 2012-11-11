@@ -10,22 +10,22 @@ make distclean
 make clean
 popd
 
-pushd ../opencore
+pushd ../libvpx
 make distclean
 make clean
 popd
 
-pushd ../faac-1.28
+pushd ../opus
 make distclean
 make clean
 popd
 
-pushd ../libaacplus-2.0.2
+pushd ../theora
 make distclean
 make clean
 popd
 
-pushd ../x264
+pushd ../vorbis
 make distclean
 make clean
 popd
