@@ -13,10 +13,5 @@ function die {
 ./make_ffmpeg.sh || die "FFMPEG make"
 ./make_android.sh all || die "ndk-build all"
 
-for f in *.so*; do 
-  ls -alh $f; 
-  LD_LIBRARY_PATH=. ldd $f; 
-done
-
 popd;
 

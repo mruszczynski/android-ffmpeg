@@ -1,2 +1,3 @@
 obj/
 ffmpeg
+config.h.original config.mak.original

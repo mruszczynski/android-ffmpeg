@@ -93,6 +93,9 @@ popd
 cp ../ffmpeg/config.h ./config.h.original
 patch ../ffmpeg/config.h ./config.h.diff
 
+cp ../ffmpeg/config.mak ./config.mak.original
+patch ../ffmpeg/config.mak ./config.mak.diff
+
 popd
 
 exit 0;

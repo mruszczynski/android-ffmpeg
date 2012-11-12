@@ -3,9 +3,7 @@ DIR=`dirname $0`
 pushd $DIR
 . settings.sh
 
-find .. -name '*.o' -delete
-find .. -name '*.so' -delete
-find .. -name '*.so.*' -delete
+rm -rf obj
 
 pushd ../speex
 make distclean
