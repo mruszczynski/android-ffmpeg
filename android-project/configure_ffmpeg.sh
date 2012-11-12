@@ -13,8 +13,6 @@ pushd ../ffmpeg
 --enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
---enable-static \
---enable-small \
 --cross-prefix=$NDK_TOOLCHAIN_BASE/bin/arm-linux-androideabi- \
 --sysroot="$NDK_SYSROOT" \
 --enable-version3 \
@@ -31,9 +29,6 @@ pushd ../ffmpeg
 --disable-optimizations \
 \
 --disable-everything \
-\
---enable-swresample \
---enable-postproc \
 \
 --enable-filter=aresample \
 \
@@ -99,6 +94,18 @@ patch ../ffmpeg/config.mak ./config.mak.diff
 popd
 
 exit 0;
+
+
+
+
+--enable-static \
+--enable-small \
+\
+--enable-swresample \
+--enable-postproc \
+
+
+
 
 --extra-cflags="-I../x264 -I../speex/include/" \
 --extra-ldflags="-L../x264 -L../android-project/obj/local/armeabi/" \

@@ -8,7 +8,7 @@ fi
 export NDK_PLATFORM_VERSION=8
 export NDK_SYSROOT=$NDK_BASE/platforms/android-$NDK_PLATFORM_VERSION/arch-arm
 export NDK_UNAME=`uname -s | tr '[A-Z]' '[a-z]'`
-export NDK_TOOLCHAIN_BASE=$NDK_BASE/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$NDK_UNAME-x86
+export NDK_TOOLCHAIN_BASE=$NDK_BASE/toolchains/arm-linux-androideabi-4.6/prebuilt/$NDK_UNAME-x86
 export CC="$NDK_TOOLCHAIN_BASE/bin/arm-linux-androideabi-gcc --sysroot=$NDK_SYSROOT"
 export LD=$NDK_TOOLCHAIN_BASE/bin/arm-linux-androideabi-ld
 
