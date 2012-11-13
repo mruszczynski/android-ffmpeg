@@ -24,8 +24,6 @@ target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
 
 target/libffmpegjni.so.1: target/ffmpeg_wrap.o
 	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
-		-L../ffmpeg/libavfilter \
-		-lavfilter \
 		-L../ffmpeg/libavformat \
 		-lavformat \
 		-L../ffmpeg/libavutil \
