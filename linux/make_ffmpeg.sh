@@ -14,9 +14,9 @@ function makelink {
 }
 
 makelink libavutil/libavutil.so.51 ;
-makelink libavcodec/libavcodec.so.53 ;
+makelink libavcodec/libavcodec.so.54 ;
 makelink libavfilter/libavfilter.so.2 ;
-makelink libavformat/libavformat.so.53 ;
+makelink libavformat/libavformat.so.54 ;
 #makelink libavresample/libavresample.so.0 ;
 makelink libswresample/libswresample.so.0 ;
 makelink libswscale/libswscale.so.2 ;

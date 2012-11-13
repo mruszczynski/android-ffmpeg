@@ -16,7 +16,7 @@ public enum AVColorSpace {
   AVCOL_SPC_BT470BG(5),
   AVCOL_SPC_SMPTE170M(6),
   AVCOL_SPC_SMPTE240M(7),
-  AVCOL_SPC_YCGCO(8),
+  AVCOL_SPC_YCOCG(8),
   AVCOL_SPC_NB;
 
   public final int swigValue() {

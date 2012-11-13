@@ -108,6 +108,14 @@ public class AVSubtitleRect {
     return ffmpegJNI.AVSubtitleRect_ass_get(swigCPtr, this);
   }
 
+  public void setForced(int value) {
+    ffmpegJNI.AVSubtitleRect_forced_set(swigCPtr, this, value);
+  }
+
+  public int getForced() {
+    return ffmpegJNI.AVSubtitleRect_forced_get(swigCPtr, this);
+  }
+
   public AVSubtitleRect() {
     this(ffmpegJNI.new_AVSubtitleRect(), true);
   }

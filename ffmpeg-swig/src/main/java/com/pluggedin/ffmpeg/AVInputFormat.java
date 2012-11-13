@@ -51,6 +51,57 @@ public class AVInputFormat {
     return ffmpegJNI.AVInputFormat_long_name_get(swigCPtr, this);
   }
 
+  public void setFlags(int value) {
+    ffmpegJNI.AVInputFormat_flags_set(swigCPtr, this, value);
+  }
+
+  public int getFlags() {
+    return ffmpegJNI.AVInputFormat_flags_get(swigCPtr, this);
+  }
+
+  public void setExtensions(String value) {
+    ffmpegJNI.AVInputFormat_extensions_set(swigCPtr, this, value);
+  }
+
+  public String getExtensions() {
+    return ffmpegJNI.AVInputFormat_extensions_get(swigCPtr, this);
+  }
+
+  public void setCodec_tag(SWIGTYPE_p_p_AVCodecTag value) {
+    ffmpegJNI.AVInputFormat_codec_tag_set(swigCPtr, this, SWIGTYPE_p_p_AVCodecTag.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_p_AVCodecTag getCodec_tag() {
+    long cPtr = ffmpegJNI.AVInputFormat_codec_tag_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVCodecTag(cPtr, false);
+  }
+
+  public void setPriv_class(AVClass value) {
+    ffmpegJNI.AVInputFormat_priv_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
+  }
+
+  public AVClass getPriv_class() {
+    long cPtr = ffmpegJNI.AVInputFormat_priv_class_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVClass(cPtr, false);
+  }
+
+  public void setNext(AVInputFormat value) {
+    ffmpegJNI.AVInputFormat_next_set(swigCPtr, this, AVInputFormat.getCPtr(value), value);
+  }
+
+  public AVInputFormat getNext() {
+    long cPtr = ffmpegJNI.AVInputFormat_next_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVInputFormat(cPtr, false);
+  }
+
+  public void setRaw_codec_id(int value) {
+    ffmpegJNI.AVInputFormat_raw_codec_id_set(swigCPtr, this, value);
+  }
+
+  public int getRaw_codec_id() {
+    return ffmpegJNI.AVInputFormat_raw_codec_id_get(swigCPtr, this);
+  }
+
   public void setPriv_data_size(int value) {
     ffmpegJNI.AVInputFormat_priv_data_size_set(swigCPtr, this, value);
   }
@@ -68,13 +119,13 @@ public class AVInputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVProbeData__int(cPtr, false);
   }
 
-  public void setRead_header(SWIGTYPE_p_f_p_struct_AVFormatContext_p_struct_AVFormatParameters__int value) {
-    ffmpegJNI.AVInputFormat_read_header_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_p_struct_AVFormatParameters__int.getCPtr(value));
+  public void setRead_header(SWIGTYPE_p_f_p_struct_AVFormatContext__int value) {
+    ffmpegJNI.AVInputFormat_read_header_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext__int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_p_struct_AVFormatContext_p_struct_AVFormatParameters__int getRead_header() {
+  public SWIGTYPE_p_f_p_struct_AVFormatContext__int getRead_header() {
     long cPtr = ffmpegJNI.AVInputFormat_read_header_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_p_struct_AVFormatParameters__int(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext__int(cPtr, false);
   }
 
   public void setRead_packet(SWIGTYPE_p_f_p_struct_AVFormatContext_p_struct_AVPacket__int value) {
@@ -113,30 +164,6 @@ public class AVInputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_long_long__long_long(cPtr, false);
   }
 
-  public void setFlags(int value) {
-    ffmpegJNI.AVInputFormat_flags_set(swigCPtr, this, value);
-  }
-
-  public int getFlags() {
-    return ffmpegJNI.AVInputFormat_flags_get(swigCPtr, this);
-  }
-
-  public void setExtensions(String value) {
-    ffmpegJNI.AVInputFormat_extensions_set(swigCPtr, this, value);
-  }
-
-  public String getExtensions() {
-    return ffmpegJNI.AVInputFormat_extensions_get(swigCPtr, this);
-  }
-
-  public void setValue(int value) {
-    ffmpegJNI.AVInputFormat_value_set(swigCPtr, this, value);
-  }
-
-  public int getValue() {
-    return ffmpegJNI.AVInputFormat_value_get(swigCPtr, this);
-  }
-
   public void setRead_play(SWIGTYPE_p_f_p_struct_AVFormatContext__int value) {
     ffmpegJNI.AVInputFormat_read_play_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext__int.getCPtr(value));
   }
@@ -155,15 +182,6 @@ public class AVInputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext__int(cPtr, false);
   }
 
-  public void setCodec_tag(SWIGTYPE_p_p_AVCodecTag value) {
-    ffmpegJNI.AVInputFormat_codec_tag_set(swigCPtr, this, SWIGTYPE_p_p_AVCodecTag.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_p_AVCodecTag getCodec_tag() {
-    long cPtr = ffmpegJNI.AVInputFormat_codec_tag_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVCodecTag(cPtr, false);
-  }
-
   public void setRead_seek2(SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int value) {
     ffmpegJNI.AVInputFormat_read_seek2_set(swigCPtr, this, SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int.getCPtr(value));
   }
@@ -171,24 +189,6 @@ public class AVInputFormat {
   public SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int getRead_seek2() {
     long cPtr = ffmpegJNI.AVInputFormat_read_seek2_get(swigCPtr, this);
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_int_long_long_long_long_long_long_int__int(cPtr, false);
-  }
-
-  public void setPriv_class(AVClass value) {
-    ffmpegJNI.AVInputFormat_priv_class_set(swigCPtr, this, AVClass.getCPtr(value), value);
-  }
-
-  public AVClass getPriv_class() {
-    long cPtr = ffmpegJNI.AVInputFormat_priv_class_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVClass(cPtr, false);
-  }
-
-  public void setNext(AVInputFormat value) {
-    ffmpegJNI.AVInputFormat_next_set(swigCPtr, this, AVInputFormat.getCPtr(value), value);
-  }
-
-  public AVInputFormat getNext() {
-    long cPtr = ffmpegJNI.AVInputFormat_next_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVInputFormat(cPtr, false);
   }
 
   public AVInputFormat() {
