@@ -392,6 +392,39 @@ public class AVFrame {
     return ffmpegJNI.AVFrame_pkt_pos_get(swigCPtr, this);
   }
 
+  public void setPkt_duration(long value) {
+    ffmpegJNI.AVFrame_pkt_duration_set(swigCPtr, this, value);
+  }
+
+  public long getPkt_duration() {
+    return ffmpegJNI.AVFrame_pkt_duration_get(swigCPtr, this);
+  }
+
+  public void setMetadata(SWIGTYPE_p_AVDictionary value) {
+    ffmpegJNI.AVFrame_metadata_set(swigCPtr, this, SWIGTYPE_p_AVDictionary.getCPtr(value));
+  }
+
+  public SWIGTYPE_p_AVDictionary getMetadata() {
+    long cPtr = ffmpegJNI.AVFrame_metadata_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVDictionary(cPtr, false);
+  }
+
+  public void setDecode_error_flags(int value) {
+    ffmpegJNI.AVFrame_decode_error_flags_set(swigCPtr, this, value);
+  }
+
+  public int getDecode_error_flags() {
+    return ffmpegJNI.AVFrame_decode_error_flags_get(swigCPtr, this);
+  }
+
+  public void setChannels(long value) {
+    ffmpegJNI.AVFrame_channels_set(swigCPtr, this, value);
+  }
+
+  public long getChannels() {
+    return ffmpegJNI.AVFrame_channels_get(swigCPtr, this);
+  }
+
   public AVFrame() {
     this(ffmpegJNI.new_AVFrame(), true);
   }

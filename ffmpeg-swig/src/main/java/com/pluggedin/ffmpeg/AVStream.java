@@ -60,15 +60,6 @@ public class AVStream {
     return (cPtr == 0) ? null : new AVCodecContext(cPtr, false);
   }
 
-  public void setR_frame_rate(AVRational value) {
-    ffmpegJNI.AVStream_r_frame_rate_set(swigCPtr, this, AVRational.getCPtr(value), value);
-  }
-
-  public AVRational getR_frame_rate() {
-    long cPtr = ffmpegJNI.AVStream_r_frame_rate_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVRational(cPtr, false);
-  }
-
   public void setPriv_data(long value) {
     ffmpegJNI.AVStream_priv_data_set(swigCPtr, this, value);
   }
@@ -144,13 +135,13 @@ public class AVStream {
     return (cPtr == 0) ? null : new AVRational(cPtr, false);
   }
 
-  public void setMetadata(AVDictionary value) {
-    ffmpegJNI.AVStream_metadata_set(swigCPtr, this, AVDictionary.getCPtr(value), value);
+  public void setMetadata(SWIGTYPE_p_AVDictionary value) {
+    ffmpegJNI.AVStream_metadata_set(swigCPtr, this, SWIGTYPE_p_AVDictionary.getCPtr(value));
   }
 
-  public AVDictionary getMetadata() {
+  public SWIGTYPE_p_AVDictionary getMetadata() {
     long cPtr = ffmpegJNI.AVStream_metadata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVDictionary(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVDictionary(cPtr, false);
   }
 
   public void setAvg_frame_rate(AVRational value) {
@@ -342,6 +333,30 @@ public class AVStream {
 
   public int getSkip_to_keyframe() {
     return ffmpegJNI.AVStream_skip_to_keyframe_get(swigCPtr, this);
+  }
+
+  public void setSkip_samples(int value) {
+    ffmpegJNI.AVStream_skip_samples_set(swigCPtr, this, value);
+  }
+
+  public int getSkip_samples() {
+    return ffmpegJNI.AVStream_skip_samples_get(swigCPtr, this);
+  }
+
+  public void setNb_decoded_frames(int value) {
+    ffmpegJNI.AVStream_nb_decoded_frames_set(swigCPtr, this, value);
+  }
+
+  public int getNb_decoded_frames() {
+    return ffmpegJNI.AVStream_nb_decoded_frames_get(swigCPtr, this);
+  }
+
+  public void setMux_ts_offset(long value) {
+    ffmpegJNI.AVStream_mux_ts_offset_set(swigCPtr, this, value);
+  }
+
+  public long getMux_ts_offset() {
+    return ffmpegJNI.AVStream_mux_ts_offset_get(swigCPtr, this);
   }
 
   public AVStream_info getInfo() {

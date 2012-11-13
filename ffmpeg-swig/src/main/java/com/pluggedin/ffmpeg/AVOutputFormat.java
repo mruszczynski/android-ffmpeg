@@ -67,28 +67,28 @@ public class AVOutputFormat {
     return ffmpegJNI.AVOutputFormat_extensions_get(swigCPtr, this);
   }
 
-  public void setAudio_codec(CodecID value) {
+  public void setAudio_codec(AVCodecID value) {
     ffmpegJNI.AVOutputFormat_audio_codec_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getAudio_codec() {
-    return CodecID.swigToEnum(ffmpegJNI.AVOutputFormat_audio_codec_get(swigCPtr, this));
+  public AVCodecID getAudio_codec() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVOutputFormat_audio_codec_get(swigCPtr, this));
   }
 
-  public void setVideo_codec(CodecID value) {
+  public void setVideo_codec(AVCodecID value) {
     ffmpegJNI.AVOutputFormat_video_codec_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getVideo_codec() {
-    return CodecID.swigToEnum(ffmpegJNI.AVOutputFormat_video_codec_get(swigCPtr, this));
+  public AVCodecID getVideo_codec() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVOutputFormat_video_codec_get(swigCPtr, this));
   }
 
-  public void setSubtitle_codec(CodecID value) {
+  public void setSubtitle_codec(AVCodecID value) {
     ffmpegJNI.AVOutputFormat_subtitle_codec_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getSubtitle_codec() {
-    return CodecID.swigToEnum(ffmpegJNI.AVOutputFormat_subtitle_codec_get(swigCPtr, this));
+  public AVCodecID getSubtitle_codec() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVOutputFormat_subtitle_codec_get(swigCPtr, this));
   }
 
   public void setFlags(int value) {
@@ -170,13 +170,13 @@ public class AVOutputFormat {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_struct_AVFormatContext_p_struct_AVPacket_p_struct_AVPacket_int__int(cPtr, false);
   }
 
-  public void setQuery_codec(SWIGTYPE_p_f_enum_CodecID_int__int value) {
-    ffmpegJNI.AVOutputFormat_query_codec_set(swigCPtr, this, SWIGTYPE_p_f_enum_CodecID_int__int.getCPtr(value));
+  public void setQuery_codec(SWIGTYPE_p_f_enum_AVCodecID_int__int value) {
+    ffmpegJNI.AVOutputFormat_query_codec_set(swigCPtr, this, SWIGTYPE_p_f_enum_AVCodecID_int__int.getCPtr(value));
   }
 
-  public SWIGTYPE_p_f_enum_CodecID_int__int getQuery_codec() {
+  public SWIGTYPE_p_f_enum_AVCodecID_int__int getQuery_codec() {
     long cPtr = ffmpegJNI.AVOutputFormat_query_codec_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_enum_CodecID_int__int(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_f_enum_AVCodecID_int__int(cPtr, false);
   }
 
   public void setGet_output_timestamp(SWIGTYPE_p_f_p_struct_AVFormatContext_int_p_long_long_p_long_long__void value) {

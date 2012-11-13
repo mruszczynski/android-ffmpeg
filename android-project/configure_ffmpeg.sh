@@ -100,9 +100,6 @@ exit 0;
 
 --enable-static \
 --enable-small \
-\
---enable-swresample \
---enable-postproc \
 
 
 

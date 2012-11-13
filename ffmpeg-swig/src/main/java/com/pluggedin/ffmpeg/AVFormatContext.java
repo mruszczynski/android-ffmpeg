@@ -210,28 +210,28 @@ public class AVFormatContext {
     return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVProgram(cPtr, false);
   }
 
-  public void setVideo_codec_id(CodecID value) {
+  public void setVideo_codec_id(AVCodecID value) {
     ffmpegJNI.AVFormatContext_video_codec_id_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getVideo_codec_id() {
-    return CodecID.swigToEnum(ffmpegJNI.AVFormatContext_video_codec_id_get(swigCPtr, this));
+  public AVCodecID getVideo_codec_id() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVFormatContext_video_codec_id_get(swigCPtr, this));
   }
 
-  public void setAudio_codec_id(CodecID value) {
+  public void setAudio_codec_id(AVCodecID value) {
     ffmpegJNI.AVFormatContext_audio_codec_id_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getAudio_codec_id() {
-    return CodecID.swigToEnum(ffmpegJNI.AVFormatContext_audio_codec_id_get(swigCPtr, this));
+  public AVCodecID getAudio_codec_id() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVFormatContext_audio_codec_id_get(swigCPtr, this));
   }
 
-  public void setSubtitle_codec_id(CodecID value) {
+  public void setSubtitle_codec_id(AVCodecID value) {
     ffmpegJNI.AVFormatContext_subtitle_codec_id_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getSubtitle_codec_id() {
-    return CodecID.swigToEnum(ffmpegJNI.AVFormatContext_subtitle_codec_id_get(swigCPtr, this));
+  public AVCodecID getSubtitle_codec_id() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVFormatContext_subtitle_codec_id_get(swigCPtr, this));
   }
 
   public void setMax_index_size(long value) {
@@ -267,13 +267,13 @@ public class AVFormatContext {
     return (cPtr == 0) ? null : new SWIGTYPE_p_p_AVChapter(cPtr, false);
   }
 
-  public void setMetadata(AVDictionary value) {
-    ffmpegJNI.AVFormatContext_metadata_set(swigCPtr, this, AVDictionary.getCPtr(value), value);
+  public void setMetadata(SWIGTYPE_p_AVDictionary value) {
+    ffmpegJNI.AVFormatContext_metadata_set(swigCPtr, this, SWIGTYPE_p_AVDictionary.getCPtr(value));
   }
 
-  public AVDictionary getMetadata() {
+  public SWIGTYPE_p_AVDictionary getMetadata() {
     long cPtr = ffmpegJNI.AVFormatContext_metadata_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AVDictionary(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_AVDictionary(cPtr, false);
   }
 
   public void setStart_time_realtime(long value) {
@@ -349,6 +349,38 @@ public class AVFormatContext {
     return ffmpegJNI.AVFormatContext_max_chunk_size_get(swigCPtr, this);
   }
 
+  public void setUse_wallclock_as_timestamps(int value) {
+    ffmpegJNI.AVFormatContext_use_wallclock_as_timestamps_set(swigCPtr, this, value);
+  }
+
+  public int getUse_wallclock_as_timestamps() {
+    return ffmpegJNI.AVFormatContext_use_wallclock_as_timestamps_get(swigCPtr, this);
+  }
+
+  public void setAvoid_negative_ts(int value) {
+    ffmpegJNI.AVFormatContext_avoid_negative_ts_set(swigCPtr, this, value);
+  }
+
+  public int getAvoid_negative_ts() {
+    return ffmpegJNI.AVFormatContext_avoid_negative_ts_get(swigCPtr, this);
+  }
+
+  public void setAvio_flags(int value) {
+    ffmpegJNI.AVFormatContext_avio_flags_set(swigCPtr, this, value);
+  }
+
+  public int getAvio_flags() {
+    return ffmpegJNI.AVFormatContext_avio_flags_get(swigCPtr, this);
+  }
+
+  public void setDuration_estimation_method(AVDurationEstimationMethod value) {
+    ffmpegJNI.AVFormatContext_duration_estimation_method_set(swigCPtr, this, value.swigValue());
+  }
+
+  public AVDurationEstimationMethod getDuration_estimation_method() {
+    return AVDurationEstimationMethod.swigToEnum(ffmpegJNI.AVFormatContext_duration_estimation_method_get(swigCPtr, this));
+  }
+
   public void setPacket_buffer(AVPacketList value) {
     ffmpegJNI.AVFormatContext_packet_buffer_set(swigCPtr, this, AVPacketList.getCPtr(value), value);
   }
@@ -417,14 +449,6 @@ public class AVFormatContext {
 
   public int getRaw_packet_buffer_remaining_size() {
     return ffmpegJNI.AVFormatContext_raw_packet_buffer_remaining_size_get(swigCPtr, this);
-  }
-
-  public void setAvio_flags(int value) {
-    ffmpegJNI.AVFormatContext_avio_flags_set(swigCPtr, this, value);
-  }
-
-  public int getAvio_flags() {
-    return ffmpegJNI.AVFormatContext_avio_flags_get(swigCPtr, this);
   }
 
   public AVFormatContext() {

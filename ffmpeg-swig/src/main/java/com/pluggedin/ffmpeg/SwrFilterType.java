@@ -8,41 +8,38 @@
 
 package com.pluggedin.ffmpeg;
 
-public enum AVStreamParseType {
-  AVSTREAM_PARSE_NONE,
-  AVSTREAM_PARSE_FULL,
-  AVSTREAM_PARSE_HEADERS,
-  AVSTREAM_PARSE_TIMESTAMPS,
-  AVSTREAM_PARSE_FULL_ONCE,
-  AVSTREAM_PARSE_FULL_RAW(CodecUtil.makeCodecTag(0,'R','A','W'));
+public enum SwrFilterType {
+  SWR_FILTER_TYPE_CUBIC,
+  SWR_FILTER_TYPE_BLACKMAN_NUTTALL,
+  SWR_FILTER_TYPE_KAISER;
 
   public final int swigValue() {
     return swigValue;
   }
 
-  public static AVStreamParseType swigToEnum(int swigValue) {
-    AVStreamParseType[] swigValues = AVStreamParseType.class.getEnumConstants();
+  public static SwrFilterType swigToEnum(int swigValue) {
+    SwrFilterType[] swigValues = SwrFilterType.class.getEnumConstants();
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
-    for (AVStreamParseType swigEnum : swigValues)
+    for (SwrFilterType swigEnum : swigValues)
       if (swigEnum.swigValue == swigValue)
         return swigEnum;
-    throw new IllegalArgumentException("No enum " + AVStreamParseType.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + SwrFilterType.class + " with value " + swigValue);
   }
 
   @SuppressWarnings("unused")
-  private AVStreamParseType() {
+  private SwrFilterType() {
     this.swigValue = SwigNext.next++;
   }
 
   @SuppressWarnings("unused")
-  private AVStreamParseType(int swigValue) {
+  private SwrFilterType(int swigValue) {
     this.swigValue = swigValue;
     SwigNext.next = swigValue+1;
   }
 
   @SuppressWarnings("unused")
-  private AVStreamParseType(AVStreamParseType swigEnum) {
+  private SwrFilterType(SwrFilterType swigEnum) {
     this.swigValue = swigEnum.swigValue;
     SwigNext.next = this.swigValue+1;
   }

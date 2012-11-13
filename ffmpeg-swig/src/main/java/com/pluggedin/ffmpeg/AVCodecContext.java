@@ -77,12 +77,12 @@ public class AVCodecContext {
     return ffmpegJNI.AVCodecContext_codec_name_get(swigCPtr, this);
   }
 
-  public void setCodec_id(CodecID value) {
+  public void setCodec_id(AVCodecID value) {
     ffmpegJNI.AVCodecContext_codec_id_set(swigCPtr, this, value.swigValue());
   }
 
-  public CodecID getCodec_id() {
-    return CodecID.swigToEnum(ffmpegJNI.AVCodecContext_codec_id_get(swigCPtr, this));
+  public AVCodecID getCodec_id() {
+    return AVCodecID.swigToEnum(ffmpegJNI.AVCodecContext_codec_id_get(swigCPtr, this));
   }
 
   public void setCodec_tag(long value) {
@@ -1544,6 +1544,24 @@ public class AVCodecContext {
 
   public java.math.BigInteger getVbv_delay() {
     return ffmpegJNI.AVCodecContext_vbv_delay_get(swigCPtr, this);
+  }
+
+  public void setPkt_timebase(AVRational value) {
+    ffmpegJNI.AVCodecContext_pkt_timebase_set(swigCPtr, this, AVRational.getCPtr(value), value);
+  }
+
+  public AVRational getPkt_timebase() {
+    long cPtr = ffmpegJNI.AVCodecContext_pkt_timebase_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVRational(cPtr, false);
+  }
+
+  public void setCodec_descriptor(AVCodecDescriptor value) {
+    ffmpegJNI.AVCodecContext_codec_descriptor_set(swigCPtr, this, AVCodecDescriptor.getCPtr(value), value);
+  }
+
+  public AVCodecDescriptor getCodec_descriptor() {
+    long cPtr = ffmpegJNI.AVCodecContext_codec_descriptor_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new AVCodecDescriptor(cPtr, false);
   }
 
   public void setPts_correction_num_faulty_pts(long value) {

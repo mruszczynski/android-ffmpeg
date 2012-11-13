@@ -8,41 +8,47 @@
 
 package com.pluggedin.ffmpeg;
 
-public enum AVStreamParseType {
-  AVSTREAM_PARSE_NONE,
-  AVSTREAM_PARSE_FULL,
-  AVSTREAM_PARSE_HEADERS,
-  AVSTREAM_PARSE_TIMESTAMPS,
-  AVSTREAM_PARSE_FULL_ONCE,
-  AVSTREAM_PARSE_FULL_RAW(CodecUtil.makeCodecTag(0,'R','A','W'));
+public enum AVClassCategory {
+  AV_CLASS_CATEGORY_NA(0),
+  AV_CLASS_CATEGORY_INPUT,
+  AV_CLASS_CATEGORY_OUTPUT,
+  AV_CLASS_CATEGORY_MUXER,
+  AV_CLASS_CATEGORY_DEMUXER,
+  AV_CLASS_CATEGORY_ENCODER,
+  AV_CLASS_CATEGORY_DECODER,
+  AV_CLASS_CATEGORY_FILTER,
+  AV_CLASS_CATEGORY_BITSTREAM_FILTER,
+  AV_CLASS_CATEGORY_SWSCALER,
+  AV_CLASS_CATEGORY_SWRESAMPLER,
+  AV_CLASS_CATEGORY_NB;
 
   public final int swigValue() {
     return swigValue;
   }
 
-  public static AVStreamParseType swigToEnum(int swigValue) {
-    AVStreamParseType[] swigValues = AVStreamParseType.class.getEnumConstants();
+  public static AVClassCategory swigToEnum(int swigValue) {
+    AVClassCategory[] swigValues = AVClassCategory.class.getEnumConstants();
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
-    for (AVStreamParseType swigEnum : swigValues)
+    for (AVClassCategory swigEnum : swigValues)
       if (swigEnum.swigValue == swigValue)
         return swigEnum;
-    throw new IllegalArgumentException("No enum " + AVStreamParseType.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + AVClassCategory.class + " with value " + swigValue);
   }
 
   @SuppressWarnings("unused")
-  private AVStreamParseType() {
+  private AVClassCategory() {
     this.swigValue = SwigNext.next++;
   }
 
   @SuppressWarnings("unused")
-  private AVStreamParseType(int swigValue) {
+  private AVClassCategory(int swigValue) {
     this.swigValue = swigValue;
     SwigNext.next = swigValue+1;
   }
 
   @SuppressWarnings("unused")
-  private AVStreamParseType(AVStreamParseType swigEnum) {
+  private AVClassCategory(AVClassCategory swigEnum) {
     this.swigValue = swigEnum.swigValue;
     SwigNext.next = this.swigValue+1;
   }

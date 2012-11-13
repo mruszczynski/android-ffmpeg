@@ -18,7 +18,8 @@ public enum AVOptionType {
   AV_OPT_TYPE_RATIONAL,
   AV_OPT_TYPE_BINARY,
   AV_OPT_TYPE_CONST(128),
-  AV_OPT_TYPE_IMAGE_SIZE(CodecUtil.makeCodecTag('S','I','Z','E'));
+  AV_OPT_TYPE_IMAGE_SIZE(CodecUtil.makeCodecTag('S','I','Z','E')),
+  AV_OPT_TYPE_PIXEL_FMT(CodecUtil.makeCodecTag('P','F','M','T'));
 
   public final int swigValue() {
     return swigValue;

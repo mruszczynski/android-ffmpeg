@@ -12,7 +12,9 @@ public enum AVPacketSideDataType {
   AV_PKT_DATA_PALETTE,
   AV_PKT_DATA_NEW_EXTRADATA,
   AV_PKT_DATA_PARAM_CHANGE,
-  AV_PKT_DATA_H263_MB_INFO;
+  AV_PKT_DATA_H263_MB_INFO,
+  AV_PKT_DATA_SKIP_SAMPLES(70),
+  AV_PKT_DATA_JP_DUALMONO;
 
   public final int swigValue() {
     return swigValue;
