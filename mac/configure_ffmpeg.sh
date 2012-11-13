@@ -41,18 +41,6 @@ pushd ../ffmpeg
 --enable-encoder=libspeex \
 --enable-decoder=libspeex \
 \
---enable-libtheora \
---enable-encoder=libtheora \
---enable-decoder=theora \
-\
---enable-libvpx \
---enable-encoder=libvpx \
---enable-decoder=libvpx \
-\
---enable-libvorbis \
---enable-encoder=libvorbis \
---enable-decoder=libvorbis \
-\
 --enable-encoder=flac \
 --enable-decoder=flac \
 \
@@ -86,6 +74,21 @@ popd;
 popd
 
 exit 0;
+
+
+# Not supported by build yet:
+\
+--enable-libtheora \
+--enable-encoder=libtheora \
+--enable-decoder=theora \
+\
+--enable-libvpx \
+--enable-encoder=libvpx \
+--enable-decoder=libvpx \
+\
+--enable-libvorbis \
+--enable-encoder=libvorbis \
+--enable-decoder=libvorbis \
 
 
 # Old mac flags:
