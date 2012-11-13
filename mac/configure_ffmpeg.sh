@@ -17,8 +17,6 @@ pushd ../ffmpeg
 --enable-debug=3 \
 --disable-optimizations \
 \
---disable-everything \
-\
 --enable-filter=aresample \
 \
 --enable-encoder=aac \
@@ -74,6 +72,10 @@ popd;
 popd
 
 exit 0;
+
+
+\
+--disable-everything \
 
 
 # Not supported by build yet:
