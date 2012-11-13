@@ -35,14 +35,6 @@ public class AVOption_default_val {
     }
   }
 
-  public void setI64(long value) {
-    ffmpegJNI.AVOption_default_val_i64_set(swigCPtr, this, value);
-  }
-
-  public long getI64() {
-    return ffmpegJNI.AVOption_default_val_i64_get(swigCPtr, this);
-  }
-
   public void setDbl(double value) {
     ffmpegJNI.AVOption_default_val_dbl_set(swigCPtr, this, value);
   }
@@ -57,6 +49,14 @@ public class AVOption_default_val {
 
   public String getStr() {
     return ffmpegJNI.AVOption_default_val_str_get(swigCPtr, this);
+  }
+
+  public void setI64(long value) {
+    ffmpegJNI.AVOption_default_val_i64_set(swigCPtr, this, value);
+  }
+
+  public long getI64() {
+    return ffmpegJNI.AVOption_default_val_i64_get(swigCPtr, this);
   }
 
   public void setQ(AVRational value) {

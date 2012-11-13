@@ -59,13 +59,13 @@ public class AVStream_info {
     return ffmpegJNI.AVStream_info_duration_count_get(swigCPtr, this);
   }
 
-  public void setDuration_error(SWIGTYPE_p_a_2__a__60_12_6___double value) {
-    ffmpegJNI.AVStream_info_duration_error_set(swigCPtr, this, SWIGTYPE_p_a_2__a__60_12_6___double.getCPtr(value));
+  public void setDuration_error(SWIGTYPE_p_a_2__a__60_12_5___double value) {
+    ffmpegJNI.AVStream_info_duration_error_set(swigCPtr, this, SWIGTYPE_p_a_2__a__60_12_5___double.getCPtr(value));
   }
 
-  public SWIGTYPE_p_a_2__a__60_12_6___double getDuration_error() {
+  public SWIGTYPE_p_a_2__a__60_12_5___double getDuration_error() {
     long cPtr = ffmpegJNI.AVStream_info_duration_error_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_a_2__a__60_12_6___double(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_a_2__a__60_12_5___double(cPtr, false);
   }
 
   public void setCodec_info_duration(long value) {
@@ -76,44 +76,12 @@ public class AVStream_info {
     return ffmpegJNI.AVStream_info_codec_info_duration_get(swigCPtr, this);
   }
 
-  public void setFound_decoder(int value) {
-    ffmpegJNI.AVStream_info_found_decoder_set(swigCPtr, this, value);
+  public void setNb_decoded_frames(int value) {
+    ffmpegJNI.AVStream_info_nb_decoded_frames_set(swigCPtr, this, value);
   }
 
-  public int getFound_decoder() {
-    return ffmpegJNI.AVStream_info_found_decoder_get(swigCPtr, this);
-  }
-
-  public void setFps_first_dts(long value) {
-    ffmpegJNI.AVStream_info_fps_first_dts_set(swigCPtr, this, value);
-  }
-
-  public long getFps_first_dts() {
-    return ffmpegJNI.AVStream_info_fps_first_dts_get(swigCPtr, this);
-  }
-
-  public void setFps_first_dts_idx(int value) {
-    ffmpegJNI.AVStream_info_fps_first_dts_idx_set(swigCPtr, this, value);
-  }
-
-  public int getFps_first_dts_idx() {
-    return ffmpegJNI.AVStream_info_fps_first_dts_idx_get(swigCPtr, this);
-  }
-
-  public void setFps_last_dts(long value) {
-    ffmpegJNI.AVStream_info_fps_last_dts_set(swigCPtr, this, value);
-  }
-
-  public long getFps_last_dts() {
-    return ffmpegJNI.AVStream_info_fps_last_dts_get(swigCPtr, this);
-  }
-
-  public void setFps_last_dts_idx(int value) {
-    ffmpegJNI.AVStream_info_fps_last_dts_idx_set(swigCPtr, this, value);
-  }
-
-  public int getFps_last_dts_idx() {
-    return ffmpegJNI.AVStream_info_fps_last_dts_idx_get(swigCPtr, this);
+  public int getNb_decoded_frames() {
+    return ffmpegJNI.AVStream_info_nb_decoded_frames_get(swigCPtr, this);
   }
 
   public AVStream_info() {

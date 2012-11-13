@@ -103,23 +103,6 @@ public class AVClass {
     return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_q_const__struct_AVClass__p_AVClass(cPtr, false);
   }
 
-  public void setCategory(AVClassCategory value) {
-    ffmpegJNI.AVClass_category_set(swigCPtr, this, value.swigValue());
-  }
-
-  public AVClassCategory getCategory() {
-    return AVClassCategory.swigToEnum(ffmpegJNI.AVClass_category_get(swigCPtr, this));
-  }
-
-  public void setGet_category(SWIGTYPE_p_f_p_void__AVClassCategory value) {
-    ffmpegJNI.AVClass_get_category_set(swigCPtr, this, SWIGTYPE_p_f_p_void__AVClassCategory.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_f_p_void__AVClassCategory getGet_category() {
-    long cPtr = ffmpegJNI.AVClass_get_category_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_f_p_void__AVClassCategory(cPtr, false);
-  }
-
   public AVClass() {
     this(ffmpegJNI.new_AVClass(), true);
   }

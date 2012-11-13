@@ -51,12 +51,12 @@ public class AVHWAccel {
     return AVMediaType.swigToEnum(ffmpegJNI.AVHWAccel_type_get(swigCPtr, this));
   }
 
-  public void setId(AVCodecID value) {
+  public void setId(CodecID value) {
     ffmpegJNI.AVHWAccel_id_set(swigCPtr, this, value.swigValue());
   }
 
-  public AVCodecID getId() {
-    return AVCodecID.swigToEnum(ffmpegJNI.AVHWAccel_id_get(swigCPtr, this));
+  public CodecID getId() {
+    return CodecID.swigToEnum(ffmpegJNI.AVHWAccel_id_get(swigCPtr, this));
   }
 
   public void setPix_fmt(PixelFormat value) {

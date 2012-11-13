@@ -222,30 +222,6 @@ public class AVIOContext {
     return ffmpegJNI.AVIOContext_maxsize_get(swigCPtr, this);
   }
 
-  public void setDirect(int value) {
-    ffmpegJNI.AVIOContext_direct_set(swigCPtr, this, value);
-  }
-
-  public int getDirect() {
-    return ffmpegJNI.AVIOContext_direct_get(swigCPtr, this);
-  }
-
-  public void setBytes_read(long value) {
-    ffmpegJNI.AVIOContext_bytes_read_set(swigCPtr, this, value);
-  }
-
-  public long getBytes_read() {
-    return ffmpegJNI.AVIOContext_bytes_read_get(swigCPtr, this);
-  }
-
-  public void setSeek_count(int value) {
-    ffmpegJNI.AVIOContext_seek_count_set(swigCPtr, this, value);
-  }
-
-  public int getSeek_count() {
-    return ffmpegJNI.AVIOContext_seek_count_get(swigCPtr, this);
-  }
-
   public AVIOContext() {
     this(ffmpegJNI.new_AVIOContext(), true);
   }

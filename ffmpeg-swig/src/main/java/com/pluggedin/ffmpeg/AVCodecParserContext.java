@@ -257,14 +257,6 @@ public class AVCodecParserContext {
     return ffmpegJNI.AVCodecParserContext_last_pos_get(swigCPtr, this);
   }
 
-  public void setDuration(int value) {
-    ffmpegJNI.AVCodecParserContext_duration_set(swigCPtr, this, value);
-  }
-
-  public int getDuration() {
-    return ffmpegJNI.AVCodecParserContext_duration_get(swigCPtr, this);
-  }
-
   public AVCodecParserContext() {
     this(ffmpegJNI.new_AVCodecParserContext(), true);
   }
