@@ -4,7 +4,7 @@ pushd $DIR
 . settings.sh
 
 pushd ../ffmpeg
-make -j4
+make -j4 || die "make"
 popd; 
 
 find ../ffmpeg -name '*.dylib' -exec ln -s \{\} ./ \;

@@ -17,7 +17,7 @@ echo "====================="
 echo ""
 echo ""
 
-./clean.sh
+./clean.sh || die "clean"
 
 echo ""
 echo "====================="

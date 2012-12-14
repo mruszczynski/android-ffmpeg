@@ -9,7 +9,7 @@ pushd ../speex
 make clean || die "cleaning speex"
 make -j8 || die "making speex"
 popd
-#ln -s ../speex/libspeex/.libs/libspeexdsp.so.1 ;
+ln -s ../speex/libspeex/.libs/libspeexdsp.so.1 ;
 ln -s ../speex/libspeex/.libs/libspeex.so.1 ;
 
 pushd ../libvpx
