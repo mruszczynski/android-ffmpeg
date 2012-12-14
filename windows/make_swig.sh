@@ -8,7 +8,7 @@ make -f Makefile.win -j4 || die "make swig"
 mvn install || die "Error in mvn instal swig";
 popd; 
 
-find ../ffmpeg-swig -name '*.dll' -exec ln -s \{\} ./ \;
+find ../ffmpeg-swig -name '*.dll' -exec ln -s \{\} \;
 
 popd
 

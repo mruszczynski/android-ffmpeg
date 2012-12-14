@@ -11,13 +11,11 @@ pushd ../ffmpeg
 
 ./configure \
 \
-\
 --enable-memalign-hack --arch=x86 --target-os=mingw32 --cross-prefix=i686-mingw32- \
 \
 --enable-runtime-cpudetect \
 --enable-pic \
 --enable-shared \
---enable-static \
 --enable-version3 \
 --enable-memalign-hack \
 --disable-doc \
@@ -80,6 +78,9 @@ popd
 
 exit 0;
 
+
+
+--enable-static \
 
 
 

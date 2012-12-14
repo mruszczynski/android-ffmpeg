@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pluggedin</groupId>
   <artifactId>ffmpeg-swig</artifactId>
-  <version>3-SNAPSHOT</version>
+  <version>4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <distributionManagement>
