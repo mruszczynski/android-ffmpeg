@@ -1,0 +1,39 @@
+/* 
+ * File:   plggdn_aec_speex.h
+ * Author: michu
+ *
+ * Created on 13 grudzień 2012, 15:22
+ */
+
+#ifndef PLGGDN_AEC_SPEEX_H
+#define	PLGGDN_AEC_SPEEX_H
+
+#include <speex/speex_echo.h>
+#include "plggdn_aec.h"
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+    
+    typedef struct plggdn_aec_speex_attr {
+        SpeexEchoState *spx_echo_state;        
+    } plggdn_aec_speex_attr;
+    
+    int plggdn_aec_speex_init(plggdn_aec_t *aec_spx, void *arg);
+    int plggdn_aec_speex_free(plggdn_aec_t *aec_spx);
+    
+    // synced cancellation
+    int plggdn_aec_speex_echo_cancel(plggdn_aec_t *aec_spx, void *input, void *echo, void *out);
+    
+    // async cancellation
+    int plggdn_aec_speex_echo_playback(plggdn_aec_t *aec_spx, void *echo);
+    int plggdn_aec_speex_echo_capture(plggdn_aec_t *aec_spx, void *input, void *out);
+
+    extern plggdn_aec_vtable plggdn_aec_speex_vt;
+
+#ifdef	__cplusplus
+}
+#endif
+
+#endif	/* PLGGDN_AEC_SPEEX_H */
+

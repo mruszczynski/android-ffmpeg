@@ -11,18 +11,24 @@ src/main/c/ffmpeg_wrap.c: ffmpeg.i
 	sed 's/strncpy/av_strlcpy/g' -i src/main/c/ffmpeg_wrap.c
 	sed -i "/ReleaseStringUTFChars/ s/^/\/\//g" src/main/c/ffmpeg_wrap.c
 
-target/ffmpeg_wrap.o: src/main/c/ffmpeg_wrap.c
+ffmpeg_objects = target/ffmpeg_wrap.o
+speex_objects = target/plggdn_aec.o target/com_pluggedin_dsp_AECJNI.o target/plggdn_aec_speex.o
+#fftw_objects = target/com_pluggedin_dsp_FFTJNI.o target/plggdn_fft_FFTW.o target/plggdn_fft.o target/com_pluggedin_dsp_ComplexJNI.o
+objects = target/test.o $(ffmpeg_objects) $(speex_objects) $(fftw_objects)
+
+$(objects): target/%.o: src/main/c/%.c
 	mkdir -p target
-	gcc -fPIC \
+	gcc -fPIC -std=c99 \
 		-I$(JAVA_HOME)/include/ \
 		-I$(JAVA_HOME)/include/linux/ \
 		-I../ffmpeg \
+		-I../speex/include \
 		-I/usr/include/ \
-		-c src/main/c/ffmpeg_wrap.c \
+		-c $< \
 		-g \
-		-o target/ffmpeg_wrap.o
+		-o $@
 
-target/libffmpegjni.so.1: target/ffmpeg_wrap.o
+target/libffmpegjni.so.1: $(objects)
 	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
 		-L../ffmpeg/libavfilter \
 		-lavfilter \
@@ -35,7 +41,7 @@ target/libffmpegjni.so.1: target/ffmpeg_wrap.o
 		-L../ffmpeg/libswscale \
 		-lswscale \
 		-o target/libffmpegjni.so.1 \
-		target/ffmpeg_wrap.o
+		$(objects)
 
 target/libffmpegjni.so: target/libffmpegjni.so.1
 	ln -s libffmpegjni.so.1 target/libffmpegjni.so
