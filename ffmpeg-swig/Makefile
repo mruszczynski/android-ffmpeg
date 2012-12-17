@@ -30,6 +30,9 @@ $(objects): target/%.o: src/main/c/%.c
 
 target/libffmpegjni.so.1: $(objects)
 	gcc -shared -Wl,-soname,libffmpegjni.so.1 \
+		-L../speex/libspeex/.libs/ \
+		-lspeex \
+		-lspeexdsp \
 		-L../ffmpeg/libavfilter \
 		-lavfilter \
 		-L../ffmpeg/libavformat \

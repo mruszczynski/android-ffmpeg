@@ -9,9 +9,9 @@ package com.pluggedin.dsp;
  * @author michu
  */
 public class AECJNI {
-    static {
-        System.loadLibrary("plggdn_dsp");
-    }
+//    static {
+//        System.loadLibrary("plggdn_dsp");
+//    }
     
     
     public native static long create(int frame_size, int filter_length);

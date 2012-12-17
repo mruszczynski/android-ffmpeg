@@ -39,6 +39,13 @@
       <scope>test</scope>
       <version>4.10</version>
     </dependency>
+    <dependency>
+      <groupId>ffmpeg</groupId>
+      <artifactId>ffmpeg-native-linux-amd64</artifactId>
+      <version>4-SNAPSHOT</version>
+      <classifier>libs</classifier>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
 </project>
