@@ -20,17 +20,22 @@ LDFLAGS1=-Wl,--as-needed,--warn-common \
 -Wl,--export-all-symbols \
 -L/usr/i686-mingw32/lib -lmingw32 -lSDLmain -lSDL -lm -luser32 -lgdi32 -lwinmm -ldxguid -lws2_32 -lbz2 -lz -lpsapi
 
-#-Wl,-E \
+ffmpeg_objects = src/main/c/ffmpeg_wrap.c
+speex_objects = src/main/c/plggdn_aec.c src/main/c/com_pluggedin_dsp_AECJNI.c src/main/c/plggdn_aec_speex.c
+#fftw_objects = src/main/c/com_pluggedin_dsp_FFTJNI.c src/main/c/plggdn_fft_FFTW.c src/main/c/plggdn_fft.c src/main/c/com_pluggedin_dsp_ComplexJNI.c
+objects = $(ffmpeg_objects) $(speex_objects) $(fftw_objects)
 
-target/ffmpegjni.dll: src/main/c/ffmpeg_wrap.c
+target/ffmpegjni.dll: $(objects)
 	i686-mingw32-gcc \
 		$(CFLAGS0) $(CFLAGS2) $(LDFLAGS1) \
 		-fPIC -shared -Wl,-shared,-soname,ffmpegjni.dll \
 		-I/home/andrew/jdk1.7.0_04/include \
 		-I/home/andrew/jdk1.7.0_04/include/linux \
 		-I../ffmpeg \
+		-I../speex/include \
 		-I/usr/i686-mingw32/include \
-		src/main/c/ffmpeg_wrap.c \
+		$(objects) \
+		-L../speex/libspeex/.libs/ -lspeex -lspeexdsp \
 		-L../ffmpeg/libavutil -llibavutil \
 		-L../ffmpeg/libswscale -llibswscale \
 		-L../ffmpeg/libswresample -llibswresample \

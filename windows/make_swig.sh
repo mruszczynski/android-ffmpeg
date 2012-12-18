@@ -5,7 +5,7 @@ pushd $DIR
 
 pushd ../ffmpeg-swig
 make -f Makefile.win -j4 || die "make swig"
-mvn install || die "Error in mvn instal swig";
+#mvn install || die "Error in mvn instal swig";
 popd; 
 
 find ../ffmpeg-swig -name '*.dll' -exec ln -s \{\} \;
