@@ -3,13 +3,24 @@ clean:
 	rm -rf target/
 	mkdir -p target
 
-target/libffmpegjni.1.dylib: src/main/c/ffmpeg_wrap.c
+
+ffmpeg_objects = src/main/c/ffmpeg_wrap.c
+speex_objects = src/main/c/plggdn_aec.c src/main/c/com_pluggedin_dsp_AECJNI.c src/main/c/plggdn_aec_speex.c
+#fftw_objects = src/main/c/com_pluggedin_dsp_FFTJNI.c src/main/c/plggdn_fft_FFTW.c src/main/c/plggdn_fft.c src/main/c/com_pluggedin_dsp_ComplexJNI.c
+objects = $(ffmpeg_objects) $(speex_objects) $(fftw_objects)
+
+
+target/libffmpegjni.1.dylib: $(ffmpeg_objects)
 	gcc -fPIC -shared \
 		-Wl,-install_name,/tmp/.pluggedin/lib/libffmpegjni.1.dylib \
 		-I/usr/include/ \
 		-I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/ \
 		-I../ffmpeg \
-		src/main/c/ffmpeg_wrap.c \
+		-I../speex/include \
+		$(ffmpeg_objects) \
+		-L../speex/libspeex/.libs/ \
+		-lspeex \
+		-lspeexdsp \
 		-L../ffmpeg/libavfilter \
 		-lavfilter \
 		-L../ffmpeg/libswresample \

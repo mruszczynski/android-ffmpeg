@@ -5,7 +5,7 @@ pushd $DIR
 
 pushd ../ffmpeg-swig
 make -f Makefile.mac -j4
-mvn install || die "mvn install swig";
+#mvn install || die "mvn install swig";
 popd; 
 
 find ../ffmpeg-swig -name '*.dylib' -exec ln -s \{\} \;
