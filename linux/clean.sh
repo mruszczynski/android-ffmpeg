@@ -7,6 +7,11 @@ find .. -name '*.o' -delete
 find .. -name '*.so' -delete
 find .. -name '*.so.*' -delete
 
+pushd ../fftw
+make distclean
+make clean
+popd
+
 pushd ../speex
 make distclean
 make clean

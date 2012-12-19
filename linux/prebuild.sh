@@ -3,6 +3,13 @@ DIR=`dirname $0`
 pushd $DIR
 . settings.sh
 
+pushd ../fftw
+./configure --enable-shared || die "configuring fftw"
+make clean || die "cleaning fftw"
+make -j8 || die "making fftw"
+popd
+ln -s ../fftw/.libs/libfftw3.so.3 ;
+
 pushd ../speex
 ./autogen.sh || die "running speex/autogen.sh"
 ./configure || die "configuring speex"
