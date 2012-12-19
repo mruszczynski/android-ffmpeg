@@ -19,3 +19,6 @@
 [submodule "ogg"]
 	path = ogg
 	url = git@github.com:acharneski/ogg.git
+[submodule "fftw"]
+	path = fftw
+	url = git@github.com:mruszczynski/fftw.git
