@@ -9,9 +9,6 @@ package com.pluggedin.dsp;
  * @author michu
  */
 public class ComplexJNI {
-    static {
-        System.loadLibrary("plggdn_dsp");
-    }
     
     /**
      * create native complex

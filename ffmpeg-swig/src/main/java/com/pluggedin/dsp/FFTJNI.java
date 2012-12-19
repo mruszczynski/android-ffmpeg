@@ -9,9 +9,6 @@ package com.pluggedin.dsp;
  * @author michu
  */
 public class FFTJNI {
-    static {
-        System.loadLibrary("plggdn_dsp");
-    }
     
     native static long create(int N);
     native static void destroy(long cptr);
