@@ -83,11 +83,12 @@ public class AppTest
         @Override
         public void run()
         {
-          int length = 100;
+          int length = 100, err = 1;
           short[] input = new short[length];
           short[] mic = new short[length];
           Random random = new Random();
-          AEC aec = new AEC(length, length * 10);
+          AEC aec = new AEC(length, length);
+          short[] filtered = new short[length];
           for(int i1=0;i1<length;i1++)
           {
             for (int i = 0; i < input.length; i++)
@@ -95,7 +96,7 @@ public class AppTest
               input[i] = (short) (random.nextInt() >> 16);
               mic[i] = (short) (random.nextInt() >> 16);
             }
-            short[] filtered = aec.echo_cancel(input, mic);
+             err = aec.echo_cancel(input, mic, filtered);
           }
           semaphore.release();
         }

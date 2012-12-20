@@ -18,34 +18,34 @@ JNIEXPORT jlong JNICALL Java_com_pluggedin_dsp_AECJNI_create
 /*
  * Class:     com_pluggedin_dsp_AECJNI
  * Method:    destroy
- * Signature: (J)V
+ * Signature: (J)I
  */
-JNIEXPORT void JNICALL Java_com_pluggedin_dsp_AECJNI_destroy
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_destroy
   (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     com_pluggedin_dsp_AECJNI
  * Method:    echo_cancel
- * Signature: (J[S[S)[S
+ * Signature: (J[S[S[S)I
  */
-JNIEXPORT jshortArray JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1cancel
-  (JNIEnv *, jclass, jlong, jshortArray, jshortArray);
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1cancel
+  (JNIEnv *, jclass, jlong, jshortArray, jshortArray, jshortArray);
 
 /*
  * Class:     com_pluggedin_dsp_AECJNI
  * Method:    echo_playback
- * Signature: (J[S)V
+ * Signature: (J[S)I
  */
-JNIEXPORT void JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1playback
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1playback
   (JNIEnv *, jclass, jlong, jshortArray);
 
 /*
  * Class:     com_pluggedin_dsp_AECJNI
  * Method:    echo_capture
- * Signature: (J[S)[S
+ * Signature: (J[S[S)I
  */
-JNIEXPORT jshortArray JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1capture
-  (JNIEnv *, jclass, jlong, jshortArray);
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1capture
+  (JNIEnv *, jclass, jlong, jshortArray, jshortArray);
 
 #ifdef __cplusplus
 }

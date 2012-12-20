@@ -11,8 +11,8 @@ package com.pluggedin.dsp;
 public class AEC {    
     private long cPtr;
     
-    public AEC(int frame_size, int filter_samples) {
-        cPtr = AECJNI.create(frame_size, filter_samples);
+    public AEC(int frame_size, int filter_length) {
+        cPtr = AECJNI.create(frame_size, filter_length);
     }
 
     @Override
@@ -26,18 +26,20 @@ public class AEC {
      * synchronous way to cancel echo
      * @param input - what mic received
      * @param echo - what speakers played
-     * @return filtered input
+     * @param filter_out - filtered input
+     * @return errcode
      */
-    public short[] echo_cancel(short[] input, short[] echo) {
-        return AECJNI.echo_cancel(cPtr, input, echo);
+    public int echo_cancel(short[] input, short[] echo, short[] filter_out) {
+        return AECJNI.echo_cancel(cPtr, input, echo, filter_out);
     }
     
     /**
      * asynchronous aec, run this each time frame is pushed to sound card
-     * @param output 
+     * @param output
+     * @return 
      */
-    public void echo_playback(short[] output) {
-        AECJNI.echo_playback(cPtr, output);
+    public int echo_playback(short[] output) {
+        return AECJNI.echo_playback(cPtr, output);
     }
     
     /**
@@ -45,8 +47,8 @@ public class AEC {
      * @param input
      * @return 
      */
-    public short[] echo_capture(short[] input) {
-        return AECJNI.echo_capture(cPtr, input);
+    public int echo_capture(short[] input, short[] filtered_input) {
+        return AECJNI.echo_capture(cPtr, input, filtered_input);
     }
     
 }

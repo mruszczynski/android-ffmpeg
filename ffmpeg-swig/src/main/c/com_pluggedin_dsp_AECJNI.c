@@ -4,11 +4,6 @@
 #include "plggdn_aec.h"
 #include "plggdn_aec_speex.h"
 
-/*
- * Class:     com_pluggedin_dsp_AECJNI
- * Method:    create
- * Signature: (II)J
- */
 JNIEXPORT jlong JNICALL Java_com_pluggedin_dsp_AECJNI_create
   (JNIEnv *env, jclass cls, jint frame_size, jint filter_length) {
     
@@ -21,85 +16,81 @@ JNIEXPORT jlong JNICALL Java_com_pluggedin_dsp_AECJNI_create
     return (jlong) plggdn_aec_create(&plggdn_aec_speex_vt, &args);
 }
 
-/*
- * Class:     com_pluggedin_dsp_AECJNI
- * Method:    destroy
- * Signature: (J)V
- */
-JNIEXPORT void JNICALL Java_com_pluggedin_dsp_AECJNI_destroy
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_destroy
   (JNIEnv *env, jclass cls, jlong ptr) {
     
-    plggdn_aec_release((plggdn_aec_t**)&ptr);
+    return plggdn_aec_release((plggdn_aec_t**)&ptr);
     
 }
 
-/*
- * Class:     com_pluggedin_dsp_AECJNI
- * Method:    echo_cancel
- * Signature: (J[S[S)[S
- */
-JNIEXPORT jshortArray JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1cancel
-  (JNIEnv *env, jclass cls, jlong ptr, jshortArray input, jshortArray echo) {
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1cancel
+  (JNIEnv *env, jclass cls, jlong ptr, jshortArray input, jshortArray echo, jshortArray filtered) {
     
     plggdn_aec_t *aec = (plggdn_aec_t*)ptr;
+    int err = 0;
     
-    jint N = _plggdn_aec_base(aec)->frame_size;
+    jshort *cin = (*env)->GetPrimitiveArrayCritical(env, input, 0);
+    jshort *cecho = (*env)->GetPrimitiveArrayCritical(env, echo, 0);  
+    jshort *cfiltered = (*env)->GetPrimitiveArrayCritical(env, filtered, 0);
     
-    jshort *cin = (*env)->GetShortArrayElements(env, input, 0);
-    jshort *cecho = (*env)->GetShortArrayElements(env, echo, 0);  
-    jshort *cout = malloc(sizeof(jshort) * N);
+    if(cin == NULL || cecho == NULL || cfiltered == NULL) { // memory exception
+        err = 1;
+        goto memory_exception;
+    }
     
-    plggdn_aec_echo_cancel(aec, cin, cecho, cout);
+    err = plggdn_aec_echo_cancel(aec, cin, cecho, cfiltered);
+        
+    memory_exception:
+    if(cfiltered)
+        (*env)->ReleasePrimitiveArrayCritical(env, filtered, cfiltered, 0);
+    if(cecho)
+        (*env)->ReleasePrimitiveArrayCritical(env, echo, cecho, 0);
+    if(cin)
+        (*env)->ReleasePrimitiveArrayCritical(env, input, cin, 0);
     
-    jshortArray out = (*env)->NewShortArray(env, N);
-    (*env)->SetShortArrayRegion(env, out, 0, N, cout);
-    
-    (*env)->ReleaseShortArrayElements(env, input, cin, JNI_ABORT);
-    (*env)->ReleaseShortArrayElements(env, input, cecho, JNI_ABORT);
-    free(cout);
-    
-    return out;
+    return err;
 }
 
-/*
- * Class:     com_pluggedin_dsp_AECJNI
- * Method:    echo_playback
- * Signature: (J[S)V
- */
-JNIEXPORT void JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1playback
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1playback
   (JNIEnv *env, jclass cls, jlong ptr, jshortArray echo) {
     
     plggdn_aec_t *aec = (plggdn_aec_t*)ptr;
+    int err = 0;
     
-    jshort *cecho = (*env)->GetShortArrayElements(env, echo, 0);  
+    jshort *cecho = (*env)->GetPrimitiveArrayCritical(env, echo, 0);  
+    if(!cecho) {// memory exception
+        err = 1;
+        goto memory_exception;
+    }
     
-    plggdn_aec_echo_playback(aec,  cecho);
+    err = plggdn_aec_echo_playback(aec,  cecho);
     
-    free(cecho);
+    memory_exception:
+    (*env)->ReleasePrimitiveArrayCritical(env, echo, cecho, 0);
+    return err;
 }
 
-/*
- * Class:     com_pluggedin_dsp_AECJNI
- * Method:    echo_capture
- * Signature: (J[S)[S
- */
-JNIEXPORT jshortArray JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1capture
-  (JNIEnv *env, jclass cls, jlong ptr, jshortArray input) {
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1capture
+  (JNIEnv *env, jclass cls, jlong ptr, jshortArray input, jshortArray filtered) {
     
     plggdn_aec_t *aec = (plggdn_aec_t*)ptr;
+    int err = 0;
     
     jint N = _plggdn_aec_base(aec)->frame_size;
+    jshort *cin = (*env)->GetPrimitiveArrayCritical(env, input, 0);
+    jshort *cfiltered = (*env)->GetPrimitiveArrayCritical(env, filtered, 0);
+    if(cin == NULL || cfiltered == NULL) { // memory exception
+        err = 1;
+        goto memory_exception;    
+    }
     
-    jshort *cin = (*env)->GetShortArrayElements(env, input, 0);
-    jshort *cout = malloc(sizeof(jshort) * N);
+    err = plggdn_aec_echo_capture(aec, cin, cfiltered);
     
-    plggdn_aec_echo_capture(aec, cin, cout);
+    memory_exception:
+    if(cfiltered)
+        (*env)->ReleasePrimitiveArrayCritical(env, filtered, cfiltered, 0);
+    if(cin)
+        (*env)->ReleasePrimitiveArrayCritical(env, input, cin, 0);
     
-    jshortArray out = (*env)->NewShortArray(env, N);
-    (*env)->SetShortArrayRegion(env, out, 0, N, cout);
-    
-    free(cin);
-    free(cout);
-    
-    return out;
+    return err;
 }

@@ -32,7 +32,7 @@ $(objects): target/%.o: src/main/c/%.c
 		-I$(JAVA_HOME)/include/linux/ \
 		-I../ffmpeg \
 		-I../speex/include \
-		-I../fftw/include \
+		-I../fftw/api \
 		-I/usr/include/ \
 		-c $< \
 		-g \

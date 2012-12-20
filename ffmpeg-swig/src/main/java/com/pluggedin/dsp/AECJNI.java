@@ -10,10 +10,10 @@ package com.pluggedin.dsp;
  */
 public class AECJNI {    
     native static long create(int frame_size, int filter_length);
-    native static void destroy(long ptr);
+    native static int destroy(long ptr);
     
-    native static short[] echo_cancel(long cptr, short[] input, short[] echo);
+    native static int echo_cancel(long cptr, short[] input, short[] echo, short[] filter_out);
     
-    native static void echo_playback(long cptr, short[] echo);
-    native static short[] echo_capture(long cptr, short[] input);
+    native static int echo_playback(long cptr, short[] echo);
+    native static int echo_capture(long cptr, short[] input, short[] filter_out);
 }

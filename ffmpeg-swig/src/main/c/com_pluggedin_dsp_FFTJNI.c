@@ -107,12 +107,15 @@ JNIEXPORT jobjectArray JNICALL Java_com_pluggedin_dsp_FFTJNI_fwd_1r2c
     
     /** fetch data from input array*/
     int n_elem = (*env)->GetArrayLength(env, jIn);
-    jdouble *elems = (*env)->GetDoubleArrayElements(env, jIn, NULL);
-    for(int i=0; i<n_elem; i++) {
-        
-        // assign value directly to internally allocd memory
-        _plggdn_fft(fft)->real_in[i] = elems[i];
-    }
+    jdouble *elems = (*env)->GetPrimitiveArrayCritical(env, jIn, 0);
+    if(!elems) // memory exception
+        return NULL;
+    
+//    for(int i=0; i<n_elem; i++) {        
+//        // assign value directly to internally allocd memory
+//        _plggdn_fft(fft)->real_in[i] = elems[i];
+//    }
+    memcpy(_plggdn_fft(fft)->real_in, elems, sizeof(double) * n_elem);
     
     /** transform*/
     _plggdn_fft_vt(fft)->fft_r2c(fft, _plggdn_fft(fft)->real_in, _plggdn_fft(fft)->complex_out);
