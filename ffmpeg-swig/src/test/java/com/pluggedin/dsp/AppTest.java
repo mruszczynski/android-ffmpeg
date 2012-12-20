@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 import junit.framework.Assert;
 
@@ -55,14 +58,9 @@ public class AppTest
   }
 
   @Test
-  public void testAEC() throws IOException
+  public void testAEC() throws IOException, InterruptedException
   {
     
-    //extractAndLoad("");
-    //extractAndLoad("");
-    //extractAndLoad("");
-    //extractAndLoad("");
-    //extractAndLoad("");
     extractAndLoad("libspeex.so.1");
     extractAndLoad("libspeexdsp.so.1");
     
@@ -75,16 +73,40 @@ public class AppTest
     
     extractAndLoad("libffmpegjni.so.1");
 
-    AEC aec = new AEC(16, 16 * 10);
-    short[] input = new short[100];
-    short[] mic = new short[100];
-    Random random = new Random();
-    for (int i = 0; i < input.length; i++)
+    List<Semaphore> semaphores = new ArrayList<Semaphore>();
+    for(int i2=0;i2<10;i2++)
     {
-      input[i] = (short) (random.nextInt() >> 16);
-      mic[i] = (short) (random.nextInt() >> 16);
+      final Semaphore semaphore = new Semaphore(0);
+      semaphores.add(semaphore);
+      new Thread(new Runnable()
+      {
+        @Override
+        public void run()
+        {
+          int length = 100;
+          short[] input = new short[length];
+          short[] mic = new short[length];
+          Random random = new Random();
+          AEC aec = new AEC(length, length * 10);
+          for(int i1=0;i1<length;i1++)
+          {
+            for (int i = 0; i < input.length; i++)
+            {
+              input[i] = (short) (random.nextInt() >> 16);
+              mic[i] = (short) (random.nextInt() >> 16);
+            }
+            short[] filtered = aec.echo_cancel(input, mic);
+          }
+          semaphore.release();
+        }
+      }).start();
     }
-    short[] filtered = aec.echo_cancel(input, mic);
+    
+    for(Semaphore semaphore : semaphores)
+    {
+      semaphore.acquire();
+    }
+    
   }
 
   private void extractAndLoad(String name) throws IOException

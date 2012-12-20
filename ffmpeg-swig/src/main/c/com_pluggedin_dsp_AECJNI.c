@@ -54,8 +54,8 @@ JNIEXPORT jshortArray JNICALL Java_com_pluggedin_dsp_AECJNI_echo_1cancel
     jshortArray out = (*env)->NewShortArray(env, N);
     (*env)->SetShortArrayRegion(env, out, 0, N, cout);
     
-    free(cin);
-    free(cecho);
+    (*env)->ReleaseShortArrayElements(env, input, cin, JNI_ABORT);
+    (*env)->ReleaseShortArrayElements(env, input, cecho, JNI_ABORT);
     free(cout);
     
     return out;

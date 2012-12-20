@@ -1,1 +1,0 @@
-../../../ffmpeg-swig/src/main/c/ffmpeg_wrap.c
