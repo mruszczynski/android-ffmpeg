@@ -51,51 +51,47 @@ void plggdn_freep(void **c) {
     *c = 0;
 }
 
-plggdn_fft_t *plggdn_fft_create(int N) {
+plggdn_fft_t *plggdn_fft_create(plggdn_fft_attr *attr) {
     plggdn_fft_t *ptr = (plggdn_fft_t*) malloc(sizeof(plggdn_fft_t));
-    
-    plggdn_fft_init(ptr, N);
+    memset(ptr, 0, sizeof(plggdn_fft_t));
+        
+    plggdn_fft_init(ptr, attr);
     
     return ptr;
 }
 
-int plggdn_fft_init(plggdn_fft_t *ptr, int N) {
-    /**set implementation*/
-#ifdef PLGGDN_USE_FFTW
-    _plggdn_fft_vt(ptr) = &plggdn_fft_implement_fftw;
-#else
-    printf("PLGGDN_USE_FFTW not defined, no other implementation exists, exiting...\n");
-    exit(1);
-#endif
+int plggdn_fft_init(plggdn_fft_t *fft, plggdn_fft_attr *attr) {
+    fft->N = attr->N;
     
-    _plggdn_fft(ptr)->N = N;
+    fft->vtable = attr->impl;
     
     /**call constructor routine*/    
-    _plggdn_fft_vt(ptr)->init(ptr);
+    return fft->vtable->init(fft, attr->opaque);
 }
 
-int plggdn_fft_fwd_r2c(plggdn_fft_t *ptr, double *in,  plggdn_complex *out) {
-    return _plggdn_fft_vt(ptr)->fft_r2c(ptr, in, out);
+int plggdn_fft_fwd_r2c(plggdn_fft_t *fft, double *in,  plggdn_complex *out) {
+    return fft->vtable->fft_r2c(fft, in, out);
 }
 
-int plggdn_fft_inv_c2r(plggdn_fft_t *ptr, plggdn_complex *in, double *out) {
-    return _plggdn_fft_vt(ptr)->ifft_c2r(ptr, in, out);
+int plggdn_fft_inv_c2r(plggdn_fft_t *fft, plggdn_complex *in, double *out) {
+    return fft->vtable->ifft_c2r(fft, in, out);
 }
 
-int plggdn_fft_fwd(plggdn_fft_t *ptr, plggdn_complex *in, plggdn_complex *out) {
-    return _plggdn_fft_vt(ptr)->fft(ptr, in, out);
+int plggdn_fft_fwd(plggdn_fft_t *fft, plggdn_complex *in, plggdn_complex *out) {
+    return fft->vtable->fft(fft, in, out);
 }
 
-int plggdn_fft_inv(plggdn_fft_t *ptr, plggdn_complex *in, plggdn_complex *out) {
-    return _plggdn_fft_vt(ptr)->ifft(ptr, in, out);
+int plggdn_fft_inv(plggdn_fft_t *fft, plggdn_complex *in, plggdn_complex *out) {
+    return fft->vtable->ifft(fft, in, out);
 }
 
-int plggdn_fft_deinit(plggdn_fft_t *ptr) {
-    return _plggdn_fft_vt(ptr)->deinit(ptr);  
+int plggdn_fft_deinit(plggdn_fft_t *fft) {
+    return fft->vtable->deinit(fft);  
 }
 
 int plggdn_fft_release(plggdn_fft_t **ptr) {          
     plggdn_fft_deinit(*ptr);
     free(*ptr);
     *ptr = NULL;
+    return 0;
 }

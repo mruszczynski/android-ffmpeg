@@ -32,6 +32,8 @@ extern "C" {
 #ifdef USE_C99_COMPLEX_H
     // so we can manipulate complex numbers with ordinary arithmetic
     #include <complex.h>
+
+//#include "plggdn_fft_base.h"
 //    #define plggdn_complex plggdn_float complex
     
     typedef double _Complex plggdn_complex;    
@@ -68,10 +70,70 @@ extern "C" {
 
     #define PLGGDN_FFT_FORWARD 1
     #define PLGGDN_FFT_INVERSE -1
+
+    typedef struct plggdn_fft_t plggdn_fft_t;
+
+    typedef struct plggdn_fft_attr {         
+        int N;
+        
+        void *opaque;
+        
+         /**vtable to store implementation methods*/
+        struct  plggdn_fft_kernel_vtable *impl;
+    } plggdn_fft_attr;
     
-    struct plggdn_fft_t *plggdn_fft_create(int N);
+    /** base plggdn-FFT interface*/
+    typedef struct plggdn_fft_kernel_vtable {    
+
+        /**simplest constructor function*/
+        int(*init)(struct plggdn_fft_t *fft, void *opaque);
+        
+        /**destructor function*/
+        int(*deinit)(struct plggdn_fft_t *fft);
+        
+
+        /**forward fft from real input to complex output*/
+        int(*fft_r2c)(struct plggdn_fft_t *fft, plggdn_float *in,  plggdn_complex *out);
+
+        /**inverse fft from complex input to real output*/
+        int(*ifft_c2r)(struct plggdn_fft_t *fft, plggdn_complex *in,  plggdn_float *out);
+
+        /**forward complex fft*/
+        int(*fft)(struct plggdn_fft_t *fft, plggdn_complex *in, plggdn_complex *out);
+
+        /**inverse complex fft*/
+        int(*ifft)(struct plggdn_fft_t *fft, plggdn_complex *in, plggdn_complex *out);
+
+    } plggdn_fft_kernel_vtable;
+
+    /** kernel structure for plggdn-FFT*/
+    struct plggdn_fft_t {
+        /**union to introduce inheritance*/
+//        union {
+//            plggdn_fft_attr fft;
+//        } base;
+        
+        plggdn_complex *complex_in, *complex_out;
+        plggdn_float *real_in, *real_out;
+        
+        int N;
+        
+        void *opaque;
+        
+//        /**vtable to store implementation methods*/
+        struct  plggdn_fft_kernel_vtable *vtable;
+
+        /**macro to cast pointer to class*/
+//        #define _plggdn_fft(self) (self)
+//        #define _plggdn_fft(self) (&(self)->base.fft)
+//
+//        /**macro to execute functions*/
+//        #define _plggdn_fft_vt(self) ((self)->vtable)
+    };
     
-    int plggdn_fft_init(struct plggdn_fft_t *ptr, int N);
+    struct plggdn_fft_t *plggdn_fft_create(plggdn_fft_attr *attr);
+    
+    int plggdn_fft_init(struct plggdn_fft_t *ptr, plggdn_fft_attr *attr);
 
     int plggdn_fft_fwd_r2c(struct plggdn_fft_t *ptr, double *in,  plggdn_complex *out);
 

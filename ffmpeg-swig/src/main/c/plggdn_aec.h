@@ -14,8 +14,18 @@ extern "C" {
 
     typedef struct plggdn_aec_t plggdn_aec_t;
     
+    typedef struct plggdn_aec_attr {
+        int sample_rate;
+        int frame_size;
+        int filter_length;
+        
+        void *opaque;
+        
+        struct plggdn_aec_vtable *impl;
+    } plggdn_aec_attr;
+    
     typedef struct plggdn_aec_vtable {
-        int (*init)(plggdn_aec_t *ptr, void *arg);
+        int (*init)(plggdn_aec_t *ptr, void *opaque);
         int (*free)(plggdn_aec_t *aec);
 
         // synced cancellation
@@ -26,49 +36,45 @@ extern "C" {
         int (*echo_capture)(plggdn_aec_t *aec, void *input, void *out);
     } plggdn_aec_vtable;
     
-    
-    typedef struct plggdn_aec_base_attr {
+    struct plggdn_aec_t {
+        int sample_rate;
         int frame_size;
         int filter_length;
-    } plggdn_aec_base_attr;
-    
-    typedef struct plggdn_aec_base_t {
-        union {
-            plggdn_aec_base_attr plggdn;
-        } base;
         
-        #define _plggdn_aec_base(ptr) (&(ptr)->base.plggdn)
-    } plggdn_aec_base_t;
-    
-    typedef struct plggdn_aec_attr {
-        union {
-            plggdn_aec_base_t plggdn;
-        } base;
-        // other stuff here
-                
-        // implementation data
         void *priv;
         // implementation vtable
         plggdn_aec_vtable *vtable;
-        
-    } plggdn_aec_attr;
-    
-    struct plggdn_aec_t {
-        union {
-            plggdn_aec_attr aec;
-            plggdn_aec_base_attr plggdn;
-        } base;
-
-        #define _plggdn_aec(self) (&(self)->base.aec)
-        #define _plggdn_aec_vt(self) (_plggdn_aec(self)->vtable)        
     };
+    
+//    typedef struct plggdn_aec_attr {
+//        union {
+//            plggdn_aec_base_t plggdn;
+//        } base;
+//        // other stuff here
+//        
+//    } plggdn_aec_attr;
+//    
+//    struct plggdn_aec_t {
+//        union {
+//            plggdn_aec_attr aec;
+//            plggdn_aec_base_attr plggdn;
+//        } base;
+//        
+//        // implementation data
+//        void *priv;
+//        // implementation vtable
+//        plggdn_aec_vtable *vtable;
+//
+//        #define _plggdn_aec(self) (&(self)->base.aec)
+//        #define _plggdn_aec_vt(self) (_plggdn_aec(self)->vtable)        
+//    };
     
     
     // public interface
-    plggdn_aec_t *plggdn_aec_create(plggdn_aec_vtable *implementation, plggdn_aec_base_attr *arg);
+    plggdn_aec_t *plggdn_aec_create(plggdn_aec_attr *arg);
     int plggdn_aec_release(plggdn_aec_t **aec);
     
-    int plggdn_aec_init(plggdn_aec_t *aec, void *arg);
+    int plggdn_aec_init(plggdn_aec_t *aec, plggdn_aec_attr *arg);
     int plggdn_aec_free(plggdn_aec_t *aec);
     
     // synced cancellation

@@ -15,7 +15,7 @@ void _plggdn_free_fftw(void *c) {
     fftw_free((void*)c);
 }
 
-plggdn_fft_kernel_vtable plggdn_fft_implement_fftw = {
+plggdn_fft_kernel_vtable plggdn_fft_fftw_vt = {
             &plggdn_fft_init_fftw,
             &plggdn_fft_deinit_fftw,
 
@@ -25,91 +25,88 @@ plggdn_fft_kernel_vtable plggdn_fft_implement_fftw = {
             &plggdn_ifft_fftw        
         };
 
-int plggdn_fft_init_fftw(plggdn_fft_t *ptr) {
-        plggdn_fftw_attr *attr = (plggdn_fftw_attr*) malloc(sizeof(plggdn_fftw_attr));
-        
-        _plggdn_fft(ptr)->priv = attr;
-        
+int plggdn_fft_init_fftw(plggdn_fft_t *fft, void *opaque) {
         // init data memory, plggdn_fft_t stores only pointers, 
         // all memory operations take place in this implementation
-        _plggdn_fft(ptr)->real_in = 
-                attr->real_in = (plggdn_float*) fftw_malloc(sizeof(plggdn_float) * _plggdn_fft(ptr)->N);
+        fft->real_in = (plggdn_float*) fftw_malloc(sizeof(plggdn_float) * fft->N);
+
+        fft->complex_in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * fft->N);
+
+        fft->real_out = (plggdn_float*) fftw_malloc(sizeof(plggdn_float) * fft->N);
+
+        fft->complex_out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * fft->N);
+                
+        plggdn_fft_fftw_attr *fftw_attr = 
+                (plggdn_fft_fftw_attr*) malloc(sizeof(plggdn_fft_fftw_attr));
+        memset(fftw_attr, 0, sizeof(plggdn_fft_fftw_attr));
         
-        _plggdn_fft(ptr)->complex_in = 
-                attr->complex_in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * _plggdn_fft(ptr)->N);
+        fft->opaque = fftw_attr;
         
-        _plggdn_fft(ptr)->real_out = 
-                attr->real_out = (plggdn_float*) fftw_malloc(sizeof(plggdn_float) * _plggdn_fft(ptr)->N);
+        // init plans                
+        fftw_attr->p[FWD_R2C] = fftw_plan_dft_r2c_1d(fft->N, fft->real_in, fft->complex_out, FFTW_MEASURE);
+        fftw_attr->p[INV_C2R] = fftw_plan_dft_c2r_1d(fft->N, fft->complex_in, fft->real_out, FFTW_MEASURE);
         
-        _plggdn_fft(ptr)->complex_out = 
-                attr->complex_out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * _plggdn_fft(ptr)->N);
-        
-        // init plans
-        attr->p[FWD_R2C] = fftw_plan_dft_r2c_1d(_plggdn_fft(ptr)->N, attr->real_in, attr->complex_out, FFTW_MEASURE);
-        attr->p[INV_C2R] = fftw_plan_dft_c2r_1d(_plggdn_fft(ptr)->N, attr->complex_in, attr->real_out, FFTW_MEASURE);
-        
-        attr->p[FWD_C2C] = fftw_plan_dft_1d(_plggdn_fft(ptr)->N, attr->complex_in, attr->complex_out, FFTW_FORWARD, FFTW_MEASURE);
-        attr->p[INV_C2C] = fftw_plan_dft_1d(_plggdn_fft(ptr)->N, attr->complex_in, attr->complex_out, FFTW_BACKWARD, FFTW_MEASURE);
+        fftw_attr->p[FWD_C2C] = fftw_plan_dft_1d(fft->N, fft->complex_in, fft->complex_out, FFTW_FORWARD, FFTW_MEASURE);
+        fftw_attr->p[INV_C2C] = fftw_plan_dft_1d(fft->N, fft->complex_in, fft->complex_out, FFTW_BACKWARD, FFTW_MEASURE);
         
         return 0;
     }
 
-    int plggdn_fft_r2c_fftw(plggdn_fft_t *ptr, plggdn_float *in,  plggdn_complex *out) {
-        plggdn_fftw_attr *attr = (plggdn_fftw_attr*) _plggdn_fft(ptr)->priv;
+    int plggdn_fft_r2c_fftw(plggdn_fft_t *fft, plggdn_float *in,  plggdn_complex *out) {
         // copy input to transform input array
-        memcpy(attr->real_in, in, sizeof(plggdn_float) * _plggdn_fft(ptr)->N);
+        memcpy(fft->real_in, in, sizeof(plggdn_float) * fft->N);
         // execute transform
-        fftw_execute(attr->p[FWD_R2C]);
+        plggdn_fft_fftw_attr *fftw_attr = fft->opaque;
+        fftw_execute(fftw_attr->p[FWD_R2C]);
         // copy from transform output to output array
-        memcpy(out, attr->complex_out, sizeof(plggdn_complex) * _plggdn_fft(ptr)->N);
+        memcpy(out, fft->complex_out, sizeof(plggdn_complex) * fft->N);
         return 0;
     }
 
-    int plggdn_ifft_c2r_fftw(plggdn_fft_t *ptr, plggdn_complex *in, plggdn_float *out) {
-        plggdn_fftw_attr *attr = (plggdn_fftw_attr*) _plggdn_fft(ptr)->priv;
+    int plggdn_ifft_c2r_fftw(plggdn_fft_t *fft, plggdn_complex *in, plggdn_float *out) {
         // copy input to transform input array
-        memcpy(attr->complex_in, in, sizeof(plggdn_complex) * _plggdn_fft(ptr)->N);
+        memcpy(fft->complex_in, in, sizeof(plggdn_complex) * fft->N);
         // execute transform
-        fftw_execute(attr->p[INV_C2R]);
+        plggdn_fft_fftw_attr *fftw_attr = fft->opaque;
+        fftw_execute(fftw_attr->p[INV_C2R]);
         // copy from transform output to output array
-        memcpy(out, attr->real_out, sizeof(plggdn_float) * _plggdn_fft(ptr)->N);
+        memcpy(out, fft->real_out, sizeof(plggdn_float) * fft->N);
         return 0;
     }
 
-    int plggdn_fft_fftw(plggdn_fft_t *ptr, plggdn_complex *in, plggdn_complex *out) {
-        plggdn_fftw_attr *attr = (plggdn_fftw_attr*) _plggdn_fft(ptr)->priv;
+    int plggdn_fft_fftw(plggdn_fft_t *fft, plggdn_complex *in, plggdn_complex *out) {
         // copy input to transform input array
-        memcpy(attr->complex_in, in, sizeof(plggdn_complex) * _plggdn_fft(ptr)->N);
+        memcpy(fft->complex_in, in, sizeof(plggdn_complex) * fft->N);
         // execute transform
-        fftw_execute(attr->p[FWD_C2C]);
+        plggdn_fft_fftw_attr *fftw_attr = fft->opaque;
+        fftw_execute(fftw_attr->p[FWD_C2C]);
         // copy from transform output to output array
-        memcpy(out, attr->complex_out, sizeof(plggdn_complex) * _plggdn_fft(ptr)->N);
+        memcpy(out, fft->complex_out, sizeof(plggdn_complex) * fft->N);
         return 0;
     }
 
-    int plggdn_ifft_fftw(plggdn_fft_t *ptr, plggdn_complex *in, plggdn_complex *out) {
-        plggdn_fftw_attr *attr = (plggdn_fftw_attr*) _plggdn_fft(ptr)->priv;
+    int plggdn_ifft_fftw(plggdn_fft_t *fft, plggdn_complex *in, plggdn_complex *out) {
         // copy input to transform input array
-        memcpy(attr->complex_in, in, sizeof(plggdn_complex) * _plggdn_fft(ptr)->N);
+        memcpy(fft->complex_in, in, sizeof(plggdn_complex) * fft->N);
         // execute transform
-        fftw_execute(attr->p[INV_C2C]);
+        plggdn_fft_fftw_attr *fftw_attr = fft->opaque;
+        fftw_execute(fftw_attr->p[INV_C2C]);
         // copy from transform output to output array
-        memcpy(out, attr->complex_out, sizeof(plggdn_complex) * _plggdn_fft(ptr)->N);
+        memcpy(out, fft->complex_out, sizeof(plggdn_complex) * fft->N);
         return 0;
     }
 
-    int plggdn_fft_deinit_fftw(plggdn_fft_t *ptr) {
-        plggdn_fftw_attr *attr = (plggdn_fftw_attr*) _plggdn_fft(ptr)->priv;
-        
+    int plggdn_fft_deinit_fftw(plggdn_fft_t *fft) {
         // free data memory
-        fftw_free(attr->real_in);
-        fftw_free(attr->real_out);
-        fftw_free(attr->complex_in);
-        fftw_free(attr->complex_out);
+        fftw_free(fft->real_in);
+        fftw_free(fft->real_out);
+        fftw_free(fft->complex_in);
+        fftw_free(fft->complex_out);
         
+        plggdn_fft_fftw_attr *fftw_attr = fft->opaque;
         // free plans
         for(int i=0; i<4; i++) {
-            fftw_destroy_plan(attr->p[i]);
+            fftw_destroy_plan(fftw_attr->p[i]);
         }
         
         return 0;

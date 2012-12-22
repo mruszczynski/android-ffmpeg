@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_pluggedin_dsp_AECJNI
  * Method:    create
- * Signature: (II)J
+ * Signature: (III)J
  */
 JNIEXPORT jlong JNICALL Java_com_pluggedin_dsp_AECJNI_create
-  (JNIEnv *, jclass, jint, jint);
+  (JNIEnv *, jclass, jint, jint, jint);
 
 /*
  * Class:     com_pluggedin_dsp_AECJNI

@@ -9,7 +9,7 @@ package com.pluggedin.dsp;
  * @author michu
  */
 public class AECJNI {    
-    native static long create(int frame_size, int filter_length);
+    native static long create(int sample_rate, int frame_size, int filter_length);
     native static int destroy(long ptr);
     
     native static int echo_cancel(long cptr, short[] input, short[] echo, short[] filter_out);

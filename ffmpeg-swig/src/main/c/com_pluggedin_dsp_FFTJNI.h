@@ -26,34 +26,34 @@ JNIEXPORT void JNICALL Java_com_pluggedin_dsp_FFTJNI_destroy
 /*
  * Class:     com_pluggedin_dsp_FFTJNI
  * Method:    fwd
- * Signature: (J[Lcom/pluggedin/dsp/Complex;)[Lcom/pluggedin/dsp/Complex;
+ * Signature: (J[D[D)I
  */
-JNIEXPORT jobjectArray JNICALL Java_com_pluggedin_dsp_FFTJNI_fwd
-  (JNIEnv *, jclass, jlong, jobjectArray);
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_FFTJNI_fwd
+  (JNIEnv *, jclass, jlong, jdoubleArray, jdoubleArray);
 
 /*
  * Class:     com_pluggedin_dsp_FFTJNI
  * Method:    inv
- * Signature: (J[Lcom/pluggedin/dsp/Complex;)[Lcom/pluggedin/dsp/Complex;
+ * Signature: (J[D[D)I
  */
-JNIEXPORT jobjectArray JNICALL Java_com_pluggedin_dsp_FFTJNI_inv
-  (JNIEnv *, jclass, jlong, jobjectArray);
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_FFTJNI_inv
+  (JNIEnv *, jclass, jlong, jdoubleArray, jdoubleArray);
 
 /*
  * Class:     com_pluggedin_dsp_FFTJNI
  * Method:    fwd_r2c
- * Signature: (J[D)[Lcom/pluggedin/dsp/Complex;
+ * Signature: (J[D[D)I
  */
-JNIEXPORT jobjectArray JNICALL Java_com_pluggedin_dsp_FFTJNI_fwd_1r2c
-  (JNIEnv *, jclass, jlong, jdoubleArray);
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_FFTJNI_fwd_1r2c
+  (JNIEnv *, jclass, jlong, jdoubleArray, jdoubleArray);
 
 /*
  * Class:     com_pluggedin_dsp_FFTJNI
  * Method:    inv_c2r
- * Signature: (J[Lcom/pluggedin/dsp/Complex;)[D
+ * Signature: (J[D[D)I
  */
-JNIEXPORT jdoubleArray JNICALL Java_com_pluggedin_dsp_FFTJNI_inv_1c2r
-  (JNIEnv *, jclass, jlong, jobjectArray);
+JNIEXPORT jint JNICALL Java_com_pluggedin_dsp_FFTJNI_inv_1c2r
+  (JNIEnv *, jclass, jlong, jdoubleArray, jdoubleArray);
 
 #ifdef __cplusplus
 }

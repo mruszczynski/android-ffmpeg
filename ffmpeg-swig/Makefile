@@ -23,7 +23,7 @@ plggdn_dsp_3rd_party = target/plggdn_fft_FFTW.o target/plggdn_aec_speex.o
 
 plggdn_dsp_objects = $(plggdn_dsp_base) $(plggdn_dsp_base_JNI) $(plggdn_dsp_3rd_party)
 
-objects = target/test.o $(ffmpeg_objects) $(plggdn_dsp_objects)
+objects = $(ffmpeg_objects) $(plggdn_dsp_objects)
 
 $(objects): target/%.o: src/main/c/%.c
 	mkdir -p target

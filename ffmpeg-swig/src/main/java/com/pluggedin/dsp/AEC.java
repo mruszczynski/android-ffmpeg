@@ -11,8 +11,8 @@ package com.pluggedin.dsp;
 public class AEC {    
     private long cPtr;
     
-    public AEC(int frame_size, int filter_length) {
-        cPtr = AECJNI.create(frame_size, filter_length);
+    public AEC(int sample_rate, int frame_size, int filter_length) {
+        cPtr = AECJNI.create(sample_rate, frame_size, filter_length);
     }
 
     @Override
